@@ -19,7 +19,7 @@ class CartTemplate extends StatelessWidget {
   final bool authentication;
   final String? name;
   final String? lastName;
-  final List<Product> listCart;
+  final List<dynamic> listCart;
   final VoidCallback? backonPressed;
   final VoidCallback? logOutonPressed;
   final VoidCallback? logInonPressed;

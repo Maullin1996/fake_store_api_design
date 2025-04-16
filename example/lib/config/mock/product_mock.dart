@@ -7,7 +7,8 @@ final List<Product> products = [
     price: 1299.99,
     description: "High-performance laptop with advanced features.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 2,
@@ -15,7 +16,8 @@ final List<Product> products = [
     price: 899.99,
     description: "Latest smartphone with high-resolution display.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 3,
@@ -23,7 +25,8 @@ final List<Product> products = [
     price: 199.99,
     description: "Noise-canceling headphones with premium sound.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 4,
@@ -31,7 +34,8 @@ final List<Product> products = [
     price: 299.99,
     description: "Ergonomic gaming chair for maximum comfort.",
     category: "Furniture",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 5,
@@ -39,7 +43,8 @@ final List<Product> products = [
     price: 89.99,
     description: "Automatic coffee maker with programmable settings.",
     category: "Kitchen",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 6,
@@ -47,7 +52,8 @@ final List<Product> products = [
     price: 399.99,
     description: "Advanced smartwatch with health tracking.",
     category: "Wearables",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 7,
@@ -55,7 +61,8 @@ final List<Product> products = [
     price: 149.99,
     description: "Portable speaker with deep bass and long battery life.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 8,
@@ -63,7 +70,8 @@ final List<Product> products = [
     price: 120.00,
     description: "Lightweight and comfortable running shoes.",
     category: "Sportswear",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 9,
@@ -71,7 +79,8 @@ final List<Product> products = [
     price: 49.99,
     description: "Adjustable LED desk lamp with multiple brightness settings.",
     category: "Home",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 10,
@@ -79,7 +88,8 @@ final List<Product> products = [
     price: 69.99,
     description: "Durable backpack with multiple compartments.",
     category: "Accessories",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 11,
@@ -87,7 +97,8 @@ final List<Product> products = [
     price: 1199.99,
     description: "Ultra HD Smart TV with high dynamic range.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 12,
@@ -95,7 +106,8 @@ final List<Product> products = [
     price: 39.99,
     description: "Non-slip yoga mat for comfortable workouts.",
     category: "Fitness",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 13,
@@ -103,7 +115,8 @@ final List<Product> products = [
     price: 29.99,
     description: "Ergonomic wireless mouse with high precision.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 14,
@@ -111,7 +124,8 @@ final List<Product> products = [
     price: 39.99,
     description: "High-capacity power bank for charging on the go.",
     category: "Accessories",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 15,
@@ -119,7 +133,8 @@ final List<Product> products = [
     price: 129.99,
     description: "Complete cookware set for all your cooking needs.",
     category: "Kitchen",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 16,
@@ -127,7 +142,8 @@ final List<Product> products = [
     price: 499.99,
     description: "Foldable electric scooter with long battery life.",
     category: "Transportation",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 17,
@@ -135,7 +151,8 @@ final List<Product> products = [
     price: 179.99,
     description: "Wi-Fi enabled thermostat for energy efficiency.",
     category: "Home",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 18,
@@ -143,7 +160,8 @@ final List<Product> products = [
     price: 499.99,
     description: "Next-gen gaming console for immersive experiences.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 19,
@@ -151,7 +169,8 @@ final List<Product> products = [
     price: 24.99,
     description: "Insulated water bottle to keep drinks hot or cold.",
     category: "Accessories",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 20,
@@ -159,7 +178,8 @@ final List<Product> products = [
     price: 79.99,
     description: "Mechanical wireless keyboard with RGB lighting.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 21,
@@ -167,7 +187,8 @@ final List<Product> products = [
     price: 150.00,
     description: "Durable hiking boots for outdoor adventures.",
     category: "Sportswear",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 22,
@@ -175,7 +196,8 @@ final List<Product> products = [
     price: 59.99,
     description: "Rechargeable electric toothbrush with multiple modes.",
     category: "Health",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 23,
@@ -183,7 +205,8 @@ final List<Product> products = [
     price: 199.99,
     description: "Adjustable ergonomic office chair.",
     category: "Furniture",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 24,
@@ -191,7 +214,8 @@ final List<Product> products = [
     price: 129.99,
     description: "Keyless smart door lock with app control.",
     category: "Home",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 25,
@@ -199,7 +223,8 @@ final List<Product> products = [
     price: 299.99,
     description: "Waterproof action camera with 4K recording.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 26,
@@ -207,7 +232,8 @@ final List<Product> products = [
     price: 79.99,
     description: "Soft and breathable bed sheets set.",
     category: "Home",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 27,
@@ -215,7 +241,8 @@ final List<Product> products = [
     price: 199.99,
     description: "Lightweight tent for outdoor camping.",
     category: "Sports",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 28,
@@ -223,7 +250,8 @@ final List<Product> products = [
     price: 49.99,
     description: "Adjustable laptop stand for ergonomic use.",
     category: "Accessories",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 29,
@@ -231,7 +259,8 @@ final List<Product> products = [
     price: 39.99,
     description: "Electric hand mixer for baking needs.",
     category: "Kitchen",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
   Product(
     id: 30,
@@ -239,6 +268,7 @@ final List<Product> products = [
     price: 399.99,
     description: "Immersive VR headset for gaming and experiences.",
     category: "Electronics",
-    image: "assets/images/IMG_1980.JPG",
+    image:
+        "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
   ),
 ];

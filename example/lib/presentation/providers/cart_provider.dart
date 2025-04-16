@@ -1,5 +1,5 @@
+import 'package:fake_store_api_package/domain/models/product_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fake_store_api_package/domain/models.dart';
 
 class CartListProvider extends StateNotifier<List<Product>> {
   CartListProvider(super.state);
@@ -10,7 +10,6 @@ class CartListProvider extends StateNotifier<List<Product>> {
 
   void removeToCart(Product product) {
     state = [...state]..remove(product);
-    print('prodduct remove');
   }
 }
 
