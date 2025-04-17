@@ -15,7 +15,6 @@ class ProductTemplate extends StatelessWidget {
     required this.productName,
     required this.productPrice,
   });
-
   final bool isFavorite;
   final VoidCallback? cartonPressed;
   final VoidCallback? backonPressed;

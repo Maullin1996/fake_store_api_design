@@ -56,12 +56,10 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
     final notifier = ref.read(myCartListProvider.notifier);
     if (!myCartList.contains(product)) {
       notifier.addToCart(product);
-      CustomProductVerification().productVerification(
-        TypeProductVerification.added,
-      );
+      CustomFloatingNotifications().productVerification(TypeVerification.added);
     } else {
-      CustomProductVerification().productVerification(
-        TypeProductVerification.notAdded,
+      CustomFloatingNotifications().productVerification(
+        TypeVerification.notAdded,
       );
     }
   }
@@ -80,7 +78,9 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
       isLogIn: false,
       name: 'Pepito',
       lastName: 'Perez',
-      productApiResponse: productApiResponse,
+      isLoading: productApiResponse.isLoading,
+      errorMessage: productApiResponse.errorMessage,
+      products: productApiResponse.products,
       myFavoriteList: myFavoriteList,
       myCartList: myCartList,
       selectedCategory: selectedCategory,

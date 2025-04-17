@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 class HomeTamplate extends StatelessWidget {
   final bool isLogIn;
-  final dynamic productApiResponse;
+  final List<dynamic> products;
+  final String? errorMessage;
+  final bool isLoading;
   final List<dynamic> myFavoriteList;
   final List<dynamic> myCartList;
   final String selectedCategory;
@@ -22,12 +24,14 @@ class HomeTamplate extends StatelessWidget {
 
   const HomeTamplate({
     super.key,
+    required this.isLoading,
     required this.isLogIn,
-    required this.productApiResponse,
+    required this.products,
     required this.myFavoriteList,
     required this.myCartList,
     required this.selectedCategory,
     required this.onCategorySelected,
+    this.errorMessage,
     this.onPressedFavorite,
     this.onPressedinfo,
     this.onPressedbuy,
@@ -59,27 +63,31 @@ class HomeTamplate extends StatelessWidget {
               ),
       body: _buildBody(
         context: context,
-        productApiResponse: productApiResponse,
+        products: products,
         myFavoriteList: myFavoriteList,
         myCartList: myCartList,
+        errorMessage: errorMessage,
+        isLoading: isLoading,
       ),
     );
   }
 
   Widget _buildBody({
     required BuildContext context,
-    required dynamic productApiResponse,
+    String? errorMessage,
+    required bool isLoading,
+    required dynamic products,
     required List<dynamic> myFavoriteList,
     required List<dynamic> myCartList,
   }) {
     final textTheme = Theme.of(context).textTheme;
 
-    if (productApiResponse.isLoading) {
+    if (isLoading) {
       return const Center(child: CircularProgressIndicator());
-    } else if (productApiResponse.errorMessage != null) {
+    } else if (errorMessage != null) {
       return Center(
         child: Text(
-          'Error: ${productApiResponse.errorMessage}',
+          'Error: $errorMessage',
           style: textTheme.bodyMedium?.copyWith(color: AppColors.error),
         ),
       );
@@ -101,9 +109,9 @@ class HomeTamplate extends StatelessWidget {
               crossAxisSpacing: 4,
               childAspectRatio: 0.47,
             ),
-            itemCount: productApiResponse.products.length,
+            itemCount: products.length,
             itemBuilder: (context, index) {
-              final product = productApiResponse.products[index];
+              final product = products[index];
               return ProducthomeContainer(
                 url: product.image,
                 productName: product.title,

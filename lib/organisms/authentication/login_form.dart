@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../atoms/tokens.dart';
 
 class LoginForm extends StatelessWidget {
+  final bool? isLoadingButton;
   final Function()? onPressed;
   final Function(String)? onChangeUsername;
   final String? Function(String?)? validatorUsername;
@@ -20,6 +21,7 @@ class LoginForm extends StatelessWidget {
     this.onChangePassword,
     this.validatorPassword,
     this.passwordController,
+    this.isLoadingButton,
   });
 
   @override
@@ -52,11 +54,11 @@ class LoginForm extends StatelessWidget {
             validator: validatorPassword,
             textEditingController: passwordController,
           ),
-          SizedBox(height: AppSpacing.medium),
           Center(
             child: AppButtons(
               type: ButtonType.primaryFillButton,
               title: 'Login',
+              isLoading: isLoadingButton,
               onPressed: onPressed,
               buttonWidth: AppSpacing.large,
             ),

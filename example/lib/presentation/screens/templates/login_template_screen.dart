@@ -13,6 +13,7 @@ class _LoginTemplateScreenState extends State<LoginTemplateScreen> {
   @override
   Widget build(BuildContext context) {
     return LoginTemplate(
+      isLoadingButton: false,
       cartonPressed: () {},
       backonPressed: () {
         context.pop();

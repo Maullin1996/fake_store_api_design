@@ -46,7 +46,9 @@ class AppInputText extends StatelessWidget {
         obscureText: obscureText,
         onChanged: onChange,
         validator: validator,
+
         decoration: InputDecoration(
+          errorStyle: textTheme.bodyLarge,
           fillColor: AppColors.backGoundTextFormField,
           filled: true,
           label: Text(

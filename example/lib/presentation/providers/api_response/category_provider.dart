@@ -9,7 +9,7 @@ class ProductApiResponse {
   final List<Product> products;
 
   ProductApiResponse({
-    this.isLoading = true,
+    this.isLoading = false,
     this.errorMessage,
     this.category = 'All',
     this.products = const [],

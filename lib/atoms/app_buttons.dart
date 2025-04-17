@@ -31,6 +31,7 @@ class AppButtons extends StatelessWidget {
   final ButtonType type;
   final double? iconSize;
   final double buttonWidth;
+  final bool? isLoading;
 
   const AppButtons({
     super.key,
@@ -42,6 +43,7 @@ class AppButtons extends StatelessWidget {
     this.iconSize,
     this.fontSizeTextButton = AppTypography.h3,
     this.buttonWidth = AppSpacing.medium,
+    this.isLoading = false,
   });
 
   @override
@@ -59,11 +61,16 @@ class AppButtons extends StatelessWidget {
                     : AppColors.secondary,
             disabledBackgroundColor: AppColors.disabledButton,
           ),
-          onPressed: onPressed,
-          child: Text(
-            title,
-            style: textTheme.displaySmall?.copyWith(color: AppColors.onPrimary),
-          ),
+          onPressed: isLoading! ? null : onPressed,
+          child:
+              isLoading!
+                  ? CircularProgressIndicator()
+                  : Text(
+                    title,
+                    style: textTheme.displaySmall?.copyWith(
+                      color: AppColors.onPrimary,
+                    ),
+                  ),
         );
 
       case ButtonType.primaryTextButton:

@@ -1,4 +1,7 @@
 import 'package:example/presentation/home_screen.dart';
+import 'package:example/presentation/screens/pages/cart_page_screen.dart';
+import 'package:example/presentation/screens/pages/home_page_screen.dart';
+import 'package:example/presentation/screens/pages/login_page_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../presentation/screens.dart';
@@ -86,6 +89,20 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/login_template',
       builder: (context, state) => const LoginTemplateScreen(),
+    ),
+    //Pages
+    GoRoute(path: '/pages', builder: (context, state) => const PagesScreens()),
+    GoRoute(
+      path: '/login_page',
+      builder: (context, state) => const LoginPageScreen(),
+    ),
+    GoRoute(
+      path: '/cart_page',
+      builder: (context, state) => const CartPageScreen(),
+    ),
+    GoRoute(
+      path: '/home_page',
+      builder: (context, state) => const HomePageScreen(),
     ),
   ],
 );

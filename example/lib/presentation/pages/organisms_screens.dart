@@ -14,7 +14,7 @@ class OrganismsScreens extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primaryVariant,
         title: Text(
-          'Molecules',
+          'Organisms',
           style: textTheme.displayMedium?.copyWith(
             color: AppColors.onPrimary,
             decoration: TextDecoration.underline,

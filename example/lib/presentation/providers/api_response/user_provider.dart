@@ -8,7 +8,7 @@ class UserApiResponse {
   final List<User> users;
 
   UserApiResponse({
-    this.isLoading = true,
+    this.isLoading = false,
     this.errorMessage,
     this.users = const [],
   });
@@ -26,8 +26,8 @@ class UserApiResponse {
   }
 }
 
-class CategoryNotifier extends StateNotifier<UserApiResponse> {
-  CategoryNotifier() : super(UserApiResponse());
+class UserNotifier extends StateNotifier<UserApiResponse> {
+  UserNotifier() : super(UserApiResponse());
 
   final ApiServices _apiServices = ApiServices();
 
@@ -42,7 +42,8 @@ class CategoryNotifier extends StateNotifier<UserApiResponse> {
   }
 }
 
-final categoryProductsProvider =
-    StateNotifierProvider<CategoryNotifier, UserApiResponse>((ref) {
-      return CategoryNotifier();
-    });
+final userInfoProvider = StateNotifierProvider<UserNotifier, UserApiResponse>((
+  ref,
+) {
+  return UserNotifier();
+});

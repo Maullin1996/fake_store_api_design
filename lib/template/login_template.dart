@@ -1,10 +1,8 @@
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:fake_store_design/molecules/molecules.dart';
-
-import '../atoms/tokens.dart';
-import '../organisms/authentication/login_form.dart';
 
 class LoginTemplate extends StatelessWidget {
+  final bool? isLoadingButton;
   final VoidCallback? cartonPressed;
   final VoidCallback? backonPressed;
   final VoidCallback? onPressed;
@@ -26,6 +24,7 @@ class LoginTemplate extends StatelessWidget {
     this.passwordController,
     this.validatorPassword,
     this.validatorUsername,
+    this.isLoadingButton,
   });
 
   @override
@@ -42,6 +41,7 @@ class LoginTemplate extends StatelessWidget {
           children: [
             AuthenticationWelcome(),
             LoginForm(
+              isLoadingButton: isLoadingButton,
               onPressed: onPressed,
               onChangePassword: onChangePassword,
               passwordController: passwordController,

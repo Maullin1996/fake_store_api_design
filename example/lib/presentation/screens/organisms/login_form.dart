@@ -38,7 +38,7 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Custom form', style: textTheme.displayMedium),
-            LoginForm(onPressed: () {}),
+            LoginForm(onPressed: () {}, isLoadingButton: false),
           ],
         ),
       ),
