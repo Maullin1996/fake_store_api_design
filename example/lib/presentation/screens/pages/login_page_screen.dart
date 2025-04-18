@@ -1,4 +1,5 @@
 import 'package:example/presentation/providers/api_response/sign_in_provider.dart';
+import 'package:example/presentation/providers/api_response/user_provider.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,20 +16,30 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isAuthenticated = false; // Nuevo estado para controlar la navegación
 
   @override
   Widget build(BuildContext context) {
     final loginProvider = ref.watch(authenticationProvider);
 
-    ref.listen<SignInApiResponse>(authenticationProvider, (previous, current) {
+    ref.listen<SignInApiResponse>(authenticationProvider, (
+      previous,
+      current,
+    ) async {
       if (current.errorMessage != null &&
           previous?.errorMessage != current.errorMessage) {
         CustomFloatingNotifications(
           errorMessage: current.errorMessage,
         ).productVerification(TypeVerification.errorMessage);
       }
-      if (current.token != null) {
-        context.go('/home_page');
+      if (current.token != null && !_isAuthenticated) {
+        _isAuthenticated = true;
+        await ref.read(userInfoProvider.notifier).fetchAllUsers();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            context.pop();
+          }
+        });
       }
     });
 
