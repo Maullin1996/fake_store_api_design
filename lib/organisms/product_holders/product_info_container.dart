@@ -33,8 +33,7 @@ class ProductInfoContainer extends StatelessWidget {
       ),
       width: MediaQuery.sizeOf(context).width,
       color: AppColors.onPrimary,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
           Center(
             child: AppNetworkImage(url: url, widthImage: 250, heightImage: 300),

@@ -1,7 +1,9 @@
+import 'package:example/domain/models/product_entity.dart';
 import 'package:example/presentation/home_screen.dart';
 import 'package:example/presentation/screens/pages/cart_page_screen.dart';
 import 'package:example/presentation/screens/pages/home_page_screen.dart';
 import 'package:example/presentation/screens/pages/login_page_screen.dart';
+import 'package:example/presentation/screens/pages/product_page_screen.dart';
 import 'package:example/presentation/screens/pages/user_page_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -108,6 +110,13 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/user_page',
       builder: (context, state) => const UserPageScreen(),
+    ),
+    GoRoute(
+      path: '/product_page',
+      builder: (context, state) {
+        final Product product = state.extra as Product;
+        return ProductPageScreen(product: product);
+      },
     ),
   ],
 );

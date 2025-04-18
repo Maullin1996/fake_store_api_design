@@ -1,10 +1,10 @@
 //import 'package:example/config/mock/product_mock.dart';
+import 'package:example/domain/models/product_entity.dart';
 import 'package:example/presentation/helpers/category_selected.dart';
-import 'package:example/presentation/providers/cart_provider.dart';
+import 'package:example/presentation/providers/shared/cart_provider.dart';
 import 'package:example/presentation/providers/api_response/category_provider.dart';
 
-import 'package:example/presentation/providers/favorite_provider.dart';
-import 'package:fake_store_api_package/domain/models/product_entity.dart';
+import 'package:example/presentation/providers/shared/favorite_provider.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

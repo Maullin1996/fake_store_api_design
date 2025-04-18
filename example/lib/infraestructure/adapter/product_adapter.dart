@@ -1,4 +1,4 @@
-import 'package:fake_store_api_package/domain/models.dart';
+import 'package:example/domain/models/product_entity.dart';
 import 'package:fake_store_design/models/base_product.dart';
 
 class ProductAdapter implements BaseProduct {

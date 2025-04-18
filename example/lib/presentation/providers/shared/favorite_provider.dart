@@ -1,4 +1,4 @@
-import 'package:fake_store_api_package/domain/models.dart';
+import 'package:example/domain/models/product_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FavoriteListProvider extends StateNotifier<List<Product>> {
@@ -6,12 +6,22 @@ class FavoriteListProvider extends StateNotifier<List<Product>> {
 
   void addToFavorite(Product product) {
     state = [...state, product];
-    print('add');
   }
 
   void removeToFavorite(Product product) {
     state = [...state]..remove(product);
-    print('remove');
+  }
+
+  bool isFavorite(Product product) {
+    return state.contains(product);
+  }
+
+  void toggleFavorite(Product product) {
+    if (isFavorite(product)) {
+      removeToFavorite(product);
+    } else {
+      addToFavorite(product);
+    }
   }
 }
 

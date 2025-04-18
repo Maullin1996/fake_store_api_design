@@ -33,16 +33,14 @@ class ProductTemplate extends StatelessWidget {
         backonPressed: backonPressed,
         cartonPressed: cartonPressed,
       ),
-      body: SingleChildScrollView(
-        child: ProductInfoContainer(
-          url: url,
-          productName: productName,
-          description: description,
-          productPrice: productPrice,
-          onPressedbuy: onPressedbuy,
-          isFavorite: isFavorite,
-          onPressedFavorite: onPressedFavorite,
-        ),
+      body: ProductInfoContainer(
+        url: url,
+        productName: productName,
+        description: description,
+        productPrice: productPrice,
+        onPressedbuy: onPressedbuy,
+        isFavorite: isFavorite,
+        onPressedFavorite: onPressedFavorite,
       ),
     );
   }

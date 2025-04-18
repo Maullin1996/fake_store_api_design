@@ -1,4 +1,4 @@
-import 'package:fake_store_api_package/domain/models/product_entity.dart';
+import 'package:example/domain/models/product_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CartListProvider extends StateNotifier<List<Product>> {

@@ -1,4 +1,3 @@
-import 'package:fake_store_api_package/domain/models.dart';
 import 'package:fake_store_api_package/methods/api_services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,7 +20,6 @@ class SignInApiResponse {
     bool? isLoading,
     String? errorMessage,
     String? token,
-    User? userInfo,
     String? username,
     String? password,
   }) {

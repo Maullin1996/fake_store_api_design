@@ -1,4 +1,4 @@
-import 'package:fake_store_api_package/domain/models/product_entity.dart';
+import 'package:example/domain/models/product_entity.dart';
 
 final List<Product> products = [
   Product(

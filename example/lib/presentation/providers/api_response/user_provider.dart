@@ -1,8 +1,10 @@
 import 'package:collection/collection.dart';
+import 'package:example/domain/models/user_entity.dart';
 import 'package:example/presentation/providers/api_response/sign_in_provider.dart';
-import 'package:fake_store_api_package/domain/models.dart';
 import 'package:fake_store_api_package/methods/api_services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../infraestructure/helppers/users/users_mapper.dart';
 
 class UserApiResponse {
   final bool isLoading;
@@ -46,7 +48,7 @@ class UserNotifier extends StateNotifier<UserApiResponse> {
         return state.copyWith(
           isLoading: false,
           errorMessage: null,
-          user: loggedInUser,
+          user: UsersMapper.userFakeStoreToUser(loggedInUser!),
         );
       },
     );
