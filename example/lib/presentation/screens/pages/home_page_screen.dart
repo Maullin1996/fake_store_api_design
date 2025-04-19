@@ -62,7 +62,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     final userProvider = ref.watch(userInfoProvider);
     final userInfo = userProvider.user;
     return HomeTamplate(
-      isLogIn: authenticationState.token != null ? true : false,
+      isLogIn: authenticationState.token.isEmpty,
       cartonPressed: () {
         context.push('/cart_page');
       },
@@ -85,7 +85,6 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
       selectedCategory: selectedCategory,
       onCategorySelected: _handleCategorySelection,
       onPressedinfo: (product) {
-        //ref.read(categoryProductsProvider.notifier).productById(id);
         context.push('/product_page', extra: product);
       },
       onPressedFavorite: _handleIsFavorite,

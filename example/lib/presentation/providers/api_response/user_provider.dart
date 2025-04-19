@@ -55,7 +55,7 @@ class UserNotifier extends StateNotifier<UserApiResponse> {
   }
 
   void logOutUser() {
-    state.copyWith(user: null);
+    state = state.copyWith(user: null);
   }
 }
 

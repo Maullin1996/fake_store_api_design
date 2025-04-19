@@ -32,7 +32,7 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
           errorMessage: current.errorMessage,
         ).productVerification(TypeVerification.errorMessage);
       }
-      if (current.token != null && !_isAuthenticated) {
+      if (current.token.isEmpty && !_isAuthenticated) {
         _isAuthenticated = true;
         await ref.read(userInfoProvider.notifier).fetchAllUsers();
         WidgetsBinding.instance.addPostFrameCallback((_) {

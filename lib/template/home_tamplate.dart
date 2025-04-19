@@ -47,7 +47,7 @@ class HomeTamplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          isLogIn
+          !isLogIn
               ? CustomAppbars(
                 appbarType: AppbarType.homeLogOutAppbar,
                 useronPressed: useronPressed,

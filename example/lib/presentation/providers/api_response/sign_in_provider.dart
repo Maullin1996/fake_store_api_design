@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SignInApiResponse {
   final bool isLoading;
   final String? errorMessage;
-  final String? token;
+  final String token;
   final String? username;
   final String? password;
 
@@ -13,7 +13,7 @@ class SignInApiResponse {
     this.password,
     this.isLoading = false,
     this.errorMessage,
-    this.token,
+    this.token = '',
   });
 
   SignInApiResponse copyWith({
@@ -58,7 +58,7 @@ class SignInNotifier extends StateNotifier<SignInApiResponse> {
   }
 
   void logOutUser() {
-    state.copyWith(token: null, username: null, password: null);
+    state = state.copyWith(token: '', username: null, password: null);
   }
 }
 

@@ -79,7 +79,7 @@ class CategoryNotifier extends StateNotifier<ProductApiResponse> {
     final product = state.products.firstWhereOrNull(
       (product) => product.id == id,
     );
-    state.copyWith(product: product);
+    state = state.copyWith(product: product);
   }
 }
 
