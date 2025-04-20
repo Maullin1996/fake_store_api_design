@@ -22,7 +22,7 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
   Widget build(BuildContext context) {
     final loginProvider = ref.watch(authenticationProvider);
 
-    ref.listen<SignInApiResponse>(authenticationProvider, (
+    ref.listen<AuthenticationApiResponse>(authenticationProvider, (
       previous,
       current,
     ) async {

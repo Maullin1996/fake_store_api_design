@@ -1,14 +1,14 @@
 import 'package:fake_store_api_package/methods/api_services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignInApiResponse {
+class AuthenticationApiResponse {
   final bool isLoading;
   final String? errorMessage;
   final String token;
   final String? username;
   final String? password;
 
-  SignInApiResponse({
+  AuthenticationApiResponse({
     this.username,
     this.password,
     this.isLoading = false,
@@ -16,14 +16,14 @@ class SignInApiResponse {
     this.token = '',
   });
 
-  SignInApiResponse copyWith({
+  AuthenticationApiResponse copyWith({
     bool? isLoading,
     String? errorMessage,
     String? token,
     String? username,
     String? password,
   }) {
-    return SignInApiResponse(
+    return AuthenticationApiResponse(
       username: username ?? this.username,
       password: password ?? this.password,
       isLoading: isLoading ?? this.isLoading,
@@ -33,8 +33,8 @@ class SignInApiResponse {
   }
 }
 
-class SignInNotifier extends StateNotifier<SignInApiResponse> {
-  SignInNotifier() : super(SignInApiResponse());
+class AuthenticationNotifier extends StateNotifier<AuthenticationApiResponse> {
+  AuthenticationNotifier() : super(AuthenticationApiResponse());
 
   final ApiServices _apiServices = ApiServices();
 
@@ -63,6 +63,8 @@ class SignInNotifier extends StateNotifier<SignInApiResponse> {
 }
 
 final authenticationProvider =
-    StateNotifierProvider<SignInNotifier, SignInApiResponse>((ref) {
-      return SignInNotifier(); // Pasar el Ref al constructor
+    StateNotifierProvider<AuthenticationNotifier, AuthenticationApiResponse>((
+      ref,
+    ) {
+      return AuthenticationNotifier(); // Pasar el Ref al constructor
     });

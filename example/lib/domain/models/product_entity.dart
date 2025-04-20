@@ -1,32 +1,33 @@
-/// A class that represents a product entity.
 class Product {
-  /// The unique identifier of the product.
   final int id;
-
-  /// The title of the product.
   final String title;
-
-  /// The price of the product.
   final double price;
-
-  /// The description of the product.
   final String description;
-
-  /// The category of the product.
   final String category;
-
-  /// The image URL of the product.
   final String image;
+  final int quantity;
 
-  /// Creates a [Product] instance with the given [id], [title], [price], [description], [category], and [image].
-  const Product({
+  Product({
     required this.id,
     required this.title,
     required this.price,
     required this.description,
     required this.category,
     required this.image,
+    this.quantity = 1,
   });
+
+  Product copyWith({int? quantity}) {
+    return Product(
+      id: id,
+      title: title,
+      price: price,
+      description: description,
+      category: category,
+      image: image,
+      quantity: quantity ?? this.quantity,
+    );
+  }
 
   @override
   bool operator ==(Object other) =>

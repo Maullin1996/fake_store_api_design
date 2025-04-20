@@ -33,9 +33,9 @@ class _CartTemplateScreenState extends State<CartTemplateScreen> {
       },
       name: 'Pepito',
       lastName: 'Perez',
-      onPressedplus: () {},
+      onPressedplus: (p0) {},
       onDialogButtonPressed: () {},
-      onPressedminus: () {},
+      onPressedminus: (p0) {},
     );
   }
 }

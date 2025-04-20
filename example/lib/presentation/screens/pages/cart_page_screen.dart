@@ -14,14 +14,22 @@ class CartPageScreen extends ConsumerWidget {
     return CartTemplate(
       authentication: false,
       listCart: myCartList,
+      totalToPay: ref
+          .read(myCartListProvider.notifier)
+          .totalToPay
+          .toStringAsFixed(2),
       backonPressed: () {
         context.pop();
       },
       logInonPressed: () {
         context.push('/login_page');
       },
-      onPressedplus: () {},
-      onPressedminus: () {},
+      onPressedplus:
+          (product) =>
+              ref.read(myCartListProvider.notifier).increaseQuantity(product),
+      onPressedminus:
+          (product) =>
+              ref.read(myCartListProvider.notifier).decreaseQuantity(product),
     );
   }
 }

@@ -9,10 +9,12 @@ enum DialogType { authenticated, unauthenticated }
 class CustomDialog extends StatelessWidget {
   final DialogType dialogType;
   final VoidCallback? onDialogButtonPressed;
+  final String totalToPay;
   const CustomDialog({
     super.key,
     required this.dialogType,
     this.onDialogButtonPressed,
+    this.totalToPay = '',
   });
 
   @override
@@ -20,7 +22,7 @@ class CustomDialog extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return AppButtons(
       type: ButtonType.secondaryFillButton,
-      title: 'Go to pay',
+      title: totalToPay.isEmpty ? 'Add Products' : 'Go to pay: $totalToPay',
       onPressed: () {
         dialogs(
           context: context,

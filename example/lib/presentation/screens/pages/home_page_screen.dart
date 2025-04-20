@@ -41,10 +41,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   }
 
   void _handleBuyProduct(product) {
-    final myCartList = ref.read(myCartListProvider);
-    final notifier = ref.read(myCartListProvider.notifier);
-    if (!myCartList.contains(product)) {
-      notifier.addToCart(product);
+    if (ref.read(myCartListProvider.notifier).addToCart(product)) {
       CustomFloatingNotifications().productVerification(TypeVerification.added);
     } else {
       CustomFloatingNotifications().productVerification(

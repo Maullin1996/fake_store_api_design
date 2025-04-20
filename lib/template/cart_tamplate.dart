@@ -14,17 +14,19 @@ class CartTemplate extends StatelessWidget {
     this.onPressedminus,
     this.onPressedplus,
     this.onDialogButtonPressed,
+    this.totalToPay = '',
   });
 
   final bool authentication;
   final String? name;
   final String? lastName;
+  final String totalToPay;
   final List<dynamic> listCart;
   final VoidCallback? backonPressed;
   final VoidCallback? logOutonPressed;
   final VoidCallback? logInonPressed;
-  final VoidCallback? onPressedminus;
-  final VoidCallback? onPressedplus;
+  final void Function(dynamic)? onPressedminus;
+  final void Function(dynamic)? onPressedplus;
   final VoidCallback? onDialogButtonPressed;
 
   @override
@@ -56,10 +58,10 @@ class CartTemplate extends StatelessWidget {
                 return ProductCartContainer(
                   url: product.image,
                   productName: product.title,
-                  amount: 'x1',
+                  amount: 'x${product.quantity}',
                   productPrice: product.price.toString(),
-                  onPressedminus: onPressedminus,
-                  onPressedplus: onPressedplus,
+                  onPressedminus: () => onPressedminus?.call(product),
+                  onPressedplus: () => onPressedplus?.call(product),
                 );
               },
               separatorBuilder:
@@ -73,10 +75,12 @@ class CartTemplate extends StatelessWidget {
                 child:
                     authentication
                         ? CustomDialog(
+                          totalToPay: totalToPay,
                           dialogType: DialogType.authenticated,
                           onDialogButtonPressed: onDialogButtonPressed,
                         )
                         : CustomDialog(
+                          totalToPay: totalToPay,
                           dialogType: DialogType.unauthenticated,
                           onDialogButtonPressed: onDialogButtonPressed,
                         ),
