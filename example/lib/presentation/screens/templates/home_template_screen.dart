@@ -52,8 +52,8 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
   }
 
   void _handleBuyProduct(product) {
-    final myCartList = ref.read(myCartListProvider);
-    final notifier = ref.read(myCartListProvider.notifier);
+    final myCartList = ref.read(cartListProvider);
+    final notifier = ref.read(cartListProvider.notifier);
     if (!myCartList.contains(product)) {
       notifier.addToCart(product);
       CustomFloatingNotifications().productVerification(TypeVerification.added);
@@ -70,7 +70,7 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
     // final List<BaseProduct> myFavoriteListUi =
     //     myFavoriteList.map((product) => ProductAdapter(product)).toList();
-    final List<Product> myCartList = ref.watch(myCartListProvider);
+    final List<Product> myCartList = ref.watch(cartListProvider);
     // final List<BaseProduct> myCartListUi =
     //     myCartList.map((product) => ProductAdapter(product)).toList();
 

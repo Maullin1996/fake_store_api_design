@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:example/domain/models/user_entity.dart';
-import 'package:example/presentation/providers/api_response/sign_in_provider.dart';
+import 'package:example/presentation/providers/api_response/authentication_provider.dart';
 import 'package:fake_store_api_package/methods/api_services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

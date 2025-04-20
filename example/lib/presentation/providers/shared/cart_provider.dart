@@ -53,7 +53,8 @@ class CartListProvider extends StateNotifier<List<Product>> {
   }
 }
 
-final myCartListProvider =
-    StateNotifierProvider<CartListProvider, List<Product>>((ref) {
-      return CartListProvider();
-    });
+final cartListProvider = StateNotifierProvider<CartListProvider, List<Product>>(
+  (ref) {
+    return CartListProvider();
+  },
+);

@@ -41,7 +41,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   }
 
   void _handleBuyProduct(product) {
-    if (ref.read(myCartListProvider.notifier).addToCart(product)) {
+    if (ref.read(cartListProvider.notifier).addToCart(product)) {
       CustomFloatingNotifications().productVerification(TypeVerification.added);
     } else {
       CustomFloatingNotifications().productVerification(
@@ -54,7 +54,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   Widget build(BuildContext context) {
     final productApiResponse = ref.watch(categoryProductsProvider);
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
-    final List<Product> myCartList = ref.watch(myCartListProvider);
+    final List<Product> myCartList = ref.watch(cartListProvider);
     final authenticationState = ref.watch(authenticationProvider);
     final userProvider = ref.watch(userInfoProvider);
     final userInfo = userProvider.user;

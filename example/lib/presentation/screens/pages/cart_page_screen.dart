@@ -10,12 +10,12 @@ class CartPageScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<Product> myCartList = ref.watch(myCartListProvider);
+    final List<Product> myCartList = ref.watch(cartListProvider);
     return CartTemplate(
       authentication: false,
       listCart: myCartList,
       totalToPay: ref
-          .read(myCartListProvider.notifier)
+          .read(cartListProvider.notifier)
           .totalToPay
           .toStringAsFixed(2),
       backonPressed: () {
@@ -26,10 +26,10 @@ class CartPageScreen extends ConsumerWidget {
       },
       onPressedplus:
           (product) =>
-              ref.read(myCartListProvider.notifier).increaseQuantity(product),
+              ref.read(cartListProvider.notifier).increaseQuantity(product),
       onPressedminus:
           (product) =>
-              ref.read(myCartListProvider.notifier).decreaseQuantity(product),
+              ref.read(cartListProvider.notifier).decreaseQuantity(product),
     );
   }
 }

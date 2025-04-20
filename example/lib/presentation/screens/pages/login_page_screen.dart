@@ -1,4 +1,4 @@
-import 'package:example/presentation/providers/api_response/sign_in_provider.dart';
+import 'package:example/presentation/providers/api_response/authentication_provider.dart';
 import 'package:example/presentation/providers/api_response/user_provider.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
