@@ -1,14 +1,17 @@
-/// A class that defines the radius values used in the application.
+/// Defines the radius values used throughout the app.
+///
+/// These constants help maintain consistent corner rounding
+/// and support scalable theming based on design guidelines.
 abstract class AppRadius {
-  /// The small radius value.
+  /// A small radius value — typically used for subtle rounding.
   static const double small = 8.0;
 
-  /// The medium radius value.
+  /// A medium radius value — commonly used for cards or buttons.
   static const double medium = 12.0;
 
-  /// The large radius value.
+  /// A large radius value — used for prominent rounded elements.
   static const double large = 16.0;
 
-  /// The extra large radius value.
+  /// An extra large radius — ideal for modals or containers with strong curves.
   static const double extraLarge = 24.0;
 }

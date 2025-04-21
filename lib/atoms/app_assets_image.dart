@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 
-/// A widget that displays an image from the asset bundle.
+/// A stateless widget for displaying an image from the asset bundle.
+///
+/// This widget provides optional customization for image width and height.
 class AppAssetsImage extends StatelessWidget {
   /// The path to the image asset.
+  ///
+  /// This must be a valid path defined in your `pubspec.yaml`.
   final String path;
 
-  /// The desired width of the image.
+  /// Optional width of the image.
+  ///
+  /// If null, the image will size itself to its natural width.
   final double? widthImage;
 
-  /// The desired width of the image.
+  /// Optional height of the image.
+  ///
+  /// If null, the image will size itself to its natural height.
   final double? heightImage;
 
+  /// Creates an [AppAssetsImage] widget.
+  ///
+  /// The [path] parameter must not be null.
   const AppAssetsImage({
     super.key,
     required this.path,
@@ -20,11 +31,6 @@ class AppAssetsImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget designImage = Image.asset(
-      path,
-      width: widthImage,
-      height: heightImage,
-    );
-    return designImage;
+    return Image.asset(path, width: widthImage, height: heightImage);
   }
 }

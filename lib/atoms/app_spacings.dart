@@ -1,26 +1,25 @@
 /// Defines spacing values used throughout the app.
 ///
-/// This class provides predefined spacing constants for consistent padding, margins,
-/// and layout spacing. The values are defined in logical pixels.
+/// These constants are used for padding, margin, gaps, and layout consistency.
 abstract class AppSpacing {
-  /// Extra small spacing of `5` logical pixels.
-  static const double xssmall = 5;
+  /// Extra-extra small spacing. Suitable for tight UI elements.
+  static const double xSmall = 5.0;
 
-  /// Small spacing of `12` logical pixels.
-  static const double small = 12;
+  /// Small spacing. Commonly used for compact padding/margin.
+  static const double small = 12.0;
 
-  /// Slightly larger than small, medium-small spacing of `24` logical pixels.
-  static const double xsmedium = 24;
+  /// Medium-small spacing. Ideal for spacing between inline elements.
+  static const double smallMedium = 24.0;
 
-  /// Standard medium spacing of `34` logical pixels.
-  static const double medium = 34;
+  /// Standard medium spacing. Often used for section padding.
+  static const double medium = 34.0;
 
-  /// Large spacing of `44` logical pixels.
-  static const double sxlarge = 44;
+  /// Medium-large spacing. Great for separating larger UI blocks.
+  static const double mediumLarge = 44.0;
 
-  /// Extra large spacing of `64` logical pixels.
-  static const double large = 64;
+  /// Large spacing. Used for modals, cards, or page sections.
+  static const double large = 64.0;
 
-  /// Maximum spacing of `124` logical pixels.
-  static const double extraLarge = 124;
+  /// Extra large spacing. Typically for hero sections or full-width content.
+  static const double extraLarge = 124.0;
 }

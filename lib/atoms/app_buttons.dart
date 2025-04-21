@@ -1,38 +1,70 @@
 import 'package:flutter/material.dart';
-
 import 'tokens.dart';
 
+/// The type of button to render.
+///
+/// Used by [AppButtons] to determine the appropriate styling and widget to display.
 enum ButtonType {
-  /// Represents a primary button with a filled background.
+  /// A filled button with the primary color.
   primaryFillButton,
 
-  /// Represents a secondary button with a filled background.
+  /// A filled button with the secondary color.
   secondaryFillButton,
 
-  /// Represents a primary text button.
+  /// A text-only button styled with the primary color.
   primaryTextButton,
 
-  /// Represents a secondary text button.
+  /// A text-only button styled with the secondary color.
   secondaryTextButton,
 
-  /// Represents a primary Icon button.
+  /// An icon-only button styled with the primary color.
   primaryIconButton,
 
-  /// Represents a secondary Icon button.
+  /// An icon-only button styled with the secondary color.
   secondaryIconButton,
 }
 
+/// A customizable button widget used across the app.
+///
+/// This widget supports various button types such as filled buttons, text buttons, and icon buttons.
+/// Button appearance and behavior are determined by the [type] property.
 class AppButtons extends StatelessWidget {
+  /// The text label to display on the button.
+  ///
+  /// Defaults to `'Enter Title'` if not specified.
   final String title;
+
+  /// Optional icon for [ButtonType.primaryIconButton] or [ButtonType.secondaryIconButton].
   final IconData? icon;
+
+  /// Font size for [ElevatedButton] buttons.
+  ///
+  /// Defaults to [AppTypography.h4].
   final double fontSizeElevatedButton;
+
+  /// Font size for [TextButton] buttons.
+  ///
+  /// Defaults to [AppTypography.h3].
   final double fontSizeTextButton;
+
+  /// Callback to be executed when the button is pressed.
   final void Function()? onPressed;
+
+  /// Specifies which type of button to render.
   final ButtonType type;
+
+  /// Size of the icon when using an icon button.
   final double? iconSize;
+
+  /// Horizontal padding or width used in button layout.
   final double buttonWidth;
+
+  /// Whether to show a loading indicator.
+  ///
+  /// When true, disables the button and shows a [CircularProgressIndicator].
   final bool? isLoading;
 
+  /// Creates an instance of [AppButtons].
   const AppButtons({
     super.key,
     this.title = 'Enter Title',
@@ -49,7 +81,9 @@ class AppButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     switch (type) {
+      // Filled button with either primary or secondary color.
       case ButtonType.primaryFillButton:
       case ButtonType.secondaryFillButton:
         return ElevatedButton(
@@ -64,7 +98,7 @@ class AppButtons extends StatelessWidget {
           onPressed: isLoading! ? null : onPressed,
           child:
               isLoading!
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : Text(
                     title,
                     style: textTheme.displaySmall?.copyWith(
@@ -73,6 +107,7 @@ class AppButtons extends StatelessWidget {
                   ),
         );
 
+      // Text-only button with dynamic color depending on enabled/disabled state.
       case ButtonType.primaryTextButton:
       case ButtonType.secondaryTextButton:
         return TextButton(
@@ -92,6 +127,7 @@ class AppButtons extends StatelessWidget {
           ),
         );
 
+      // Icon-only button with customizable icon and color.
       case ButtonType.primaryIconButton:
       case ButtonType.secondaryIconButton:
         return IconButton(

@@ -1,68 +1,47 @@
 import 'package:flutter/material.dart';
 
-/// Defines the color palette for the e-commerce application.
+/// Defines the color palette used throughout the app.
+///
+/// This includes brand colors, background surfaces, and semantic colors
+/// (e.g., for text, errors, disabled states, etc.).
 abstract class AppColors {
-  // Primary color scheme
-  static const Color primary = Color(0xFF032F37); // Deep teal
-  static const Color primaryVariant = Color(0xFF021D22); // Darker teal
+  // Primary brand colors
+  static const Color primary = Color(0xFF032F37);
+  static const Color primaryVariant = Color(0xFF021D22);
 
-  // Secondary color scheme
-  static const Color secondary = Color(0xFFBA5824); // Warm earthy orange
-  static const Color secondaryVariant = Color(0xFF8A3E19); // Darker orange
+  // Secondary brand colors
+  static const Color secondary = Color(0xFFBA5824);
+  static const Color secondaryVariant = Color(0xFF8A3E19);
 
-  // Neutral and background colors
-  static const Color background = Color(0xFFF2EFEE); // Soft off-white
-  static const Color surface = Color(0xFFFFFFFF); // Pure white
+  // Backgrounds and surfaces
+  static const Color background = Color(0xFFF2EFEE);
+  static const Color surface = Color(0xFFFFFFFF);
 
-  // Error color
-  static const Color error = Color(0xFFD32F2F); // Standard red for errors
+  // Error colors
+  static const Color error = Color(0xFFD32F2F);
+  static const Color onError = Color(0xFFFFFFFF);
 
-  // Text and icon colors
-  static const Color onPrimary = Color(
-    0xFFFFFFFF,
-  ); // White for contrast on primary
-  static const Color onSecondary = Color(
-    0xFFFFFFFF,
-  ); // White for contrast on secondary
-  static const Color onBackground = Color(
-    0xFF032F37,
-  ); // Deep teal for readability
-  static const Color onSurface = Color(
-    0xFF212121,
-  ); // Dark gray for surface readability
-  static const Color onError = Color(0xFFFFFFFF); // White for contrast on error
+  // Text colors on various backgrounds
+  static const Color onPrimary = Color(0xFFFFFFFF);
+  static const Color onSecondary = Color(0xFFFFFFFF);
+  static const Color onBackground = Color(0xFF032F37);
+  static const Color onSurface = Color(0xFF212121);
 
-  // Semi-transparent text color for background elements
-  static const Color backGroundText = Color.fromRGBO(
-    3,
-    47,
-    55,
-    0.75,
-  ); // Transparent teal
-
-  static const Color disabledButton = Color.fromARGB(
-    255,
-    150,
-    150,
-    150,
-  ); // Pure white
-
-  static const Color backGoundTextFormField = Color.fromARGB(
+  // UI utility colors
+  static const Color disabledButton = Color.fromARGB(255, 150, 150, 150);
+  static const Color backgroundText = Color.fromRGBO(3, 47, 55, 0.75);
+  static const Color backgroundTextFormField = Color.fromARGB(
     169,
     238,
     238,
     238,
-  ); // light gray for surface readability
+  );
 
-  static Color backGoundFutterToast =
-      Colors.green[50]!; // light green for background FutterToast
+  // Toast colors (success)
+  static final Color backgroundFlutterToast = Colors.green[50]!;
+  static const Color textFlutterToast = Colors.green;
 
-  static const Color textFutterToast =
-      Colors.green; // light green for text dialogs
-
-  static Color backGoundFutterToastError =
-      Colors.red[50]!; // light green for background FutterToast
-
-  static const Color textFutterToastError =
-      Colors.red; // light green for text dialogs
+  // Toast colors (error)
+  static final Color backgroundFlutterToastError = Colors.red[50]!;
+  static const Color textFlutterToastError = Colors.red;
 }

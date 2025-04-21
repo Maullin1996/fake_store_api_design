@@ -10,11 +10,11 @@ class SpacingRadiusScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     final Map<String, double> spacings = {
-      '5px': AppSpacing.xssmall,
+      '5px': AppSpacing.xSmall,
       '12px': AppSpacing.small,
-      '24px': AppSpacing.xsmedium,
+      '24px': AppSpacing.smallMedium,
       '34px': AppSpacing.medium,
-      '44px': AppSpacing.sxlarge,
+      '44px': AppSpacing.mediumLarge,
       '64px': AppSpacing.large,
       '124px': AppSpacing.extraLarge,
     };
@@ -34,7 +34,7 @@ class SpacingRadiusScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: AppSpacing.xsmedium,
+          vertical: AppSpacing.small,
           horizontal: AppSpacing.small,
         ),
         child: SingleChildScrollView(

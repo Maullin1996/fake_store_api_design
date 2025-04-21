@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 
+/// A stateless widget for displaying an image from the network.
+///
+/// This widget allows optional customization of image width and height.
 class AppNetworkImage extends StatelessWidget {
-  /// The URL of the network image.
+  /// The URL of the image to load.
+  ///
+  /// Must be a valid network image URL.
   final String url;
 
-  /// The desired width of the image.
+  /// Optional width of the image.
+  ///
+  /// If null, the image will size itself to its natural width.
   final double? widthImage;
 
-  /// The desired height of the image.
+  /// Optional height of the image.
+  ///
+  /// If null, the image will size itself to its natural height.
   final double? heightImage;
 
+  /// Creates an [AppNetworkImage] widget.
+  ///
+  /// The [url] parameter must not be null.
   const AppNetworkImage({
     super.key,
     required this.url,
@@ -19,11 +31,6 @@ class AppNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget designImage = Image.network(
-      url,
-      width: widthImage,
-      height: heightImage,
-    );
-    return designImage;
+    return Image.network(url, width: widthImage, height: heightImage);
   }
 }

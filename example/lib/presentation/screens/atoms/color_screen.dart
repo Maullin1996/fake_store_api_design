@@ -21,13 +21,13 @@ class ColorScreen extends StatelessWidget {
       "onBackground": AppColors.onBackground,
       "onSurface": AppColors.onSurface,
       "onError": AppColors.onError,
-      "backGround Text": AppColors.backGroundText,
+      "background Text": AppColors.backgroundText,
       "disabled Button": AppColors.disabledButton,
-      "backGound TextFormField": AppColors.backGoundTextFormField,
-      "backGound Futter Toast": AppColors.backGoundFutterToast,
-      "text Futter Toast": AppColors.textFutterToast,
-      "backGound Futter Toast Error": AppColors.backGoundFutterToastError,
-      "text Futter Toast Error": AppColors.textFutterToastError,
+      "background TextFormField": AppColors.backgroundTextFormField,
+      "background Flutter Toast": AppColors.backgroundFlutterToast,
+      "text Flutter Toast": AppColors.textFlutterToast,
+      "background Flutter Toast Error": AppColors.backgroundFlutterToastError,
+      "text Flutter Toast Error": AppColors.textFlutterToastError,
     };
     return Scaffold(
       appBar: CustomAppbarNavigator(

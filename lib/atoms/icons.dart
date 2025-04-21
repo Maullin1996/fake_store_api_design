@@ -1,66 +1,74 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// Defines an abstract class `Icons`
-/// representing various icons used in the application.
+/// Defines a central place to access commonly used icons across the app.
+///
+/// Follows the atomic design principle, keeping UI elements decoupled
+/// and easily reusable.
 abstract class AppIcons {
-  /// Shopping cart icon.
-  static IconData cart = CupertinoIcons.cart;
+  /// Icon representing a shopping cart.
+  static const IconData cart = CupertinoIcons.cart;
 
-  /// Plus icon.
-  static IconData plus = CupertinoIcons.plus;
+  /// Icon representing a "plus" or "add" action.
+  static const IconData plus = CupertinoIcons.plus;
 
-  /// minus icon.
-  static IconData minus = CupertinoIcons.minus;
+  /// Icon representing a "minus" or "remove" action.
+  static const IconData minus = CupertinoIcons.minus;
 
-  /// Favorite icon with fill (heart).
-  static IconData favorite = CupertinoIcons.suit_heart_fill;
+  /// Filled heart icon, usually used for "favorite" states.
+  static const IconData favorite = CupertinoIcons.suit_heart_fill;
 
-  /// Unlike icon (empty heart).
-  static IconData unLike = CupertinoIcons.suit_heart;
+  /// Outline heart icon, usually used for "unliked" states.
+  static const IconData unLike = CupertinoIcons.suit_heart;
 
-  /// Star icon with fill (commonly used for ratings).
-  static IconData star = CupertinoIcons.star_fill;
+  /// Filled star icon, often used for ratings.
+  static const IconData star = CupertinoIcons.star_fill;
 
-  /// Login icon (person inside a circle).
-  static IconData user = CupertinoIcons.person_circle;
+  /// Circle icon representing a user avatar.
+  static const IconData user = CupertinoIcons.person_circle;
 
-  static IconData username = CupertinoIcons.person;
+  /// Icon used for username or person fields.
+  static const IconData username = CupertinoIcons.person;
 
-  static IconData phone = CupertinoIcons.phone_circle;
+  /// Icon used for phone input fields.
+  static const IconData phone = CupertinoIcons.phone_circle;
 
-  static IconData city = CupertinoIcons.building_2_fill;
+  /// Icon representing a building (city selector).
+  static const IconData city = CupertinoIcons.building_2_fill;
 
-  static IconData street = CupertinoIcons.map;
+  /// Icon for street or map location input.
+  static const IconData street = CupertinoIcons.map;
 
-  static IconData direction = CupertinoIcons.number;
+  /// Icon used for house/apartment number.
+  static const IconData direction = CupertinoIcons.number;
 
-  static IconData zipCode = CupertinoIcons.placemark;
+  /// Icon representing a zip/postal code input.
+  static const IconData zipCode = CupertinoIcons.placemark;
 
-  /// Email icon.
-  static IconData mail = CupertinoIcons.mail;
+  /// Mail or email input icon.
+  static const IconData mail = CupertinoIcons.mail;
 
-  /// Error or warning icon.
-  static IconData error = CupertinoIcons.exclamationmark_square;
+  /// Error indication icon.
+  static const IconData error = CupertinoIcons.exclamationmark_square;
 
-  /// Credit card icon.
-  static IconData creditCart = CupertinoIcons.creditcard;
+  /// Credit card icon, used in payment UIs.
+  static const IconData creditCart = CupertinoIcons.creditcard;
 
-  /// Check mark icon, often used for confirmation.
-  static IconData check = CupertinoIcons.check_mark_circled;
+  /// Icon used to show a successful action or check.
+  static const IconData check = CupertinoIcons.check_mark_circled;
 
-  /// Home or main page icon.
-  static IconData home = CupertinoIcons.home;
+  /// Home icon.
+  static const IconData home = CupertinoIcons.home;
 
-  /// Logout icon (references the main `Icons` class itself).
-  static IconData logout = Icons.logout;
+  /// Icon representing logout actions.
+  static const IconData logout = Icons.logout;
 
-  /// Login icon (references the main `Icons` class itself).
-  static IconData login = Icons.login;
+  /// Icon representing login actions.
+  static const IconData login = Icons.login;
 
-  /// Login icon (references the main `Icons` class itself).
-  static IconData info = Icons.info_outline;
+  /// Info icon, often used in dialogs or tooltips.
+  static const IconData info = Icons.info_outline;
 
-  /// Login icon (references the main `Icons` class itself).
-  static IconData back = Icons.arrow_back_outlined;
+  /// Icon used for navigation back actions.
+  static const IconData back = Icons.arrow_back_outlined;
 }
