@@ -10,10 +10,27 @@ class CartPageScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<Product> myCartList = ref.watch(cartListProvider);
+    final List<Product> cartList = ref.watch(cartListProvider);
+    final String token = ref.watch(authenticationProvider).token;
+    final user = ref.watch(userInfoProvider).user;
     return CartTemplate(
-      authentication: false,
-      listCart: myCartList,
+      onDialogButtonPressed: () {
+        if (token.isEmpty) {
+          context.pop();
+          context.push('/login_page');
+        } else {
+          ref.read(cartListProvider.notifier).emptyCart();
+          context.push('/home_page');
+        }
+      },
+      logOutonPressed: () {
+        ref.read(authenticationProvider.notifier).logOutUser();
+        ref.read(userInfoProvider.notifier).logOutUser();
+      },
+      lastName: user == null ? '' : user.name.lastname,
+      name: user == null ? '' : user.name.firstname,
+      authentication: token.isNotEmpty,
+      listCart: cartList,
       totalToPay: ref
           .read(cartListProvider.notifier)
           .totalToPay

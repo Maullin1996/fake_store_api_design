@@ -19,7 +19,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
+    Future.delayed(Duration.zero, () {
       ref.read(categoryProductsProvider.notifier).fetchAllProducts();
     });
   }
@@ -71,6 +71,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
       },
       logOutonPressed: () {
         ref.read(authenticationProvider.notifier).logOutUser();
+        ref.read(userInfoProvider.notifier).logOutUser();
       },
       name: userInfo == null ? '' : userInfo.name.firstname,
       lastName: userInfo == null ? '' : userInfo.name.lastname,

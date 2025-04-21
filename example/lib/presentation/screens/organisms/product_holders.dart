@@ -41,8 +41,7 @@ class _ProductHoldersState extends State<ProductHolders> {
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
             children: [
               Text('Product holder home', style: textTheme.displayMedium),
               ProducthomeContainer(

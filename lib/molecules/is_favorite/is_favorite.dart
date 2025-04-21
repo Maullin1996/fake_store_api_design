@@ -24,7 +24,7 @@ class IsFavorite extends StatelessWidget {
           child: Text(
             productName,
             style: textStyle,
-            maxLines: 3,
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
         ),

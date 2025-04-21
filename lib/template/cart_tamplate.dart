@@ -52,6 +52,7 @@ class CartTemplate extends StatelessWidget {
         child: Stack(
           children: [
             ListView.separated(
+              padding: EdgeInsets.only(bottom: AppSpacing.large),
               itemCount: listCart.length,
               itemBuilder: (BuildContext context, int index) {
                 final product = listCart[index];

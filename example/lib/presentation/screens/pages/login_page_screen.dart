@@ -32,7 +32,7 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
           errorMessage: current.errorMessage,
         ).productVerification(TypeVerification.errorMessage);
       }
-      if (current.token.isEmpty && !_isAuthenticated) {
+      if (current.token.isNotEmpty && !_isAuthenticated) {
         _isAuthenticated = true;
         await ref.read(userInfoProvider.notifier).fetchAllUsers();
         WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -67,9 +67,9 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
         cartonPressed: () {
           context.go('/cart_page');
         },
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
-            ref
+            await ref
                 .read(authenticationProvider.notifier)
                 .fetchAuthentication(
                   _usernameController.text,

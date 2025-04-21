@@ -53,16 +53,29 @@ class ProducthomeContainer extends StatelessWidget {
             children: [
               SizedBox(height: AppSpacing.small),
 
-              AppNetworkImage(url: url, widthImage: 160, heightImage: 200),
-              SizedBox(height: AppSpacing.small),
+              Center(
+                child: AppNetworkImage(
+                  url: url,
+                  widthImage: 140,
+                  heightImage: 180,
+                ),
+              ),
+              Spacer(),
               IsFavorite(
                 productName: productName,
-                textStyle: textTheme.displaySmall!,
+                textStyle: textTheme.displaySmall!.copyWith(
+                  fontSize: AppTypography.h4,
+                ),
                 isFavorite: isFavorite,
                 onPressedFavorite: onPressedFavorite,
               ),
               Text(productCategory, style: textTheme.bodyMedium),
-              Text('\$ $productPrice', style: textTheme.headlineSmall),
+              Text(
+                '\$ $productPrice',
+                style: textTheme.headlineSmall?.copyWith(
+                  fontSize: AppTypography.h3,
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

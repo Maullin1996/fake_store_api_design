@@ -5,6 +5,7 @@ import 'package:example/presentation/screens/pages/home_page_screen.dart';
 import 'package:example/presentation/screens/pages/login_page_screen.dart';
 import 'package:example/presentation/screens/pages/product_page_screen.dart';
 import 'package:example/presentation/screens/pages/user_page_screen.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../presentation/screens.dart';
@@ -98,24 +99,70 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/login_page',
       builder: (context, state) => const LoginPageScreen(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: LoginPageScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        );
+      },
     ),
     GoRoute(
       path: '/cart_page',
       builder: (context, state) => const CartPageScreen(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: CartPageScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        );
+      },
     ),
     GoRoute(
       path: '/home_page',
       builder: (context, state) => const HomePageScreen(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: HomePageScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        );
+      },
     ),
     GoRoute(
       path: '/user_page',
       builder: (context, state) => const UserPageScreen(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: UserPageScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        );
+      },
     ),
     GoRoute(
       path: '/product_page',
       builder: (context, state) {
         final Product product = state.extra as Product;
         return ProductPageScreen(product: product);
+      },
+      pageBuilder: (context, state) {
+        final Product product = state.extra as Product;
+        return CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: ProductPageScreen(product: product),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        );
       },
     ),
   ],

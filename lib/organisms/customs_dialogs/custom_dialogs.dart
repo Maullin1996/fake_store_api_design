@@ -22,7 +22,7 @@ class CustomDialog extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return AppButtons(
       type: ButtonType.secondaryFillButton,
-      title: totalToPay.isEmpty ? 'Add Products' : 'Go to pay: $totalToPay',
+      title: totalToPay == "0.00" ? 'Add Products' : 'Go to pay: $totalToPay',
       onPressed: () {
         dialogs(
           context: context,

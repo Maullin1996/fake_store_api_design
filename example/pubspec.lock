@@ -78,7 +78,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: f1137d41746d624b96262b79d0952da287624b91
+      resolved-ref: "7fd1c2f24ea231c33bf08c1c2a33abb6a02bf231"
       url: "https://github.com/Maullin1996/fake_store_api_package.git"
     source: git
     version: "0.0.1"

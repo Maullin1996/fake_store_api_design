@@ -45,7 +45,7 @@ class UserNotifier extends StateNotifier<UserApiResponse> {
               user.username == userAuthenticated.username &&
               user.password == userAuthenticated.password,
         );
-        return state.copyWith(
+        return state = state.copyWith(
           isLoading: false,
           errorMessage: null,
           user: UsersMapper.userFakeStoreToUser(loggedInUser!),

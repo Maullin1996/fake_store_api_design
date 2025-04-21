@@ -51,6 +51,10 @@ class CartListProvider extends StateNotifier<List<Product>> {
       (total, product) => total + product.price * product.quantity,
     );
   }
+
+  void emptyCart() {
+    state = [];
+  }
 }
 
 final cartListProvider = StateNotifierProvider<CartListProvider, List<Product>>(
