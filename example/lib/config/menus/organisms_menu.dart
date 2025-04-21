@@ -25,8 +25,18 @@ final List<OrganismsMenu> organismsMenu = [
     route: '/custom_dialogs',
   ),
   OrganismsMenu(
-    title: 'Product Holders',
+    title: 'Product Cart Holder',
+    iconData: CupertinoIcons.cart,
+    route: '/product_cart',
+  ),
+  OrganismsMenu(
+    title: 'Product Home Holder',
+    iconData: CupertinoIcons.home,
+    route: '/product_home',
+  ),
+  OrganismsMenu(
+    title: 'Product Info Holder',
     iconData: CupertinoIcons.cube_box,
-    route: '/product_holders',
+    route: '/product_info_holder',
   ),
 ];

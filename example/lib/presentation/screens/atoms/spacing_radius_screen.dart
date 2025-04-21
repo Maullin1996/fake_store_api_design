@@ -1,6 +1,6 @@
+import 'package:example/presentation/widgets/custom_appbar_navigator.dart';
 import 'package:fake_store_design/atoms/tokens.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SpacingRadiusScreen extends StatelessWidget {
   const SpacingRadiusScreen({super.key});
@@ -27,22 +27,9 @@ class SpacingRadiusScreen extends StatelessWidget {
     };
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryVariant,
-        title: Text(
-          'Spacing and Radius',
-          style: textTheme.displayMedium?.copyWith(
-            color: AppColors.onPrimary,
-            decoration: TextDecoration.underline,
-            decorationColor: AppColors.onPrimary,
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: Icon(Icons.arrow_back_ios_new, color: AppColors.onPrimary),
-        ),
+      appBar: CustomAppbarNavigator(
+        title: 'Spacing and Radius',
+        colorType: ColorType.primary,
       ),
       backgroundColor: Colors.white,
       body: Padding(

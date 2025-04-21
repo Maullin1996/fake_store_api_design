@@ -1,13 +1,12 @@
+import 'package:example/presentation/widgets/custom_appbar_navigator.dart';
 import 'package:fake_store_design/atoms/tokens.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class TypographyScreen extends StatelessWidget {
   const TypographyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     final List<String> typographyFonts = [
       AppTypography.familyRoboto,
       AppTypography.familyOpenSans,
@@ -29,22 +28,9 @@ class TypographyScreen extends StatelessWidget {
       "Family OpenSans used to product prices:": typographySizes,
     };
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryVariant,
-        title: Text(
-          'Typography',
-          style: textTheme.displayMedium?.copyWith(
-            color: AppColors.onPrimary,
-            decoration: TextDecoration.underline,
-            decorationColor: AppColors.onPrimary,
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: Icon(Icons.arrow_back_ios_new, color: AppColors.onPrimary),
-        ),
+      appBar: CustomAppbarNavigator(
+        title: 'Typography',
+        colorType: ColorType.primary,
       ),
       backgroundColor: Colors.white,
       body: ListView.separated(

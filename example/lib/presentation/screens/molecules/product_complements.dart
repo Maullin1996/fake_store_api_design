@@ -1,15 +1,15 @@
-import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:example/presentation/widgets/custom_appbar_navigator.dart';
+import 'package:fake_store_design/design_system.dart';
 
-class ProductInfo extends StatefulWidget {
-  const ProductInfo({super.key});
+class ProductComplements extends StatefulWidget {
+  const ProductComplements({super.key});
 
   @override
-  State<ProductInfo> createState() => _ProductInfoState();
+  State<ProductComplements> createState() => _ProductComplementsState();
 }
 
-class _ProductInfoState extends State<ProductInfo> {
+class _ProductComplementsState extends State<ProductComplements> {
   String selectedCategory = 'All';
   bool isFavorite = false;
   void _handleCategorySelection(String category) {
@@ -28,22 +28,9 @@ class _ProductInfoState extends State<ProductInfo> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        title: Text(
-          'Product information',
-          style: textTheme.displayMedium?.copyWith(
-            color: AppColors.onPrimary,
-            decoration: TextDecoration.underline,
-            decorationColor: AppColors.onPrimary,
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: Icon(Icons.arrow_back_ios_new, color: AppColors.onPrimary),
-        ),
+      appBar: CustomAppbarNavigator(
+        title: 'Product Complements',
+        colorType: ColorType.primary,
       ),
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       body: Column(

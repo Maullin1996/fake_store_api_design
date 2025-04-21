@@ -31,8 +31,8 @@ final List<MoleculesMenu> moleculesMenu = [
     route: '/authentication_message',
   ),
   MoleculesMenu(
-    title: 'Product Info',
+    title: 'Product complements',
     iconData: AppIcons.info,
-    route: '/product_info',
+    route: '/product_complements',
   ),
 ];

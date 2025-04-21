@@ -1,10 +1,5 @@
 import 'package:example/domain/models/product_entity.dart';
 import 'package:example/presentation/home_screen.dart';
-import 'package:example/presentation/screens/pages/cart_page_screen.dart';
-import 'package:example/presentation/screens/pages/home_page_screen.dart';
-import 'package:example/presentation/screens/pages/login_page_screen.dart';
-import 'package:example/presentation/screens/pages/product_page_screen.dart';
-import 'package:example/presentation/screens/pages/user_page_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +9,7 @@ final GoRouter appRouter = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
+
     //Atoms
     GoRoute(path: '/atoms', builder: (context, state) => const AtomsScreens()),
     GoRoute(path: '/colors', builder: (context, state) => const ColorScreen()),
@@ -34,6 +30,7 @@ final GoRouter appRouter = GoRouter(
       path: '/spacing-radius',
       builder: (context, state) => const SpacingRadiusScreen(),
     ),
+
     //molecules
     GoRoute(
       path: '/molecules',
@@ -49,9 +46,10 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const AuthenticationMessage(),
     ),
     GoRoute(
-      path: '/product_info',
-      builder: (context, state) => const ProductInfo(),
+      path: '/product_complements',
+      builder: (context, state) => const ProductComplements(),
     ),
+
     //organismz
     GoRoute(
       path: '/organisms',
@@ -66,9 +64,18 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const CustomDialogs(),
     ),
     GoRoute(
-      path: '/product_holders',
-      builder: (context, state) => const ProductHolders(),
+      path: '/product_cart',
+      builder: (context, state) => const ProductCart(),
     ),
+    GoRoute(
+      path: '/product_home',
+      builder: (context, state) => const ProductHome(),
+    ),
+    GoRoute(
+      path: '/product_info_holder',
+      builder: (context, state) => const ProductInfoHolder(),
+    ),
+
     //tamplates
     GoRoute(
       path: '/templates',
@@ -94,6 +101,7 @@ final GoRouter appRouter = GoRouter(
       path: '/login_template',
       builder: (context, state) => const LoginTemplateScreen(),
     ),
+
     //Pages
     GoRoute(path: '/pages', builder: (context, state) => const PagesScreens()),
     GoRoute(

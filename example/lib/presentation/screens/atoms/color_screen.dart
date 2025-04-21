@@ -1,3 +1,4 @@
+import 'package:example/presentation/widgets/custom_appbar_navigator.dart';
 import 'package:fake_store_design/atoms/tokens.dart';
 import 'package:flutter/material.dart';
 
@@ -29,22 +30,9 @@ class ColorScreen extends StatelessWidget {
       "text Futter Toast Error": AppColors.textFutterToastError,
     };
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        title: Text(
-          'Colors',
-          style: textTheme.displayMedium?.copyWith(
-            color: AppColors.onPrimary,
-            decoration: TextDecoration.underline,
-            decorationColor: AppColors.onPrimary,
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(Icons.arrow_back_ios_new, color: AppColors.onPrimary),
-        ),
+      appBar: CustomAppbarNavigator(
+        title: 'Colors',
+        colorType: ColorType.primary,
       ),
       backgroundColor: Colors.white,
       body: GridView.builder(

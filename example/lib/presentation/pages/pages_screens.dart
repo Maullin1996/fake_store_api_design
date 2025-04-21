@@ -1,6 +1,6 @@
 import 'package:example/config/menus/pages_menu.dart';
+import 'package:example/presentation/widgets/custom_appbar_navigator.dart';
 import 'package:example/presentation/widgets/custom_menu.dart';
-import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,24 +9,10 @@ class PagesScreens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryVariant,
-        title: Text(
-          'Pages',
-          style: textTheme.displayMedium?.copyWith(
-            color: AppColors.onPrimary,
-            decoration: TextDecoration.underline,
-            decorationColor: AppColors.onPrimary,
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: Icon(Icons.arrow_back_ios_new, color: AppColors.onPrimary),
-        ),
+      appBar: CustomAppbarNavigator(
+        title: 'Pages',
+        colorType: ColorType.primaryVariant,
       ),
       backgroundColor: Colors.white,
       body: ListView.builder(

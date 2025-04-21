@@ -14,15 +14,23 @@ export 'package:example/presentation/screens/atoms/typography_screen.dart';
 //Menu for the molecules Screen
 export 'package:example/presentation/screens/molecules/authentication_message.dart';
 export 'package:example/presentation/screens/molecules/custom_appbar.dart';
-export 'package:example/presentation/screens/molecules/product_info.dart';
+export 'package:example/presentation/screens/molecules/product_complements.dart';
 export 'package:example/presentation/screens/molecules/user_info.dart';
 //Menu for the organisms Screen
 export 'package:example/presentation/screens/organisms/custom_dialogs.dart';
 export 'package:example/presentation/screens/organisms/login_form.dart';
-export 'package:example/presentation/screens/organisms/product_holders.dart';
+export 'package:example/presentation/screens/organisms/product_cart.dart';
+export 'package:example/presentation/screens/organisms/product_home.dart';
+export 'package:example/presentation/screens/organisms/product_info_holder.dart';
 //Menu for the templates Screen
 export 'package:example/presentation/screens/templates/cart_template_screen.dart';
 export 'package:example/presentation/screens/templates/home_template_screen.dart';
 export 'package:example/presentation/screens/templates/login_template_screen.dart';
 export 'package:example/presentation/screens/templates/product_template_screen.dart';
 export 'package:example/presentation/screens/templates/user_template_Screen.dart';
+//Menu for the page Screen
+export 'package:example/presentation/screens/pages/cart_page_screen.dart';
+export 'package:example/presentation/screens/pages/home_page_screen.dart';
+export 'package:example/presentation/screens/pages/login_page_screen.dart';
+export 'package:example/presentation/screens/pages/product_page_screen.dart';
+export 'package:example/presentation/screens/pages/user_page_screen.dart';
