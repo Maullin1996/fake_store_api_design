@@ -32,10 +32,10 @@ Follow these steps to install and set up the application on your local machine:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/e-commerce-flutter.git
+   git clone https://github.com/Maullin1996/fake_store_api_design.git
 2. Navigate into the project directory:
     ```bash
-    cd e-commerce-flutter
+    cd fake_store_api_design
 3. Install the dependencies:
     ```bash
     flutter pub get
