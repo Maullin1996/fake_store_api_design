@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../domain/models/product_entity.dart';
+import '../../providers/shared/cart_provider.dart';
 import '../../providers/shared/favorite_provider.dart';
 
 class ProductPageScreen extends ConsumerWidget {
@@ -29,7 +30,17 @@ class ProductPageScreen extends ConsumerWidget {
       cartonPressed: () {
         context.push('/cart_page');
       },
-      onPressedbuy: () {},
+      onPressedbuy: () {
+        if (ref.read(cartListProvider.notifier).addToCart(product)) {
+          CustomFloatingNotifications().productVerification(
+            TypeVerification.added,
+          );
+        } else {
+          CustomFloatingNotifications().productVerification(
+            TypeVerification.notAdded,
+          );
+        }
+      },
     );
   }
 }
