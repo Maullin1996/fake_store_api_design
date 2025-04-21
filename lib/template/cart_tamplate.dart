@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -87,30 +88,33 @@ class CartTemplate extends StatelessWidget {
         child: Stack(
           children: [
             // List of cart products displayed in a scrollable list
-            ListView.separated(
-              padding: EdgeInsets.only(
-                bottom: AppSpacing.large,
-              ), // Padding at the bottom
-              itemCount: listCart.length, // Number of items in the cart
-              itemBuilder: (BuildContext context, int index) {
-                final product =
-                    listCart[index]; // Get the product at this index
-                return ProductCartContainer(
-                  url: product.image, // Image URL for the product
-                  productName: product.title, // Name of the product
-                  amount:
-                      'x${product.quantity}', // Product quantity in the cart
-                  productPrice: product.price.toString(), // Product price
-                  onPressedminus:
-                      () => onPressedminus?.call(product), // Decrease quantity
-                  onPressedplus:
-                      () => onPressedplus?.call(product), // Increase quantity
-                );
-              },
-              separatorBuilder:
-                  (context, index) => SizedBox(
-                    height: AppSpacing.small,
-                  ), // Spacer between items
+            FadeInUp(
+              child: ListView.separated(
+                padding: EdgeInsets.only(
+                  bottom: AppSpacing.large,
+                ), // Padding at the bottom
+                itemCount: listCart.length, // Number of items in the cart
+                itemBuilder: (BuildContext context, int index) {
+                  final product =
+                      listCart[index]; // Get the product at this index
+                  return ProductCartContainer(
+                    url: product.image, // Image URL for the product
+                    productName: product.title, // Name of the product
+                    amount:
+                        'x${product.quantity}', // Product quantity in the cart
+                    productPrice: product.price.toString(), // Product price
+                    onPressedminus:
+                        () =>
+                            onPressedminus?.call(product), // Decrease quantity
+                    onPressedplus:
+                        () => onPressedplus?.call(product), // Increase quantity
+                  );
+                },
+                separatorBuilder:
+                    (context, index) => SizedBox(
+                      height: AppSpacing.small,
+                    ), // Spacer between items
+              ),
             ),
             // Positioned widget to display the dialog at the bottom of the screen
             Positioned(

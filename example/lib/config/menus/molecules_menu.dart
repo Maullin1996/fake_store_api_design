@@ -35,4 +35,9 @@ final List<MoleculesMenu> moleculesMenu = [
     iconData: AppIcons.info,
     route: '/product_complements',
   ),
+  MoleculesMenu(
+    title: 'Search Bar',
+    iconData: Icons.search,
+    route: '/search_bar',
+  ),
 ];

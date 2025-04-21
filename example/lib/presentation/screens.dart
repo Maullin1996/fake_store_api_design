@@ -16,6 +16,8 @@ export 'package:example/presentation/screens/molecules/authentication_message.da
 export 'package:example/presentation/screens/molecules/custom_appbar.dart';
 export 'package:example/presentation/screens/molecules/product_complements.dart';
 export 'package:example/presentation/screens/molecules/user_info.dart';
+export 'package:example/presentation/screens/molecules/custom_search_bar.dart';
+
 //Menu for the organisms Screen
 export 'package:example/presentation/screens/organisms/custom_dialogs.dart';
 export 'package:example/presentation/screens/organisms/login_form.dart';

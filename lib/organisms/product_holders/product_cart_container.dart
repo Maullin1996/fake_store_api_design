@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../atoms/tokens.dart';
 
@@ -72,7 +73,12 @@ class ProductCartContainer extends StatelessWidget {
                   CrossAxisAlignment.start, // Align text to the start (left)
               children: [
                 // Display the product name
-                Text(productName, style: textTheme.displaySmall),
+                Text(
+                  productName,
+                  style: textTheme.displaySmall,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
 
                 SizedBox(
                   height: AppSpacing.small,

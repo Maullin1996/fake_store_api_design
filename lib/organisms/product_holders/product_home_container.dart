@@ -60,6 +60,7 @@ class ProducthomeContainer extends StatelessWidget {
       child: IntrinsicWidth(
         child: Container(
           padding: EdgeInsets.only(
+            top: AppSpacing.small,
             left: AppSpacing.small, // Padding on the left side
             right: AppSpacing.small, // Padding on the right side
             bottom: AppSpacing.small, // Padding at the bottom
@@ -91,12 +92,12 @@ class ProducthomeContainer extends StatelessWidget {
               Center(
                 child: AppNetworkImage(
                   url: url, // URL of the product image
-                  widthImage: 140, // Set the image width
-                  heightImage: 180, // Set the image height
+                  widthImage: 110, // Set the image width
+                  heightImage: 140, // Set the image height
                 ),
               ),
-              Spacer(), // Flexible space between the image and text below
               // Favorite icon section
+              Spacer(), // Flexible space between the image and text below
               IsFavorite(
                 productName: productName,
                 textStyle: textTheme.displaySmall!.copyWith(
@@ -118,7 +119,7 @@ class ProducthomeContainer extends StatelessWidget {
                   fontSize: AppTypography.h3, // Adjust font size for price
                 ),
               ),
-
+              Spacer(), // Flexible space between the image and text below
               // Action buttons: Buy and Info
               Row(
                 mainAxisAlignment:

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
 //import 'package:fake_store_design/models/base_product.dart';
 
@@ -108,13 +109,31 @@ class HomeTamplate extends StatelessWidget {
                 logInonPressed: logInonPressed,
                 cartonPressed: cartonPressed,
               ),
-      body: _buildBody(
-        context: context,
-        products: products,
-        myFavoriteList: myFavoriteList,
-        myCartList: myCartList,
-        errorMessage: errorMessage,
-        isLoading: isLoading,
+      backgroundColor: AppColors.onPrimary,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SearchAnchorWidget<String>(
+              items:
+                  products.map((product) => product.title.toString()).toList(),
+              displayString: (item) => item,
+              onItemSelected: (selectedItem) {},
+            ),
+            // Category selection widget
+            ListCategory(
+              selectedCategory: selectedCategory,
+              onCategorySelected: onCategorySelected,
+            ),
+            _buildBody(
+              context: context,
+              products: products,
+              myFavoriteList: myFavoriteList,
+              myCartList: myCartList,
+              errorMessage: errorMessage,
+              isLoading: isLoading,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -135,7 +154,10 @@ class HomeTamplate extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     if (isLoading) {
-      return const Center(child: CircularProgressIndicator()); // Loading state
+      return SizedBox(
+        height: MediaQuery.sizeOf(context).height - AppSpacing.extraLarge,
+        child: const Center(child: CircularProgressIndicator()),
+      ); // Loading state
     } else if (errorMessage != null) {
       return Center(
         child: Text(
@@ -145,49 +167,37 @@ class HomeTamplate extends StatelessWidget {
       );
     }
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          // Category selection widget
-          ListCategory(
-            selectedCategory: selectedCategory,
-            onCategorySelected: onCategorySelected,
-          ),
-          // Product grid
-          GridView.builder(
-            shrinkWrap: true, // Prevents GridView from taking extra space
-            physics:
-                const NeverScrollableScrollPhysics(), // Disables scrolling within the grid
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // Two columns
-              mainAxisSpacing: 4, // Vertical spacing between items
-              crossAxisSpacing: 4, // Horizontal spacing between items
-              childAspectRatio: 0.47, // Aspect ratio of each item
-            ),
-            itemCount: products.length, // Number of products
-            itemBuilder: (context, index) {
-              final product = products[index];
-              return ProducthomeContainer(
-                url: product.image, // Product image URL
-                productName: product.title, // Product name
-                productCategory: product.category, // Product category
-                productPrice: product.price.toString(), // Product price
-                isFavorite: myFavoriteList.contains(
-                  product,
-                ), // Whether the product is in favorites
-                onPressedFavorite:
-                    () => onPressedFavorite?.call(
-                      product,
-                    ), // Favorite button action
-                onPressedinfo:
-                    () => onPressedinfo?.call(product), // Info button action
-                onPressedbuy:
-                    () => onPressedbuy?.call(product), // Buy button action
-              );
-            },
-          ),
-          const SizedBox(height: AppSpacing.small), // Spacer at the bottom
-        ],
+    return FadeInUp(
+      child: GridView.builder(
+        shrinkWrap: true, // Prevents GridView from taking extra space
+        physics:
+            const NeverScrollableScrollPhysics(), // Disables scrolling within the grid
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // Two columns
+          mainAxisSpacing: 4, // Vertical spacing between items
+          crossAxisSpacing: 4, // Horizontal spacing between items
+          childAspectRatio: 0.47, // Aspect ratio of each item
+        ),
+        itemCount: products.length, // Number of products
+        itemBuilder: (context, index) {
+          final product = products[index];
+          return ProducthomeContainer(
+            url: product.image, // Product image URL
+            productName: product.title, // Product name
+            productCategory: product.category, // Product category
+            productPrice: product.price.toString(), // Product price
+            isFavorite: myFavoriteList.contains(
+              product,
+            ), // Whether the product is in favorites
+            onPressedFavorite:
+                () =>
+                    onPressedFavorite?.call(product), // Favorite button action
+            onPressedinfo:
+                () => onPressedinfo?.call(product), // Info button action
+            onPressedbuy:
+                () => onPressedbuy?.call(product), // Buy button action
+          );
+        },
       ),
     );
   }

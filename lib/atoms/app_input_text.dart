@@ -70,7 +70,9 @@ class AppInputText extends StatelessWidget {
         break;
     }
 
-    final border = OutlineInputBorder(borderRadius: BorderRadius.circular(12));
+    final border = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppRadius.medium),
+    );
 
     return SizedBox(
       width: width,

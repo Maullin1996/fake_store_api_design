@@ -49,6 +49,10 @@ final GoRouter appRouter = GoRouter(
       path: '/product_complements',
       builder: (context, state) => const ProductComplements(),
     ),
+    GoRoute(
+      path: '/search_bar',
+      builder: (context, state) => const CustomSearchBar(),
+    ),
 
     //organismz
     GoRoute(
@@ -111,6 +115,7 @@ final GoRouter appRouter = GoRouter(
         return CustomTransitionPage<void>(
           key: state.pageKey,
           child: LoginPageScreen(),
+          transitionDuration: Duration(microseconds: 500),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           },
@@ -124,6 +129,7 @@ final GoRouter appRouter = GoRouter(
         return CustomTransitionPage<void>(
           key: state.pageKey,
           child: CartPageScreen(),
+          transitionDuration: Duration(microseconds: 500),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           },
@@ -137,6 +143,7 @@ final GoRouter appRouter = GoRouter(
         return CustomTransitionPage<void>(
           key: state.pageKey,
           child: HomePageScreen(),
+          transitionDuration: Duration(microseconds: 500),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           },
@@ -150,6 +157,7 @@ final GoRouter appRouter = GoRouter(
         return CustomTransitionPage<void>(
           key: state.pageKey,
           child: UserPageScreen(),
+          transitionDuration: Duration(microseconds: 500),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           },
@@ -167,6 +175,7 @@ final GoRouter appRouter = GoRouter(
         return CustomTransitionPage<void>(
           key: state.pageKey,
           child: ProductPageScreen(product: product),
+          transitionDuration: Duration(microseconds: 500),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           },
