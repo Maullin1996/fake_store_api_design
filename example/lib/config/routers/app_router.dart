@@ -171,7 +171,8 @@ final GoRouter appRouter = GoRouter(
         return ProductPageScreen(product: product);
       },
       pageBuilder: (context, state) {
-        final Product product = state.extra as Product;
+        final Product? product =
+            state.extra != null ? state.extra as Product : null;
         return CustomTransitionPage<void>(
           key: state.pageKey,
           child: ProductPageScreen(product: product),

@@ -10,7 +10,7 @@ List<Product> productMock(bool page) {
       category: "Electronics",
       image:
           page
-              ? "https://i5.walmartimages.com/asr/1683e7ad-0382-4354-92a9-91c88c4f1f69.92411aabf6d736d36b063b82fad167da.jpeg"
+              ? "https://m.media-amazon.com/images/I/510uTHyDqGL._AC_UF1000,1000_QL80_.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(
@@ -21,7 +21,7 @@ List<Product> productMock(bool page) {
       category: "Electronics",
       image:
           page
-              ? "https://dcdn-us.mitiendanube.com/stores/001/669/721/products/prod-61-eb15e34b6d8445d5aa16213489824284-640-0.jpg"
+              ? "https://hsi.com.co/wp-content/uploads/2018/10/Imagen-iPhone-X-256GB-Usado-A.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(
@@ -65,7 +65,7 @@ List<Product> productMock(bool page) {
       category: "Wearables",
       image:
           page
-              ? "https://celucambio.com/cdn/shop/files/AppleWatchSerie6Azul_6f66f1b3-a7b3-420b-bae6-af19e19ae381.jpg"
+              ? "https://static.wixstatic.com/media/a77328_04595652e0a8455cbd1c2881da4257f1~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/a77328_04595652e0a8455cbd1c2881da4257f1~mv2.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(
@@ -76,7 +76,7 @@ List<Product> productMock(bool page) {
       category: "Electronics",
       image:
           page
-              ? "https://www.sencor.com/getmedia/53d54418-3de4-4fe8-a503-5edb74cac646/35059173.jpg"
+              ? "https://http2.mlstatic.com/D_NQ_NP_843014-MCO73203639770_122023-O.webp"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(
@@ -87,7 +87,7 @@ List<Product> productMock(bool page) {
       category: "Sportswear",
       image:
           page
-              ? "https://www.bfgcdn.com/1500_1500_90/123-1426-0111/on-womens-cloudrunner-2-waterproof-running-shoes.jpg"
+              ? "https://s3.amazonaws.com/www.irunfar.com/wp-content/uploads/2024/07/25053122/Best-Trail-Running-Shoes-Hoka-Speedgoat-6.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(
@@ -110,7 +110,7 @@ List<Product> productMock(bool page) {
       category: "Accessories",
       image:
           page
-              ? "https://solo-ny.com/cdn/shop/files/UBN795-10_HO_c4f17d2f-425f-4fa9-98c1-dc3f06b1933a.jpg"
+              ? "https://m.media-amazon.com/images/I/61SvzX1ckpL._AC_UY1000_.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(
@@ -121,7 +121,7 @@ List<Product> productMock(bool page) {
       category: "Electronics",
       image:
           page
-              ? "https://frontier.com.co/content/product/0013086_televisor-samsung-tu7000-75-crystal-4k-uhd-3840-x-2160.jpeg"
+              ? "https://img.global.news.samsung.com/co/wp-content/uploads/2018/11/UA65NU7500KXXV_001_Front_EclipseSilver-copia1-1024x624.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
   ];
