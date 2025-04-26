@@ -11,7 +11,8 @@ class CustomSearchBar extends StatefulWidget {
 }
 
 class _CustomSearchBarState extends State<CustomSearchBar> {
-  List<String> productsList = products.map((product) => product.title).toList();
+  List<String> productsList =
+      productMock(false).map((product) => product.title).toList();
   String? selectedName;
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:fake_store_design/atoms/tokens.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
@@ -21,5 +22,15 @@ final List<PagesMenu> pagesMenu = [
     title: 'Login page',
     iconData: AppIcons.login,
     route: '/login_page',
+  ),
+  PagesMenu(
+    title: 'Product Page',
+    iconData: CupertinoIcons.cube_box,
+    route: '/product_page',
+  ),
+  PagesMenu(
+    title: 'User Information Page',
+    iconData: AppIcons.user,
+    route: '/user_page',
   ),
 ];

@@ -1,5 +1,4 @@
-import 'package:example/presentation/providers/api_response/authentication_provider.dart';
-import 'package:example/presentation/providers/api_response/user_provider.dart';
+import 'package:example/config/mock/user_mock.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,37 +15,35 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _isAuthenticated = false; // Nuevo estado para controlar la navegación
+  bool isLoading = false;
+
+  void _handleLogIn(String username, String password) async {
+    if (username == userMock.username && password == userMock.password) {
+      setState(() {
+        isLoading = true;
+      });
+      await Future.delayed(Duration(milliseconds: 1400));
+      setState(() {
+        isLoading = false;
+      });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          context.pop('/home_page');
+        }
+      });
+    } else {
+      CustomFloatingNotifications(
+        errorMessage: 'Invalid credentials',
+      ).customNotification(TypeVerification.errorMessage);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final loginProvider = ref.watch(authenticationProvider);
-
-    ref.listen<AuthenticationApiResponse>(authenticationProvider, (
-      previous,
-      current,
-    ) async {
-      if (current.errorMessage != null &&
-          previous?.errorMessage != current.errorMessage) {
-        CustomFloatingNotifications(
-          errorMessage: current.errorMessage,
-        ).productVerification(TypeVerification.errorMessage);
-      }
-      if (current.token.isNotEmpty && !_isAuthenticated) {
-        _isAuthenticated = true;
-        await ref.read(userInfoProvider.notifier).fetchAllUsers();
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) {
-            context.pop();
-          }
-        });
-      }
-    });
-
     return Form(
       key: _formKey,
       child: LoginTemplate(
-        isLoadingButton: loginProvider.isLoading,
+        isLoadingButton: isLoading,
         passwordController: _passwordController,
         usernameController: _usernameController,
         validatorUsername: (username) {
@@ -64,17 +61,10 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
         backonPressed: () {
           context.pop();
         },
-        cartonPressed: () {
-          context.go('/cart_page');
-        },
-        onPressed: () async {
+        cartonPressed: () {},
+        onPressed: () {
           if (_formKey.currentState!.validate()) {
-            await ref
-                .read(authenticationProvider.notifier)
-                .fetchAuthentication(
-                  _usernameController.text,
-                  _passwordController.text,
-                );
+            _handleLogIn(_usernameController.text, _passwordController.text);
           }
         },
       ),

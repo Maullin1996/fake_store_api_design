@@ -32,11 +32,11 @@ class ProductPageScreen extends ConsumerWidget {
       },
       onPressedbuy: () {
         if (ref.read(cartListProvider.notifier).addToCart(product)) {
-          CustomFloatingNotifications().productVerification(
+          CustomFloatingNotifications().customNotification(
             TypeVerification.added,
           );
         } else {
-          CustomFloatingNotifications().productVerification(
+          CustomFloatingNotifications().customNotification(
             TypeVerification.notAdded,
           );
         }

@@ -44,9 +44,9 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
       lastName: 'Perez',
       isLoading: false,
       errorMessage: null,
-      products: products,
+      products: productMock(false),
       myFavoriteList: myFavoriteList,
-      myCartList: products,
+      myCartList: productMock(false),
       selectedCategory: selectedCategory,
       cartonPressed: () {},
       logInonPressed: () {

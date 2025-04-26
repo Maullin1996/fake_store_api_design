@@ -95,7 +95,7 @@ class HomeTamplate extends StatelessWidget {
     return Scaffold(
       // The app bar changes based on whether the user is logged in
       appBar:
-          !isLogIn
+          isLogIn
               ? CustomAppbars(
                 appbarType: AppbarType.homeLogOutAppbar, // For logged-out users
                 useronPressed: useronPressed,

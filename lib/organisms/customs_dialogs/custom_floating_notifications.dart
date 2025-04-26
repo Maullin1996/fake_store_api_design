@@ -65,7 +65,7 @@ class CustomFloatingNotifications {
   /// A method to trigger the toast notification based on the verification status.
   ///
   /// The toast message, background color, and text color are determined by the type of verification.
-  void productVerification(TypeVerification type) {
+  void customNotification(TypeVerification type) {
     _showToast(type);
   }
 

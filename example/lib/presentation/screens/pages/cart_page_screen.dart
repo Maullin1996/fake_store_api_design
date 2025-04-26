@@ -1,3 +1,4 @@
+import 'package:example/config/mock/user_mock.dart';
 import 'package:example/domain/models/product_entity.dart';
 import 'package:example/presentation/providers/providers.dart';
 import 'package:fake_store_design/template/tamplate.dart';
@@ -5,31 +6,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class CartPageScreen extends ConsumerWidget {
+class CartPageScreen extends ConsumerStatefulWidget {
   const CartPageScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CartPageScreen> createState() => _CartPageScreenState();
+}
+
+class _CartPageScreenState extends ConsumerState<CartPageScreen> {
+  bool userStatus = false;
+  @override
+  Widget build(BuildContext context) {
     final List<Product> cartList = ref.watch(cartListProvider);
-    final String token = ref.watch(authenticationProvider).token;
-    final user = ref.watch(userInfoProvider).user;
     return CartTemplate(
       onDialogButtonPressed: () {
-        if (token.isEmpty) {
-          context.pop();
-          context.push('/login_page');
-        } else {
+        if (userStatus) {
           ref.read(cartListProvider.notifier).emptyCart();
-          context.push('/home_page');
+          context.pop();
+        } else {
+          setState(() {
+            userStatus = true;
+          });
+          context.pop();
         }
       },
       logOutonPressed: () {
-        ref.read(authenticationProvider.notifier).logOutUser();
-        ref.read(userInfoProvider.notifier).logOutUser();
+        setState(() {
+          userStatus = false;
+        });
       },
-      lastName: user == null ? '' : user.name.lastname,
-      name: user == null ? '' : user.name.firstname,
-      authentication: token.isNotEmpty,
+      lastName: userMock.name.lastname,
+      name: userMock.name.firstname,
+      authentication: userStatus,
       listCart: cartList,
       totalToPay: ref
           .read(cartListProvider.notifier)
@@ -39,7 +47,9 @@ class CartPageScreen extends ConsumerWidget {
         context.pop();
       },
       logInonPressed: () {
-        context.push('/login_page');
+        setState(() {
+          userStatus = true;
+        });
       },
       onPressedplus:
           (product) =>

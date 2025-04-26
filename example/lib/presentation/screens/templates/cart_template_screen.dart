@@ -21,7 +21,7 @@ class _CartTemplateScreenState extends State<CartTemplateScreen> {
   Widget build(BuildContext context) {
     return CartTemplate(
       authentication: authentication,
-      listCart: products,
+      listCart: productMock(false),
       backonPressed: () {
         Navigator.of(context).pop();
       },

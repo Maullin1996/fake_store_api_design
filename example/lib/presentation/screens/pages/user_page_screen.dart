@@ -1,5 +1,4 @@
-import 'package:example/presentation/providers/api_response/authentication_provider.dart';
-import 'package:example/presentation/providers/api_response/user_provider.dart';
+import 'package:example/config/mock/user_mock.dart';
 import 'package:fake_store_design/template/user_tamplate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,12 +9,6 @@ class UserPageScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userProvider = ref.watch(userInfoProvider);
-    final userInfo = userProvider.user;
-
-    if (userProvider.isLoading || userInfo == null) {
-      return Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
     return UserTemplate(
       backonPressed: () {
         context.pop();
@@ -23,19 +16,16 @@ class UserPageScreen extends ConsumerWidget {
       cartonPressed: () {
         context.push('/cart_page');
       },
-      logOutonPressed: () {
-        ref.read(authenticationProvider.notifier).logOutUser();
-        context.go('/home_page');
-      },
-      lastName: userInfo.name.lastname,
-      name: userInfo.name.firstname,
-      username: userInfo.username,
-      email: userInfo.email,
-      phone: userInfo.phone,
-      city: userInfo.address.city,
-      street: userInfo.address.street,
-      number: userInfo.address.number.toString(),
-      zipcode: userInfo.address.zipcode,
+      logOutonPressed: () {},
+      lastName: userMock.name.lastname,
+      name: userMock.name.firstname,
+      username: userMock.username,
+      email: userMock.email,
+      phone: userMock.phone,
+      city: userMock.address.city,
+      street: userMock.address.street,
+      number: userMock.address.number.toString(),
+      zipcode: userMock.address.zipcode,
     );
   }
 }
