@@ -69,6 +69,11 @@ class CustomFloatingNotifications {
     _showToast(type);
   }
 
+  ///Method to convert flutter colors in CSS colors
+  String colorToHex(Color color) {
+    return '#${color.toARGB32().toRadixString(16).substring(2).padLeft(6, '0')}';
+  }
+
   /// A private helper method to show the toast message with the appropriate content and style.
   ///
   /// This method is responsible for displaying the toast message with the correct styling
@@ -98,6 +103,11 @@ class CustomFloatingNotifications {
               .CENTER, // The position where the toast will appear (center of the screen).
       toastLength:
           Toast.LENGTH_SHORT, // The length of time the toast will appear.
+      webPosition: 'center',
+      webBgColor:
+          type == TypeVerification.added
+              ? colorToHex(Colors.green[50]!)
+              : colorToHex(Colors.red[50]!),
     );
   }
 }

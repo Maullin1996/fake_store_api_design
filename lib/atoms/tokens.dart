@@ -8,3 +8,4 @@ export 'package:fake_store_design/atoms/colors.dart';
 export 'package:fake_store_design/atoms/icons.dart';
 export 'package:fake_store_design/atoms/themes.dart';
 export 'package:fake_store_design/atoms/typography.dart';
+export 'package:fake_store_design/atoms/break_points.dart';
