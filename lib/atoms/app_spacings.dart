@@ -3,7 +3,7 @@
 /// These constants are used for padding, margin, gaps, and layout consistency.
 abstract class AppSpacing {
   /// Extra-extra small spacing. Suitable for tight UI elements.
-  static const double xSmall = 5.0;
+  static const double xSmall = 8.0;
 
   /// Small spacing. Commonly used for compact padding/margin.
   static const double small = 12.0;

@@ -44,52 +44,48 @@ class LoginForm extends StatelessWidget {
       // Setting the background color for the form container.
       color: AppColors.secondary,
 
-      child: Column(
-        // Aligning the contents of the column to the start of the cross axis (left).
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Center(
+        child: Column(
+          // Aligning the contents of the column to the start of the cross axis (left).
+          crossAxisAlignment: CrossAxisAlignment.center,
 
-        children: [
-          // Title for the login form.
-          Text('Log in', style: textTheme.displayLarge),
+          children: [
+            // Title for the login form.
+            Text('Log in', style: textTheme.displayLarge),
 
-          // Adding some vertical spacing between elements.
-          SizedBox(height: AppSpacing.medium),
+            // Adding some vertical spacing between elements.
+            SizedBox(height: AppSpacing.medium),
 
-          // Username input field.
-          AppInputText(
-            label: 'Username', // Label text for the field.
-            inputTextSize:
-                InputTextSize.large, // Setting the input text size to large.
-            floatingLabelBehavior: false, // Making the label always visible.
-            onChange:
-                onChangeUsername, // Function to handle changes in the username field.
-            validator:
-                validatorUsername, // Validation function for the username.
-            textEditingController:
-                usernameController, // Controller for managing username input.
-          ),
+            // Username input field.
+            AppInputText(
+              label: 'Username', // Label text for the field.
+              floatingLabelBehavior: false, // Making the label always visible.
+              onChange:
+                  onChangeUsername, // Function to handle changes in the username field.
+              validator:
+                  validatorUsername, // Validation function for the username.
+              textEditingController:
+                  usernameController, // Controller for managing username input.
+            ),
 
-          // Vertical space between the username and password fields.
-          SizedBox(height: AppSpacing.medium),
+            // Vertical space between the username and password fields.
+            SizedBox(height: AppSpacing.medium),
 
-          // Password input field.
-          AppInputText(
-            label: 'Password', // Label text for the password field.
-            inputTextSize:
-                InputTextSize.large, // Setting the input text size to large.
-            floatingLabelBehavior: false, // Making the label always visible.
-            obscureText: true, // Ensuring the password is hidden when typed.
-            onChange:
-                onChangePassword, // Function to handle changes in the password field.
-            validator:
-                validatorPassword, // Validation function for the password.
-            textEditingController:
-                passwordController, // Controller for managing password input.
-          ),
-
-          // Centering the login button.
-          Center(
-            child: AppButtons(
+            // Password input field.
+            AppInputText(
+              label: 'Password', // Label text for the password field.
+              floatingLabelBehavior: false, // Making the label always visible.
+              obscureText: true, // Ensuring the password is hidden when typed.
+              onChange:
+                  onChangePassword, // Function to handle changes in the password field.
+              validator:
+                  validatorPassword, // Validation function for the password.
+              textEditingController:
+                  passwordController, // Controller for managing password input.
+            ),
+            SizedBox(height: AppSpacing.medium),
+            // Centering the login button.
+            AppButtons(
               type:
                   ButtonType
                       .primaryFillButton, // Type of button (filled button).
@@ -100,8 +96,8 @@ class LoginForm extends StatelessWidget {
                   onPressed, // Callback function when the button is pressed.
               buttonWidth: AppSpacing.large, // Setting the width of the button.
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -18,12 +18,7 @@ class _InputTextScreenState extends State<InputTextScreen> {
         colorType: ColorType.primary,
       ),
       backgroundColor: Colors.white,
-      body: Center(
-        child: AppInputText(
-          label: 'Title',
-          inputTextSize: InputTextSize.medium,
-        ),
-      ),
+      body: Center(child: AppInputText(label: 'Title')),
     );
   }
 }

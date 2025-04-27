@@ -1,18 +1,7 @@
+import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 
 import 'tokens.dart';
-
-/// Defines input sizes available for [AppInputText].
-enum InputTextSize {
-  /// Large input field — typically used in forms or onboarding.
-  large,
-
-  /// Medium input field — suited for most general use cases.
-  medium,
-
-  /// Small input field — often used for compact UIs like toolbars or filters.
-  small,
-}
 
 /// A customizable input field with responsive width and design system styling.
 ///
@@ -21,9 +10,6 @@ enum InputTextSize {
 class AppInputText extends StatelessWidget {
   /// The label displayed above the input field.
   final String label;
-
-  /// Controls the size (and width) of the input field.
-  final InputTextSize inputTextSize;
 
   /// Optional controller to manage the input's text.
   final TextEditingController? textEditingController;
@@ -49,33 +35,22 @@ class AppInputText extends StatelessWidget {
     this.validator,
     this.floatingLabelBehavior = true,
     required this.label,
-    required this.inputTextSize,
   });
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    // Determine width based on the selected size
-    final double width;
-    switch (inputTextSize) {
-      case InputTextSize.large:
-        width = MediaQuery.sizeOf(context).width - 60;
-        break;
-      case InputTextSize.medium:
-        width = 270;
-        break;
-      case InputTextSize.small:
-        width = 150;
-        break;
-    }
-
     final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppRadius.medium),
     );
 
     return SizedBox(
-      width: width,
+      width:
+          ResponsiveDesign(
+            height: MediaQuery.sizeOf(context).height,
+            width: MediaQuery.sizeOf(context).width,
+          ).appInputTextWidth,
       child: TextFormField(
         controller: textEditingController,
         obscureText: obscureText,

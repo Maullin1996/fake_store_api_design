@@ -1,5 +1,5 @@
+import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import '../../atoms/tokens.dart';
 
@@ -46,11 +46,18 @@ class ProductCartContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
+    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
+      height: MediaQuery.sizeOf(context).height,
+      width: MediaQuery.sizeOf(context).width,
+    );
 
     // The main container for displaying the product information
     return Container(
-      padding: EdgeInsets.all(
-        AppSpacing.small,
+      margin: EdgeInsets.symmetric(
+        horizontal: responsiveDesign.cartHorizontalPadding,
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: responsiveDesign.cartHorizontalPadding,
       ), // Padding around the entire container
       decoration: BoxDecoration(
         color: AppColors.onPrimary, // Background color for the container
@@ -60,7 +67,11 @@ class ProductCartContainer extends StatelessWidget {
         // Row to align the image, details, and price on the same line
         children: [
           // Display the product image using the AppNetworkImage widget
-          AppNetworkImage(url: url, heightImage: 100, widthImage: 70),
+          AppNetworkImage(
+            url: url,
+            heightImage: responsiveDesign.imageCartContainerheight,
+            widthImage: responsiveDesign.imageCartContainerWidth,
+          ),
 
           SizedBox(
             width: AppSpacing.small,

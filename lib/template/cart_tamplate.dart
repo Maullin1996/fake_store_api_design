@@ -83,65 +83,62 @@ class CartTemplate extends StatelessWidget {
                 logInonPressed: logInonPressed,
               ),
       backgroundColor: Color.fromARGB(255, 238, 238, 238), // Background color
-      body: Padding(
-        padding: const EdgeInsets.all(8.0), // Padding around the body content
-        child: Stack(
-          children: [
-            // List of cart products displayed in a scrollable list
-            FadeInUp(
-              child: ListView.separated(
-                padding: EdgeInsets.only(
-                  bottom: AppSpacing.large,
-                ), // Padding at the bottom
-                itemCount: listCart.length, // Number of items in the cart
-                itemBuilder: (BuildContext context, int index) {
-                  final product =
-                      listCart[index]; // Get the product at this index
-                  return ProductCartContainer(
-                    url: product.image, // Image URL for the product
-                    productName: product.title, // Name of the product
-                    amount:
-                        'x${product.quantity}', // Product quantity in the cart
-                    productPrice: product.price.toString(), // Product price
-                    onPressedminus:
-                        () =>
-                            onPressedminus?.call(product), // Decrease quantity
-                    onPressedplus:
-                        () => onPressedplus?.call(product), // Increase quantity
-                  );
-                },
-                separatorBuilder:
-                    (context, index) => SizedBox(
-                      height: AppSpacing.small,
-                    ), // Spacer between items
-              ),
+      body: Stack(
+        children: [
+          // List of cart products displayed in a scrollable list
+          FadeInUp(
+            child: ListView.separated(
+              padding: EdgeInsets.only(
+                top: AppSpacing.medium,
+                bottom: AppSpacing.large,
+              ), // Padding at the bottom
+              itemCount: listCart.length, // Number of items in the cart
+              itemBuilder: (BuildContext context, int index) {
+                final product =
+                    listCart[index]; // Get the product at this index
+                return ProductCartContainer(
+                  url: product.image, // Image URL for the product
+                  productName: product.title, // Name of the product
+                  amount:
+                      'x${product.quantity}', // Product quantity in the cart
+                  productPrice: product.price.toString(), // Product price
+                  onPressedminus:
+                      () => onPressedminus?.call(product), // Decrease quantity
+                  onPressedplus:
+                      () => onPressedplus?.call(product), // Increase quantity
+                );
+              },
+              separatorBuilder:
+                  (context, index) => SizedBox(
+                    height: AppSpacing.small,
+                  ), // Spacer between items
             ),
-            // Positioned widget to display the dialog at the bottom of the screen
-            Positioned(
-              bottom: AppSpacing.small, // Bottom margin for the dialog
-              left: 0,
-              right: 0,
-              child: Center(
-                child:
-                    authentication
-                        ? CustomDialog(
-                          totalToPay: totalToPay, // Display total price
-                          dialogType:
-                              DialogType
-                                  .authenticated, // Dialog for authenticated users
-                          onDialogButtonPressed: onDialogButtonPressed,
-                        )
-                        : CustomDialog(
-                          totalToPay: totalToPay, // Display total price
-                          dialogType:
-                              DialogType
-                                  .unauthenticated, // Dialog for unauthenticated users
-                          onDialogButtonPressed: onDialogButtonPressed,
-                        ),
-              ),
+          ),
+          // Positioned widget to display the dialog at the bottom of the screen
+          Positioned(
+            bottom: AppSpacing.small, // Bottom margin for the dialog
+            left: 0,
+            right: 0,
+            child: Center(
+              child:
+                  authentication
+                      ? CustomDialog(
+                        totalToPay: totalToPay, // Display total price
+                        dialogType:
+                            DialogType
+                                .authenticated, // Dialog for authenticated users
+                        onDialogButtonPressed: onDialogButtonPressed,
+                      )
+                      : CustomDialog(
+                        totalToPay: totalToPay, // Display total price
+                        dialogType:
+                            DialogType
+                                .unauthenticated, // Dialog for unauthenticated users
+                        onDialogButtonPressed: onDialogButtonPressed,
+                      ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -21,7 +21,7 @@ List<Product> productMock(bool page) {
       category: "Electronics",
       image:
           page
-              ? "https://hsi.com.co/wp-content/uploads/2018/10/Imagen-iPhone-X-256GB-Usado-A.jpg"
+              ? "https://m.media-amazon.com/images/S/aplus-media-library-service-media/fd9cc023-fade-4f6b-acf7-35a681246ccc.__CR0,0,600,600_PT0_SX300_V1___.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(
@@ -87,7 +87,7 @@ List<Product> productMock(bool page) {
       category: "Sportswear",
       image:
           page
-              ? "https://s3.amazonaws.com/www.irunfar.com/wp-content/uploads/2024/07/25053122/Best-Trail-Running-Shoes-Hoka-Speedgoat-6.jpg"
+              ? "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/glbl_re_running_fw24_dotcom_evergreen_plp_distance_1_5k_navigation_interactive_wallpaper_1_supernova_d_44eed36841.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(
@@ -99,7 +99,7 @@ List<Product> productMock(bool page) {
       category: "Home",
       image:
           page
-              ? "https://images.thdstatic.com/productImages/a6de66e1-d917-4132-94cc-29a1fc413da1/svn/black-hampton-bay-desk-lamps-rs2204161bk-64_1000.jpg"
+              ? "https://m.media-amazon.com/images/I/61SiLhlR7TL.jpg"
               : "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
     ),
     Product(

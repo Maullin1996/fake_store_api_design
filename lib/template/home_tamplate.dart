@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:fake_store_design/design_system.dart';
 //import 'package:fake_store_design/models/base_product.dart';
 
@@ -152,6 +153,10 @@ class HomeTamplate extends StatelessWidget {
     required List<dynamic> myCartList,
   }) {
     final textTheme = Theme.of(context).textTheme;
+    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
+      height: MediaQuery.sizeOf(context).height,
+      width: MediaQuery.sizeOf(context).width,
+    );
 
     if (isLoading) {
       return SizedBox(
@@ -172,11 +177,16 @@ class HomeTamplate extends StatelessWidget {
         shrinkWrap: true, // Prevents GridView from taking extra space
         physics:
             const NeverScrollableScrollPhysics(), // Disables scrolling within the grid
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Two columns
-          mainAxisSpacing: 4, // Vertical spacing between items
-          crossAxisSpacing: 4, // Horizontal spacing between items
-          childAspectRatio: 0.47, // Aspect ratio of each item
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: responsiveDesign.columnAmount, // columns
+          mainAxisSpacing:
+              responsiveDesign
+                  .mainAxisSpacing, // Vertical spacing between items
+          crossAxisSpacing:
+              responsiveDesign
+                  .crossAxisSpacing, // Horizontal spacing between items
+          childAspectRatio:
+              responsiveDesign.childAspectRatio, // Aspect ratio of each item
         ),
         itemCount: products.length, // Number of products
         itemBuilder: (context, index) {

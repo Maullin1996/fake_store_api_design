@@ -1,3 +1,4 @@
+import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -54,6 +55,10 @@ class ProducthomeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
+    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
+      height: MediaQuery.sizeOf(context).height,
+      width: MediaQuery.sizeOf(context).width,
+    );
 
     // The main container for displaying the product details
     return IntrinsicHeight(
@@ -92,8 +97,12 @@ class ProducthomeContainer extends StatelessWidget {
               Center(
                 child: AppNetworkImage(
                   url: url, // URL of the product image
-                  widthImage: 110, // Set the image width
-                  heightImage: 140, // Set the image height
+                  widthImage:
+                      responsiveDesign
+                          .imageHomeContainerWidth, // Set the image width
+                  heightImage:
+                      responsiveDesign
+                          .imageHomeContainerheight, // Set the image height
                 ),
               ),
               // Favorite icon section

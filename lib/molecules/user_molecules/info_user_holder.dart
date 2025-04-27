@@ -1,3 +1,4 @@
+import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -41,9 +42,15 @@ class InfoUserHolder extends StatelessWidget {
         SizedBox(width: AppSpacing.small),
 
         // Display the text with a specific style.
-        Text(
-          text,
-          style: textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w400),
+        Expanded(
+          child: Text(
+            text,
+            overflow: TextOverflow.ellipsis,
+            softWrap: true,
+            style: textTheme.headlineLarge?.copyWith(
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ),
       ],
     );
@@ -52,12 +59,16 @@ class InfoUserHolder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
+      height: MediaQuery.sizeOf(context).height,
+      width: MediaQuery.sizeOf(context).width,
+    );
     return Container(
       // Set padding around the container to add spacing.
       padding: EdgeInsets.only(
-        left: AppSpacing.small,
+        left: responsiveDesign.productAndUserHorizontalPadding,
         bottom: AppSpacing.medium,
-        right: AppSpacing.small,
+        right: responsiveDesign.productAndUserHorizontalPadding,
       ),
 
       // Set the background color of the container.

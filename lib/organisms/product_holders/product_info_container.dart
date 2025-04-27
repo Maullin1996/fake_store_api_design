@@ -1,3 +1,4 @@
+import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -51,12 +52,17 @@ class ProductInfoContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
-
+    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
+      height: MediaQuery.sizeOf(context).height,
+      width: MediaQuery.sizeOf(context).width,
+    );
     // The container holding the product details
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: AppSpacing.small, // Vertical padding around the content
-        horizontal: AppSpacing.medium, // Horizontal padding around the content
+        horizontal:
+            responsiveDesign
+                .productAndUserHorizontalPadding, // Horizontal padding around the content
       ),
       width:
           MediaQuery.sizeOf(
@@ -69,8 +75,12 @@ class ProductInfoContainer extends StatelessWidget {
           Center(
             child: AppNetworkImage(
               url: url, // Product image URL
-              widthImage: 250, // Width of the image
-              heightImage: 300, // Height of the image
+              widthImage:
+                  responsiveDesign
+                      .imageinfoContainerWidth, // Width of the image
+              heightImage:
+                  responsiveDesign
+                      .imageinfoContainerheight, // Height of the image
             ),
           ),
           SizedBox(
