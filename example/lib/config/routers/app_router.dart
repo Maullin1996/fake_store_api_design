@@ -68,6 +68,10 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const CustomDialogs(),
     ),
     GoRoute(
+      path: '/custom_floating_notification',
+      builder: (context, state) => const CustomFloatingNotification(),
+    ),
+    GoRoute(
       path: '/product_cart',
       builder: (context, state) => const ProductCart(),
     ),

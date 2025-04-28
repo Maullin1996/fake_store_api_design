@@ -25,6 +25,11 @@ final List<OrganismsMenu> organismsMenu = [
     route: '/custom_dialogs',
   ),
   OrganismsMenu(
+    title: 'Custom Floating Notification',
+    iconData: Icons.notification_add,
+    route: '/custom_floating_notification',
+  ),
+  OrganismsMenu(
     title: 'Product Cart Holder',
     iconData: CupertinoIcons.cart,
     route: '/product_cart',
