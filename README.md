@@ -423,6 +423,7 @@ The selected category button is styled differently to indicate the current selec
 <p align = "center">
   <img src="assets/images/user_template.png" alt="alt text" width="250" />
 </p>
+
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
