@@ -113,7 +113,7 @@ class ProductCartContainer extends StatelessWidget {
                     .center, // Align items vertically in the center
             children: [
               // Display the product price
-              Text('\$ $productPrice', style: textTheme.headlineSmall),
+              Text('\$ $productPrice', style: textTheme.labelLarge),
 
               // Row for the buttons to increase or decrease the quantity
               Row(

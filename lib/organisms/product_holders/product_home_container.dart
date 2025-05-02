@@ -124,9 +124,7 @@ class ProducthomeContainer extends StatelessWidget {
               // Product price text with custom font size
               Text(
                 '\$ $productPrice', // Display price with a dollar sign
-                style: textTheme.headlineSmall?.copyWith(
-                  fontSize: AppTypography.h3, // Adjust font size for price
-                ),
+                style: textTheme.labelLarge,
               ),
               Spacer(), // Flexible space between the image and text below
               // Action buttons: Buy and Info

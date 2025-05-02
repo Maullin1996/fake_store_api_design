@@ -51,7 +51,6 @@ abstract class AppThemes {
       ),
       labelLarge: TextStyle(
         fontSize: AppTypography.h3,
-        fontWeight: FontWeight.bold,
         color: AppColors.primary,
         fontFamily: AppTypography.familyKarla,
       ),
@@ -109,7 +108,6 @@ abstract class AppThemes {
       ),
       headlineSmall: TextStyle(
         fontSize: AppTypography.h3,
-        fontWeight: FontWeight.bold,
         color: AppColors.onPrimary,
         fontFamily: AppTypography.familyKarla,
       ),

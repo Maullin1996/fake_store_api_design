@@ -1,4 +1,4 @@
-# E-Commerce Flutter App
+# Atomic Design For E-Commerce Apliacations
 
 A modern e-commerce application built with Flutter that showcases a seamless shopping experience with various templates such as product detail pages, user profiles, login screens, and a shopping cart.
 

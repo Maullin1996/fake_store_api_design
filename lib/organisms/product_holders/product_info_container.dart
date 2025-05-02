@@ -106,9 +106,9 @@ class ProductInfoContainer extends StatelessWidget {
           // Display the product price
           Text(
             '\$ $productPrice', // Display price with a dollar sign
-            style:
-                textTheme
-                    .headlineMedium, // Use the headline medium text style for the price
+            style: textTheme.labelLarge?.copyWith(
+              fontSize: AppTypography.h2,
+            ), // Use the headline medium text style for the price
           ),
           SizedBox(
             height: AppSpacing.small,
