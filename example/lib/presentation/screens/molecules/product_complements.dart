@@ -12,6 +12,13 @@ class ProductComplements extends StatefulWidget {
 class _ProductComplementsState extends State<ProductComplements> {
   String selectedCategory = 'All';
   bool isFavorite = false;
+  final List<String> categories = [
+    'All', // Display all categories.
+    "electronics", // Category for electronics.
+    "jewelery", // Category for jewelery.
+    "men's clothing", // Category for men's clothing.
+    "women's clothing", // Category for women's clothing.
+  ];
   void _handleCategorySelection(String category) {
     setState(() {
       selectedCategory = category;
@@ -39,6 +46,7 @@ class _ProductComplementsState extends State<ProductComplements> {
         children: [
           Text('List of categories', style: textTheme.displayMedium),
           ListCategory(
+            categories: categories,
             selectedCategory: selectedCategory,
             onCategorySelected: _handleCategorySelection,
           ),

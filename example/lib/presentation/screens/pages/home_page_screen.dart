@@ -17,6 +17,13 @@ class HomePageScreen extends ConsumerStatefulWidget {
 class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   String selectedCategory = 'All';
   bool userStatus = false;
+  final List<String> categories = [
+    'All', // Display all categories.
+    "electronics", // Category for electronics.
+    "jewelery", // Category for jewelery.
+    "men's clothing", // Category for men's clothing.
+    "women's clothing", // Category for women's clothing.
+  ];
 
   void _handleCategorySelection(String category) {
     setState(() {
@@ -43,6 +50,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
     final List<Product> myCartList = ref.watch(cartListProvider);
     return HomeTamplate(
+      categories: categories,
       isLogIn: userStatus,
       cartonPressed: () {},
       logInonPressed: () {
@@ -72,6 +80,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
       },
       onPressedFavorite: _handleIsFavorite,
       onPressedbuy: _handleBuyProduct,
+      onItemSelected: (String selectedItem) {},
     );
   }
 }

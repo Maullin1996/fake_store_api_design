@@ -10,25 +10,21 @@ import '../../atoms/tokens.dart';
 /// the parent widget about the new selected category.
 class ListCategory extends StatelessWidget {
   final String selectedCategory; // The category currently selected by the user.
+  final List<String>
+  categories; // A list of the categories of the products to sell.
   final ValueChanged<String>
   onCategorySelected; // Callback triggered when a category is selected.
 
   const ListCategory({
     super.key,
     required this.selectedCategory, // The selected category string.
-    required this.onCategorySelected, // Callback function to notify category selection.
+    required this.onCategorySelected,
+    required this.categories, // Callback function to notify category selection.
   });
 
   @override
   Widget build(BuildContext context) {
     // A list of predefined categories to display as buttons.
-    final List<String> categories = [
-      'All', // Display all categories.
-      "electronics", // Category for electronics.
-      "jewelery", // Category for jewelery.
-      "men's clothing", // Category for men's clothing.
-      "women's clothing", // Category for women's clothing.
-    ];
 
     return Container(
       width:

@@ -12,6 +12,9 @@ import 'package:flutter/material.dart';
 /// viewing product details, and purchasing). The screen adjusts the layout and
 /// app bar based on the user's authentication state.
 class HomeTamplate extends StatelessWidget {
+  /// A list of the categories of the products to sell.
+  final List<String> categories;
+
   /// A flag indicating whether the user is logged in.
   final bool isLogIn;
 
@@ -63,6 +66,9 @@ class HomeTamplate extends StatelessWidget {
   /// The callback function to handle category selection.
   final void Function(String) onCategorySelected;
 
+  /// Callback function triggered when an item is selected from the suggestions.
+  final void Function(String selectedItem) onItemSelected;
+
   /// Creates an instance of [HomeTemplate].
   ///
   /// This widget represents the home screen where products are displayed, and
@@ -78,6 +84,8 @@ class HomeTamplate extends StatelessWidget {
     required this.myCartList,
     required this.selectedCategory,
     required this.onCategorySelected,
+    required this.categories,
+    required this.onItemSelected,
     this.errorMessage,
     this.onPressedFavorite,
     this.onPressedinfo,
@@ -118,10 +126,11 @@ class HomeTamplate extends StatelessWidget {
               items:
                   products.map((product) => product.title.toString()).toList(),
               displayString: (item) => item,
-              onItemSelected: (selectedItem) {},
+              onItemSelected: onItemSelected,
             ),
             // Category selection widget
             ListCategory(
+              categories: categories,
               selectedCategory: selectedCategory,
               onCategorySelected: onCategorySelected,
             ),

@@ -16,6 +16,14 @@ class HomeTemplateScreen extends ConsumerStatefulWidget {
 class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
   String selectedCategory = 'All';
 
+  final List<String> categories = [
+    'All', // Display all categories.
+    "electronics", // Category for electronics.
+    "jewelery", // Category for jewelery.
+    "men's clothing", // Category for men's clothing.
+    "women's clothing", // Category for women's clothing.
+  ];
+
   void _handleCategorySelection(String category) {
     setState(() {
       selectedCategory = category;
@@ -39,6 +47,7 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
 
     return HomeTamplate(
+      categories: categories,
       isLogIn: false,
       name: 'Pepito',
       lastName: 'Perez',
@@ -60,6 +69,7 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
       onPressedinfo: (product) {},
       onPressedbuy: (product) {},
       onCategorySelected: _handleCategorySelection,
+      onItemSelected: (String selectedItem) {},
     );
   }
 }
