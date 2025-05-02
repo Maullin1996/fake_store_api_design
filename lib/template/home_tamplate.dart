@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:fake_store_design/design_system.dart';
 //import 'package:fake_store_design/models/base_product.dart';
 
