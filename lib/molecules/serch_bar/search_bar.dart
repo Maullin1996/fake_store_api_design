@@ -85,7 +85,8 @@ class SearchAnchorWidget<T> extends StatelessWidget {
                   title: Text(displayString(item)),
                   onTap: () {
                     searchController.text = displayString(item);
-                    searchController.closeView(displayString(item));
+                    searchController.closeView(null);
+                    FocusScope.of(context).unfocus;
                     onItemSelected(item);
                   },
                 ),
