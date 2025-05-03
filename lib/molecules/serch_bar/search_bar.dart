@@ -64,7 +64,7 @@ class SearchAnchorWidget<T> extends StatelessWidget {
           const BorderSide(color: AppColors.primaryVariant, width: 1.5),
         ),
         searchController: searchController,
-        viewLeading: const BackButton(),
+        viewLeading: const BackButton(color: AppColors.secondary),
         viewHintText: hintText,
         barHintText: hintText,
 
