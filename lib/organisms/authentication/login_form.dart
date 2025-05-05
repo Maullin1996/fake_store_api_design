@@ -9,12 +9,14 @@ import '../../atoms/tokens.dart';
 class LoginForm extends StatelessWidget {
   final bool? isLoadingButton;
   final Function()? onPressed;
+  final Function()? iconOnPressed;
   final Function(String)? onChangeUsername;
   final String? Function(String?)? validatorUsername;
   final TextEditingController? usernameController;
   final Function(String)? onChangePassword;
   final String? Function(String?)? validatorPassword;
   final TextEditingController? passwordController;
+  final bool obscureText;
 
   const LoginForm({
     super.key,
@@ -26,6 +28,8 @@ class LoginForm extends StatelessWidget {
     this.validatorPassword,
     this.passwordController,
     this.isLoadingButton,
+    this.iconOnPressed,
+    required this.obscureText,
   });
 
   @override
@@ -75,13 +79,23 @@ class LoginForm extends StatelessWidget {
             AppInputText(
               label: 'Password', // Label text for the password field.
               floatingLabelBehavior: false, // Making the label always visible.
-              obscureText: true, // Ensuring the password is hidden when typed.
+              obscureText:
+                  obscureText, // Ensuring the password is hidden when typed.
               onChange:
                   onChangePassword, // Function to handle changes in the password field.
               validator:
                   validatorPassword, // Validation function for the password.
               textEditingController:
                   passwordController, // Controller for managing password input.
+              suffixIcon: IconButton(
+                onPressed: iconOnPressed,
+                icon: Icon(
+                  obscureText
+                      ? Icons.remove_red_eye_outlined
+                      : Icons.remove_red_eye_rounded,
+                  size: 20,
+                ),
+              ),
             ),
             SizedBox(height: AppSpacing.medium),
             // Centering the login button.

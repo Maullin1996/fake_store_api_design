@@ -40,6 +40,12 @@ class LoginTemplate extends StatelessWidget {
   /// A validator function for the username field.
   final String? Function(String?)? validatorUsername;
 
+  /// Whether to obscure the text in the input.
+  final bool obscureText;
+
+  /// Change obcureText state.
+  final Function()? iconOnPressed;
+
   /// Creates an instance of [LoginTemplate].
   ///
   /// This widget represents the login screen where users can input their
@@ -57,6 +63,8 @@ class LoginTemplate extends StatelessWidget {
     this.validatorPassword,
     this.validatorUsername,
     this.isLoadingButton,
+    this.iconOnPressed,
+    required this.obscureText,
   });
 
   @override
@@ -94,6 +102,8 @@ class LoginTemplate extends StatelessWidget {
                   validatorPassword, // Validator for the password field
               validatorUsername:
                   validatorUsername, // Validator for the username field
+              obscureText: obscureText, // obscureText state
+              iconOnPressed: iconOnPressed, // Change the obscureText state
             ),
           ],
         ),

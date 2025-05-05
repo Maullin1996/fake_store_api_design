@@ -16,6 +16,7 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isLoading = false;
+  bool obscureText = true;
 
   void _handleLogIn(String username, String password) async {
     if (username == userMock.username && password == userMock.password) {
@@ -38,11 +39,19 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
     }
   }
 
+  void _handleObcureText() {
+    setState(() {
+      obscureText = !obscureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: LoginTemplate(
+        obscureText: obscureText,
+        iconOnPressed: _handleObcureText,
         isLoadingButton: isLoading,
         passwordController: _passwordController,
         usernameController: _usernameController,

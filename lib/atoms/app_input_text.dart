@@ -1,4 +1,3 @@
-import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 
 import 'tokens.dart';
@@ -26,6 +25,9 @@ class AppInputText extends StatelessWidget {
   /// Optional validator for form usage.
   final String? Function(String?)? validator;
 
+  /// Optional Widget to show or obscure the text
+  final Widget? suffixIcon;
+
   /// Creates an [AppInputText] widget.
   const AppInputText({
     super.key,
@@ -35,6 +37,7 @@ class AppInputText extends StatelessWidget {
     this.validator,
     this.floatingLabelBehavior = true,
     required this.label,
+    this.suffixIcon,
   });
 
   @override
@@ -57,6 +60,7 @@ class AppInputText extends StatelessWidget {
         onChanged: onChange,
         validator: validator,
         decoration: InputDecoration(
+          suffixIcon: suffixIcon,
           errorStyle: textTheme.bodyLarge,
           fillColor: AppColors.backgroundTextFormField,
           filled: true,

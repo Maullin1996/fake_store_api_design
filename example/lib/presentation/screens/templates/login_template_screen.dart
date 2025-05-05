@@ -10,9 +10,16 @@ class LoginTemplateScreen extends StatefulWidget {
 }
 
 class _LoginTemplateScreenState extends State<LoginTemplateScreen> {
+  bool obscureText = true;
   @override
   Widget build(BuildContext context) {
     return LoginTemplate(
+      obscureText: obscureText,
+      iconOnPressed: () {
+        setState(() {
+          obscureText = !obscureText;
+        });
+      },
       isLoadingButton: false,
       cartonPressed: () {},
       backonPressed: () {

@@ -10,6 +10,7 @@ class LoginFormScreen extends StatefulWidget {
 }
 
 class _LoginFormScreenState extends State<LoginFormScreen> {
+  bool oscureText = true;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -25,7 +26,16 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Custom form', style: textTheme.displayMedium),
-            LoginForm(onPressed: () {}, isLoadingButton: false),
+            LoginForm(
+              onPressed: () {},
+              isLoadingButton: false,
+              obscureText: oscureText,
+              iconOnPressed: () {
+                setState(() {
+                  oscureText = !oscureText;
+                });
+              },
+            ),
           ],
         ),
       ),
