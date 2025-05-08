@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// Defines a central place to access commonly used icons across the app.
 ///
@@ -71,4 +72,10 @@ abstract class AppIcons {
 
   /// Icon used for navigation back actions.
   static const IconData back = Icons.arrow_back_outlined;
+
+  /// Icon used for whatsapp number.
+  static const IconData whatsapp = FontAwesomeIcons.whatsapp;
+
+  /// Icon used for Instagram name.
+  static const IconData instagram = FontAwesomeIcons.instagram;
 }

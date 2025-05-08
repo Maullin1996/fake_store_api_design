@@ -1,4 +1,3 @@
-import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -19,7 +18,7 @@ class ProducthomeContainer extends StatelessWidget {
   final String productCategory;
 
   /// The price of the product.
-  final String productPrice;
+  final double productPrice;
 
   /// The callback function for the buy button.
   final Function()? onPressedbuy;
@@ -32,6 +31,11 @@ class ProducthomeContainer extends StatelessWidget {
 
   /// Whether the product is marked as a favorite.
   final bool isFavorite;
+
+  /// Whether the product is in promotion.
+  final bool isPromotion;
+
+  final double discount;
 
   /// Creates an instance of [ProducthomeContainer].
   ///
@@ -49,6 +53,8 @@ class ProducthomeContainer extends StatelessWidget {
     this.onPressedinfo,
     required this.isFavorite,
     this.onPressedFavorite,
+    this.isPromotion = false,
+    this.discount = 1,
   });
 
   @override
@@ -121,11 +127,32 @@ class ProducthomeContainer extends StatelessWidget {
               // Product category text
               Text(productCategory, style: textTheme.bodyMedium),
 
-              // Product price text with custom font size
-              Text(
-                '\$ $productPrice', // Display price with a dollar sign
-                style: textTheme.labelLarge,
-              ),
+              isPromotion
+                  ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Product promotion price text with custom font size
+                      Text(
+                        '\$ $productPrice', // Display price with a dollar sign
+                        style: textTheme.labelLarge?.copyWith(
+                          color: AppColors.disabledButton,
+                          decoration: TextDecoration.lineThrough,
+                          decorationColor: AppColors.disabledButton,
+                          decorationThickness: 2.0,
+                        ),
+                      ),
+                      // Product promotion price text with custom font size
+                      Text(
+                        '\$ ${productPrice * discount}', // Display price with a dollar sign
+                        style: textTheme.labelLarge,
+                      ),
+                    ],
+                  )
+                  : Text(
+                    '\$ $productPrice', // Display price with a dollar sign
+                    style: textTheme.labelLarge,
+                  ),
+
               Spacer(), // Flexible space between the image and text below
               // Action buttons: Buy and Info
               Row(

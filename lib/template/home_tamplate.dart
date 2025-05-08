@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
+import 'package:fake_store_design/molecules/company_info/company_info.dart';
 //import 'package:fake_store_design/models/base_product.dart';
 
 import 'package:flutter/material.dart';
@@ -11,6 +12,18 @@ import 'package:flutter/material.dart';
 /// viewing product details, and purchasing). The screen adjusts the layout and
 /// app bar based on the user's authentication state.
 class HomeTamplate extends StatelessWidget {
+  /// The Address of the E-commerce
+  final String address;
+
+  /// The emanil of the E-commerce
+  final String email;
+
+  /// The whatsapp of the E-commerce
+  final String whatsapp;
+
+  /// The instagram of the E-commerce
+  final String instagram;
+
   /// A list of the categories of the products to sell.
   final List<String> categories;
 
@@ -76,6 +89,10 @@ class HomeTamplate extends StatelessWidget {
   /// it handles loading and error states.
   const HomeTamplate({
     super.key,
+    required this.address,
+    required this.email,
+    required this.whatsapp,
+    required this.instagram,
     required this.isLoading,
     required this.isLogIn,
     required this.products,
@@ -141,6 +158,14 @@ class HomeTamplate extends StatelessWidget {
               errorMessage: errorMessage,
               isLoading: isLoading,
             ),
+            SizedBox(height: AppSpacing.small),
+            // The contact information
+            CompanyInfo(
+              address: address,
+              email: email,
+              whatsapp: whatsapp,
+              instagram: instagram,
+            ),
           ],
         ),
       ),
@@ -203,7 +228,7 @@ class HomeTamplate extends StatelessWidget {
             url: product.image, // Product image URL
             productName: product.title, // Product name
             productCategory: product.category, // Product category
-            productPrice: product.price.toString(), // Product price
+            productPrice: product.price, // Product price
             isFavorite: myFavoriteList.contains(
               product,
             ), // Whether the product is in favorites

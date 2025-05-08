@@ -47,6 +47,10 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
 
     return HomeTamplate(
+      address: 'CRA 88A # 55W - 44 Sur Medellin',
+      email: 'allstorehouse@correo.com',
+      instagram: 'all.storehouse',
+      whatsapp: '(+57) 3354425145',
       categories: categories,
       isLogIn: false,
       name: 'Pepito',

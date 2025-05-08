@@ -1,5 +1,6 @@
 import 'package:example/domain/models/product_entity.dart';
 import 'package:example/presentation/home_screen.dart';
+import 'package:example/presentation/screens/molecules/company_information.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -52,6 +53,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/search_bar',
       builder: (context, state) => const CustomSearchBar(),
+    ),
+    GoRoute(
+      path: '/company_info',
+      builder: (context, state) => const CompanyInformation(),
     ),
 
     //organismz

@@ -42,15 +42,11 @@ class InfoUserHolder extends StatelessWidget {
         SizedBox(width: AppSpacing.small),
 
         // Display the text with a specific style.
-        Expanded(
-          child: Text(
-            text,
-            overflow: TextOverflow.ellipsis,
-            softWrap: true,
-            style: textTheme.headlineLarge?.copyWith(
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+        Text(
+          text,
+          overflow: TextOverflow.ellipsis,
+          softWrap: true,
+          style: textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w400),
         ),
       ],
     );
@@ -59,50 +55,47 @@ class InfoUserHolder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
-      height: MediaQuery.sizeOf(context).height,
-      width: MediaQuery.sizeOf(context).width,
-    );
     return Container(
       // Set padding around the container to add spacing.
-      padding: EdgeInsets.only(
-        left: responsiveDesign.productAndUserHorizontalPadding,
-        bottom: AppSpacing.medium,
-        right: responsiveDesign.productAndUserHorizontalPadding,
-      ),
+      padding: EdgeInsets.only(bottom: AppSpacing.medium),
 
       // Set the background color of the container.
       color: AppColors.onPrimary,
 
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // Title for personal information section.
-          Text('Personal Information', style: textTheme.headlineLarge),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Title for personal information section.
+              Text('Personal Information', style: textTheme.headlineLarge),
 
-          // Add some vertical spacing.
-          SizedBox(height: AppSpacing.small),
+              // Add some vertical spacing.
+              SizedBox(height: AppSpacing.medium),
 
-          // Display each piece of personal information using _buildInfoRow.
-          _buildInfoRow(context, AppIcons.username, username),
-          SizedBox(height: AppSpacing.small),
-          _buildInfoRow(context, AppIcons.mail, email),
-          SizedBox(height: AppSpacing.small),
-          _buildInfoRow(context, AppIcons.phone, phone),
+              // Display each piece of personal information using _buildInfoRow.
+              _buildInfoRow(context, AppIcons.username, username),
+              SizedBox(height: AppSpacing.small),
+              _buildInfoRow(context, AppIcons.mail, email),
+              SizedBox(height: AppSpacing.small),
+              _buildInfoRow(context, AppIcons.phone, phone),
 
-          // Title for address information section.
-          SizedBox(height: AppSpacing.small),
-          Text('Address Information', style: textTheme.headlineLarge),
-          SizedBox(height: AppSpacing.small),
+              // Title for address information section.
+              SizedBox(height: AppSpacing.mediumLarge),
+              Text('Address Information', style: textTheme.headlineLarge),
+              SizedBox(height: AppSpacing.medium),
 
-          // Display each piece of address information using _buildInfoRow.
-          _buildInfoRow(context, AppIcons.city, city),
-          SizedBox(height: AppSpacing.small),
-          _buildInfoRow(context, AppIcons.street, street),
-          SizedBox(height: AppSpacing.small),
-          _buildInfoRow(context, AppIcons.direction, number),
-          SizedBox(height: AppSpacing.small),
-          _buildInfoRow(context, AppIcons.zipCode, zipcode),
+              // Display each piece of address information using _buildInfoRow.
+              _buildInfoRow(context, AppIcons.city, city),
+              SizedBox(height: AppSpacing.small),
+              _buildInfoRow(context, AppIcons.street, street),
+              SizedBox(height: AppSpacing.small),
+              _buildInfoRow(context, AppIcons.direction, number),
+              SizedBox(height: AppSpacing.small),
+              _buildInfoRow(context, AppIcons.zipCode, zipcode),
+            ],
+          ),
         ],
       ),
     );

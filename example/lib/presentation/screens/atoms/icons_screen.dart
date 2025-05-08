@@ -32,6 +32,8 @@ class IconsScreen extends StatelessWidget {
       'Log In': AppIcons.login,
       'Info': AppIcons.info,
       'Back': AppIcons.back,
+      'Whatsapp': AppIcons.whatsapp,
+      'instagram': AppIcons.instagram,
     };
     return Scaffold(
       appBar: CustomAppbarNavigator(

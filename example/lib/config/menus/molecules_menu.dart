@@ -40,4 +40,9 @@ final List<MoleculesMenu> moleculesMenu = [
     iconData: Icons.search,
     route: '/search_bar',
   ),
+  MoleculesMenu(
+    title: 'Company Info',
+    iconData: AppIcons.info,
+    route: '/company_info',
+  ),
 ];
