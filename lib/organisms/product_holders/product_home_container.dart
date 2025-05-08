@@ -35,6 +35,7 @@ class ProducthomeContainer extends StatelessWidget {
   /// Whether the product is in promotion.
   final bool isPromotion;
 
+  /// Discount value
   final double discount;
 
   /// Creates an instance of [ProducthomeContainer].
@@ -49,12 +50,12 @@ class ProducthomeContainer extends StatelessWidget {
     required this.productName,
     required this.productCategory,
     required this.productPrice,
+    required this.isPromotion,
+    required this.discount,
     this.onPressedbuy,
     this.onPressedinfo,
     required this.isFavorite,
     this.onPressedFavorite,
-    this.isPromotion = false,
-    this.discount = 1,
   });
 
   @override
@@ -133,7 +134,7 @@ class ProducthomeContainer extends StatelessWidget {
                     children: [
                       // Product promotion price text with custom font size
                       Text(
-                        '\$ $productPrice', // Display price with a dollar sign
+                        '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
                         style: textTheme.labelLarge?.copyWith(
                           color: AppColors.disabledButton,
                           decoration: TextDecoration.lineThrough,
@@ -143,13 +144,13 @@ class ProducthomeContainer extends StatelessWidget {
                       ),
                       // Product promotion price text with custom font size
                       Text(
-                        '\$ ${productPrice * discount}', // Display price with a dollar sign
+                        '\$ ${(productPrice - productPrice * discount).toStringAsFixed(2)}', // Display price with a dollar sign
                         style: textTheme.labelLarge,
                       ),
                     ],
                   )
                   : Text(
-                    '\$ $productPrice', // Display price with a dollar sign
+                    '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
                     style: textTheme.labelLarge,
                   ),
 

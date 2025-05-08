@@ -35,7 +35,13 @@ class ProductTemplate extends StatelessWidget {
   final String productName;
 
   /// The price of the product.
-  final String productPrice;
+  final double productPrice;
+
+  /// Whether the product is in promotion.
+  final bool isPromotion;
+
+  /// Discount value
+  final double discount;
 
   /// Creates an instance of [ProductTemplate].
   ///
@@ -53,6 +59,8 @@ class ProductTemplate extends StatelessWidget {
     required this.description,
     required this.productName,
     required this.productPrice,
+    required this.isPromotion,
+    required this.discount,
   });
 
   @override
@@ -73,7 +81,9 @@ class ProductTemplate extends StatelessWidget {
         productPrice: productPrice, // Product price
         onPressedbuy: onPressedbuy, // Action for the buy button
         isFavorite: isFavorite, // Whether the product is marked as a favorite
-        onPressedFavorite: onPressedFavorite, // Action for the favorite button
+        onPressedFavorite: onPressedFavorite,
+        isPromotion: isPromotion,
+        discount: discount, // Action for the favorite button
       ),
     );
   }

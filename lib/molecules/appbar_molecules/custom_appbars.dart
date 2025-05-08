@@ -102,7 +102,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
         title = Center(
           child: Text(
             '$name $lastName',
-            style: textTheme.displaySmall,
+            style: textTheme.displayMedium,
           ), // Display user's name
         );
         actions = [
@@ -124,7 +124,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
         title = Center(
           child: Text(
             '$name $lastName',
-            style: textTheme.displaySmall,
+            style: textTheme.displayMedium,
           ), // Display user's name
         );
         actions = [
@@ -149,7 +149,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
           ),
         ];
         title = Center(
-          child: Text('Home', style: textTheme.displaySmall),
+          child: Text('Home', style: textTheme.displayMedium),
         ); // Title "Home"
         actions = [
           AppButtons(
@@ -170,7 +170,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
         title = Center(
           child: Text(
             '$name $lastName',
-            style: textTheme.displaySmall,
+            style: textTheme.displayMedium,
           ), // Display user's name
         );
         actions = [

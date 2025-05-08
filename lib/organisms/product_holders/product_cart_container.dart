@@ -1,7 +1,6 @@
-import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 
-import '../../atoms/tokens.dart';
+import '../../design_system.dart';
 
 /// A widget that represents a container for a product in the cart.
 ///
@@ -19,7 +18,16 @@ class ProductCartContainer extends StatelessWidget {
   final String amount;
 
   /// The price of the product.
-  final String productPrice;
+  final double productPrice;
+
+  /// The description of the product.
+  final String descrition;
+
+  /// Whether the product is in promotion.
+  final bool isPromotion;
+
+  /// Discount value
+  final double discount;
 
   /// The callback function to handle the increase action for the product quantity.
   final Function()? onPressedplus;
@@ -38,6 +46,9 @@ class ProductCartContainer extends StatelessWidget {
     required this.productName,
     required this.amount,
     required this.productPrice,
+    required this.isPromotion,
+    required this.discount,
+    required this.descrition,
     this.onPressedplus,
     this.onPressedminus,
   });
@@ -58,6 +69,7 @@ class ProductCartContainer extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(
         horizontal: responsiveDesign.cartHorizontalPadding,
+        vertical: responsiveDesign.cartHorizontalPadding,
       ), // Padding around the entire container
       decoration: BoxDecoration(
         color: AppColors.onPrimary, // Background color for the container
@@ -102,6 +114,10 @@ class ProductCartContainer extends StatelessWidget {
                         AppTypography.h3, // Custom font size for the amount
                   ),
                 ),
+                SizedBox(height: AppSpacing.small),
+                responsiveDesign.descriptionCartContainer
+                    ? Text(descrition, style: textTheme.bodyLarge)
+                    : SizedBox(),
               ],
             ),
           ),
@@ -112,8 +128,31 @@ class ProductCartContainer extends StatelessWidget {
                 MainAxisAlignment
                     .center, // Align items vertically in the center
             children: [
-              // Display the product price
-              Text('\$ $productPrice', style: textTheme.labelLarge),
+              isPromotion
+                  ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Product promotion price text with custom font size
+                      Text(
+                        '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
+                        style: textTheme.labelLarge?.copyWith(
+                          color: AppColors.disabledButton,
+                          decoration: TextDecoration.lineThrough,
+                          decorationColor: AppColors.disabledButton,
+                          decorationThickness: 2.0,
+                        ),
+                      ),
+                      // Product promotion price text with custom font size
+                      Text(
+                        '\$ ${(productPrice - productPrice * discount).toStringAsFixed(2)}', // Display price with a dollar sign
+                        style: textTheme.labelLarge,
+                      ),
+                    ],
+                  )
+                  : Text(
+                    '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
+                    style: textTheme.labelLarge,
+                  ),
 
               // Row for the buttons to increase or decrease the quantity
               Row(

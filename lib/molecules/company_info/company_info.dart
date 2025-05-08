@@ -79,6 +79,7 @@ class CompanyInfo extends StatelessWidget {
               ],
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 infoStructure(AppIcons.whatsapp, whatsapp),
                 SizedBox(height: AppSpacing.xSmall),

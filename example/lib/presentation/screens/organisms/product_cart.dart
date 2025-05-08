@@ -22,11 +22,14 @@ class ProductCart extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(horizontal: AppRadius.small),
             child: ProductCartContainer(
+              descrition: 'High-performance laptop with advanced features.',
+              discount: 1,
+              isPromotion: false,
               url:
                   'https://ih1.redbubble.net/image.4905811472.8675/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
               productName: 'productName',
               amount: 'x1',
-              productPrice: '1200',
+              productPrice: 1200,
               onPressedminus: () {},
               onPressedplus: () {},
             ),

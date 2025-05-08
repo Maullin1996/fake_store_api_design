@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:fake_store_design/atoms/app_spacings.dart';
 
 /// Defines standard breakpoints for responsive layouts based on device diagonal size.
@@ -7,19 +5,22 @@ import 'package:fake_store_design/atoms/app_spacings.dart';
 /// These values are used to determine how the UI should adapt on different screen sizes.
 abstract class BreakPoints {
   /// Extra small devices.
-  static const xsmall = 750;
+  static const xsmall = 390;
 
   /// Small devices.
-  static const small = 940;
+  static const small = 550;
 
   /// Extra small-medium devices.
-  static const xsmedium = 1100;
+  static const xsmedium = 680;
 
   /// Medium devices.
-  static const medium = 1290;
+  static const medium = 900;
+
+  /// Extra small-Large devices.
+  static const xslarge = 1300;
 
   /// Large devices.
-  static const large = 1698;
+  static const large = 1500;
 }
 
 /// Provides responsive design calculations based on the device's height and width.
@@ -82,15 +83,18 @@ class ResponsiveDesign {
   /// The size of icons throughout the UI.
   late final double iconZise;
 
+  late final bool descriptionCartContainer;
+
   /// Calculates grid and layout properties based on the screen's diagonal size.
   ///
   /// Matches the device's diagonal against predefined [BreakPoints] and sets
   /// the layout parameters accordingly to ensure a consistent user experience
   /// across different device sizes.
   void _calculateGridProperties() {
-    double diagonal = sqrt(height * height + width * width);
+    double diagonal = width;
 
     if (diagonal >= BreakPoints.xsmall && diagonal <= BreakPoints.small) {
+      descriptionCartContainer = false;
       columnAmount = 2;
       childAspectRatio = 0.47;
       mainAxisSpacing = 4;
@@ -102,12 +106,13 @@ class ResponsiveDesign {
       imageCartContainerWidth = 70;
       imageCartContainerheight = 100;
       appInputTextWidth = width - 40;
-      cartHorizontalPadding = AppSpacing.xSmall;
+      cartHorizontalPadding = AppSpacing.small;
       iconZise = 25;
       productAndUserHorizontalPadding = AppSpacing.medium;
     } else if (diagonal > BreakPoints.small &&
         diagonal <= BreakPoints.xsmedium) {
-      columnAmount = 2;
+      descriptionCartContainer = false;
+      columnAmount = 3;
       childAspectRatio = 0.5;
       mainAxisSpacing = 4;
       crossAxisSpacing = 4;
@@ -118,11 +123,12 @@ class ResponsiveDesign {
       imageCartContainerWidth = 70;
       imageCartContainerheight = 100;
       appInputTextWidth = width - 40;
-      cartHorizontalPadding = AppSpacing.xSmall;
+      cartHorizontalPadding = AppSpacing.medium;
       iconZise = 25;
       productAndUserHorizontalPadding = AppSpacing.medium;
     } else if (diagonal > BreakPoints.xsmedium &&
         diagonal <= BreakPoints.medium) {
+      descriptionCartContainer = false;
       columnAmount = 3;
       childAspectRatio = 0.55;
       mainAxisSpacing = 8;
@@ -134,10 +140,12 @@ class ResponsiveDesign {
       imageCartContainerWidth = 120;
       imageCartContainerheight = 150;
       appInputTextWidth = 600;
-      cartHorizontalPadding = AppSpacing.small;
+      cartHorizontalPadding = AppSpacing.medium;
       productAndUserHorizontalPadding = AppSpacing.mediumLarge;
       iconZise = 28;
-    } else if (diagonal > BreakPoints.medium && diagonal <= BreakPoints.large) {
+    } else if (diagonal > BreakPoints.medium &&
+        diagonal <= BreakPoints.xslarge) {
+      descriptionCartContainer = true;
       columnAmount = 4;
       childAspectRatio = 0.5;
       mainAxisSpacing = 12;
@@ -152,7 +160,25 @@ class ResponsiveDesign {
       cartHorizontalPadding = AppSpacing.medium;
       productAndUserHorizontalPadding = AppSpacing.mediumLarge;
       iconZise = 32;
+    } else if (diagonal <= BreakPoints.large &&
+        diagonal > BreakPoints.xslarge) {
+      descriptionCartContainer = true;
+      columnAmount = 5;
+      childAspectRatio = 0.5;
+      mainAxisSpacing = 16;
+      crossAxisSpacing = 16;
+      imageHomeContainerWidth = 210;
+      imageHomeContainerheight = 230;
+      imageinfoContainerWidth = 450;
+      imageinfoContainerheight = 500;
+      imageCartContainerWidth = 200;
+      imageCartContainerheight = 250;
+      appInputTextWidth = 600;
+      cartHorizontalPadding = AppSpacing.medium;
+      productAndUserHorizontalPadding = AppSpacing.extraLarge;
+      iconZise = 35;
     } else if (diagonal > BreakPoints.large) {
+      descriptionCartContainer = true;
       columnAmount = 6;
       childAspectRatio = 0.5;
       mainAxisSpacing = 16;
@@ -168,6 +194,7 @@ class ResponsiveDesign {
       productAndUserHorizontalPadding = AppSpacing.extraLarge;
       iconZise = 35;
     } else {
+      descriptionCartContainer = false;
       columnAmount = 2;
       childAspectRatio = 0.5;
       mainAxisSpacing = 4;

@@ -162,8 +162,7 @@ class HomeTamplate extends StatelessWidget {
               height:
                   products.isNotEmpty
                       ? AppSpacing.small
-                      : MediaQuery.sizeOf(context).height -
-                          MediaQuery.sizeOf(context).height * 0.45,
+                      : MediaQuery.sizeOf(context).height,
             ),
             // The contact information
             CompanyInfo(
@@ -231,6 +230,8 @@ class HomeTamplate extends StatelessWidget {
         itemBuilder: (context, index) {
           final product = products[index];
           return ProducthomeContainer(
+            isPromotion: product.isPromotion,
+            discount: product.discount,
             url: product.image, // Product image URL
             productName: product.title, // Product name
             productCategory: product.category, // Product category

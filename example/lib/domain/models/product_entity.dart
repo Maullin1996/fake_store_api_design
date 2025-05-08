@@ -1,43 +1,81 @@
-/// A model representing a product in the e-commerce app.
+import 'package:example/config/mock/special_categories.dart';
+
+/// A model class that represents a product in the application.
 class Product {
-  /// The unique identifier for the product.
+  /// The unique identifier of the product.
   final int id;
 
-  /// The title or name of the product.
+  /// The display title of the product.
   final String title;
 
-  /// The price of the product.
+  /// The base price of the product before any discounts.
   final double price;
 
-  /// A brief description of the product.
+  /// A detailed description of the product.
   final String description;
 
-  /// The category to which the product belongs.
+  /// The category to which this product belongs.
   final String category;
 
-  /// The URL or path to the product's image.
+  /// A URL or path to the product image.
   final String image;
 
-  /// The quantity of the product in the cart. Defaults to 1.
+  /// The quantity of the product, usually in a shopping cart context.
   final int quantity;
 
-  /// Creates a new [Product] instance with the provided values.
-  ///
-  /// The [quantity] argument defaults to 1 if not specified.
-  Product({
+  /// Whether the product is currently on promotion.
+  final bool isPromotion;
+
+  /// The discount applied to the product if on promotion.
+  final double discount;
+
+  /// Private named constructor to enforce the use of the [Product] factory.
+  const Product._({
     required this.id,
     required this.title,
     required this.price,
     required this.description,
     required this.category,
     required this.image,
-    this.quantity = 1,
+    required this.quantity,
+    required this.isPromotion,
+    required this.discount,
   });
 
-  /// Returns a copy of this product with an optional updated [quantity].
+  /// Creates a [Product] instance.
   ///
-  /// The returned product will have the same values as the original product
-  /// except for the quantity if provided.
+  /// Automatically checks whether the product is on promotion by referencing
+  /// the [SpecialCategories.saleItems] map. If the product is on sale,
+  /// its discount value is applied; otherwise, the default discount is `1`.
+  factory Product({
+    required int id,
+    required String title,
+    required double price,
+    required String description,
+    required String category,
+    required String image,
+    int quantity = 1,
+  }) {
+    final isPromotion = SpecialCategories.saleItems.keys.contains(id);
+    final discount = SpecialCategories.saleItems[id];
+
+    return Product._(
+      id: id,
+      title: title,
+      price: price,
+      description: description,
+      category: category,
+      image: image,
+      quantity: quantity,
+      isPromotion: isPromotion,
+      discount: discount ?? 1,
+    );
+  }
+
+  /// Returns a new [Product] instance with updated values.
+  ///
+  /// Only the [quantity] field is currently customizable. All other fields
+  /// are inherited from the original product.
   Product copyWith({int? quantity}) {
     return Product(
       id: id,
@@ -46,24 +84,15 @@ class Product {
       description: description,
       category: category,
       image: image,
-      quantity:
-          quantity ??
-          this.quantity, // Use provided quantity or keep the current one.
+      quantity: quantity ?? this.quantity,
     );
   }
 
-  /// Compares two [Product] instances for equality.
-  ///
-  /// Two products are considered equal if they have the same [id].
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is Product && runtimeType == other.runtimeType && id == other.id;
 
-  /// Returns a hash code for the [Product].
-  ///
-  /// The hash code is based on the [id] to ensure that products with the same
-  /// id have the same hash code, which is important for collections like [Set] and [Map].
   @override
   int get hashCode => id.hashCode;
 }

@@ -31,8 +31,10 @@ class _ProductInfoHolderState extends State<ProductInfoHolder> {
         productName: 'productName',
         description:
             'Laborum ex reprehenderit cupidatat ex ea. Proident cillum sint exercitation nostrud ullamco eu. Nisi do et adipisicing officia ex sunt veniam. Ipsum excepteur in pariatur non nostrud do irure. Pariatur laborum proident duis ipsum. Do tempor deserunt minim commodo nisi ipsum nisi.',
-        productPrice: '1200',
+        productPrice: 1200,
         isFavorite: isFavorite,
+        isPromotion: false,
+        discount: 1,
         onPressedFavorite: _handleIsFvaorite,
         onPressedbuy: () {},
       ),

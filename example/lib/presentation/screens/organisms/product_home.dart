@@ -60,6 +60,8 @@ class _ProductHomeState extends State<ProductHome> {
             ),
             Center(
               child: ProducthomeContainer(
+                discount: 1,
+                isPromotion: false,
                 url:
                     'https://ih1.redbubble.net/image.4905811472.8675/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
                 productName: 'productName',

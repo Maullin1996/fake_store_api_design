@@ -97,11 +97,14 @@ class CartTemplate extends StatelessWidget {
                 final product =
                     listCart[index]; // Get the product at this index
                 return ProductCartContainer(
+                  descrition: product.description,
                   url: product.image, // Image URL for the product
                   productName: product.title, // Name of the product
                   amount:
                       'x${product.quantity}', // Product quantity in the cart
-                  productPrice: product.price.toString(), // Product price
+                  productPrice: product.price, // Product price
+                  isPromotion: product.isPromotion,
+                  discount: product.discount,
                   onPressedminus:
                       () => onPressedminus?.call(product), // Decrease quantity
                   onPressedplus:

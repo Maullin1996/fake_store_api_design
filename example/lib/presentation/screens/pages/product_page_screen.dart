@@ -27,9 +27,15 @@ class ProductPageScreen extends ConsumerWidget {
       productName:
           productsValidation ? productMock(true)[0].title : product!.title,
       productPrice:
+          productsValidation ? productMock(true)[0].price : product!.price,
+      isPromotion:
           productsValidation
-              ? productMock(true)[0].price.toString()
-              : product!.price.toString(),
+              ? productMock(true)[0].isPromotion
+              : product!.isPromotion,
+      discount:
+          productsValidation
+              ? productMock(true)[0].discount
+              : product!.discount,
       onPressedFavorite: () {
         ref
             .read(myFavoriteListProvider.notifier)

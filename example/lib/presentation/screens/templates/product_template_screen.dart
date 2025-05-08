@@ -25,8 +25,10 @@ class _ProductTemplateScreenState extends State<ProductTemplateScreen> {
       productName: 'productName',
       description:
           'Eiusmod dolore dolor anim ullamco nisi et consectetur ipsum do irure ipsum exercitation cupidatat. Cillum consequat non qui Lorem ad consectetur sint ad magna culpa. Laboris non nulla deserunt aute cupidatat ex fugiat Lorem. Reprehenderit tempor magna eiusmod do sint.',
-      productPrice: '1200',
+      productPrice: 1200,
       isFavorite: isFavorite,
+      isPromotion: false,
+      discount: 1,
       onPressedFavorite: _handleIsFvaorite,
       backonPressed: () {
         context.pop();
