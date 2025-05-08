@@ -1,4 +1,3 @@
-import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
