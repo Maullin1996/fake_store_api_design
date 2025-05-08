@@ -158,7 +158,13 @@ class HomeTamplate extends StatelessWidget {
               errorMessage: errorMessage,
               isLoading: isLoading,
             ),
-            SizedBox(height: AppSpacing.small),
+            SizedBox(
+              height:
+                  products.isNotEmpty
+                      ? AppSpacing.small
+                      : MediaQuery.sizeOf(context).height -
+                          MediaQuery.sizeOf(context).height * 0.45,
+            ),
             // The contact information
             CompanyInfo(
               address: address,
