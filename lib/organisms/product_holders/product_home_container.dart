@@ -62,120 +62,114 @@ class ProducthomeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
-    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
-      height: MediaQuery.sizeOf(context).height,
-      width: MediaQuery.sizeOf(context).width,
-    );
+    final double width = MediaQuery.sizeOf(context).width;
+    final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
 
     // The main container for displaying the product details
     return IntrinsicHeight(
       child: IntrinsicWidth(
-        child: Container(
-          padding: EdgeInsets.only(
-            top: AppSpacing.small,
-            left: AppSpacing.small, // Padding on the left side
-            right: AppSpacing.small, // Padding on the right side
-            bottom: AppSpacing.small, // Padding at the bottom
-          ),
-          decoration: BoxDecoration(
-            color:
-                AppColors
-                    .onPrimary, // Background color for the product container
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(5, 5), // Shadow offset
-                color: Colors.black.withValues(alpha: 0.2), // Shadow color
-                blurRadius: 5, // Shadow blur effect
-                spreadRadius: 3, // Spread radius for the shadow
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisAlignment:
-                MainAxisAlignment.start, // Align items to the start (top)
-            crossAxisAlignment:
-                CrossAxisAlignment.start, // Align items to the start (left)
-            mainAxisSize: MainAxisSize.min, // Let the column take minimum space
-            children: [
-              SizedBox(
-                height: AppSpacing.small,
-              ), // Small spacing above the image
-              // Center the product image
-              Center(
-                child: AppNetworkImage(
-                  url: url, // URL of the product image
-                  widthImage:
-                      responsiveDesign
-                          .imageHomeContainerWidth, // Set the image width
-                  heightImage:
-                      responsiveDesign
-                          .imageHomeContainerheight, // Set the image height
+        child: GestureDetector(
+          onTap: onPressedinfo,
+          child: Container(
+            padding: EdgeInsets.only(
+              top: AppSpacing.small,
+              left: AppSpacing.small, // Padding on the left side
+              right: AppSpacing.small, // Padding on the right side
+              bottom: AppSpacing.small, // Padding at the bottom
+            ),
+            decoration: BoxDecoration(
+              color:
+                  AppColors
+                      .onPrimary, // Background color for the product container
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(5, 5), // Shadow offset
+                  color: Colors.black.withValues(alpha: 0.2), // Shadow color
+                  blurRadius: 5, // Shadow blur effect
+                  spreadRadius: 3, // Spread radius for the shadow
                 ),
-              ),
-              // Favorite icon section
-              Spacer(), // Flexible space between the image and text below
-              IsFavorite(
-                productName: productName,
-                textStyle: textTheme.displaySmall!.copyWith(
-                  fontSize:
-                      AppTypography.h4, // Adjust font size for the product name
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment:
+                  MainAxisAlignment.start, // Align items to the start (top)
+              crossAxisAlignment:
+                  CrossAxisAlignment.start, // Align items to the start (left)
+              mainAxisSize:
+                  MainAxisSize.min, // Let the column take minimum space
+              children: [
+                SizedBox(
+                  height: AppSpacing.small,
+                ), // Small spacing above the image
+                // Center the product image
+                Center(
+                  child: AppNetworkImage(
+                    url: url, // URL of the product image
+                    widthImage:
+                        responsiveDesign
+                            .imageHomeContainerWidth, // Set the image width
+                    heightImage:
+                        responsiveDesign
+                            .imageHomeContainerheight, // Set the image height
+                  ),
                 ),
-                isFavorite: isFavorite, // Whether the product is a favorite
-                onPressedFavorite:
-                    onPressedFavorite, // Callback for favorite button
-              ),
+                // Favorite icon section
+                Spacer(), // Flexible space between the image and text below
+                IsFavorite(
+                  productName: productName,
+                  textStyle: textTheme.displaySmall!.copyWith(
+                    fontSize:
+                        AppTypography
+                            .h4, // Adjust font size for the product name
+                  ),
+                  isFavorite: isFavorite, // Whether the product is a favorite
+                  onPressedFavorite:
+                      onPressedFavorite, // Callback for favorite button
+                ),
 
-              // Product category text
-              Text(productCategory, style: textTheme.bodyMedium),
+                // Product category text
+                Text(productCategory, style: textTheme.bodyMedium),
 
-              isPromotion
-                  ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Product promotion price text with custom font size
-                      Text(
-                        '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
-                        style: textTheme.labelLarge?.copyWith(
-                          color: AppColors.disabledButton,
-                          decoration: TextDecoration.lineThrough,
-                          decorationColor: AppColors.disabledButton,
-                          decorationThickness: 2.0,
+                isPromotion
+                    ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Product promotion price text with custom font size
+                        Text(
+                          '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
+                          style: textTheme.labelLarge?.copyWith(
+                            color: AppColors.disabledButton,
+                            decoration: TextDecoration.lineThrough,
+                            decorationColor: AppColors.disabledButton,
+                            decorationThickness: 2.0,
+                          ),
                         ),
-                      ),
-                      // Product promotion price text with custom font size
-                      Text(
-                        '\$ ${(productPrice - productPrice * discount).toStringAsFixed(2)}', // Display price with a dollar sign
-                        style: textTheme.labelLarge,
-                      ),
-                    ],
-                  )
-                  : Text(
-                    '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
-                    style: textTheme.labelLarge,
-                  ),
+                        // Product promotion price text with custom font size
+                        Text(
+                          '\$ ${(productPrice - productPrice * discount).toStringAsFixed(2)}', // Display price with a dollar sign
+                          style: textTheme.labelLarge,
+                        ),
+                      ],
+                    )
+                    : Text(
+                      '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
+                      style: textTheme.labelLarge,
+                    ),
 
-              Spacer(), // Flexible space between the image and text below
-              // Action buttons: Buy and Info
-              Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceEvenly, // Space buttons evenly
-                children: [
-                  // Buy button
-                  AppButtons(
-                    type: ButtonType.secondaryIconButton,
+                Spacer(), // Flexible space between the image and text below
+                // Action buttons: Buy and Info
+                Center(
+                  child: AppButtons(
+                    type: ButtonType.secondaryTextButton,
+                    title: 'Add to Cart',
+                    fontSizeTextButton: AppTypography.h3,
                     onPressed: onPressedbuy, // Callback for buy button
-                    icon: AppIcons.cart, // Cart icon for buy button
                   ),
+                ),
 
-                  // Info button
-                  AppButtons(
-                    type: ButtonType.secondaryIconButton,
-                    onPressed: onPressedinfo, // Callback for info button
-                    icon: AppIcons.info, // Info icon for info button
-                  ),
-                ],
-              ),
-            ],
+                // Action buttons: Buy and Info
+              ],
+            ),
           ),
         ),
       ),

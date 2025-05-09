@@ -32,9 +32,9 @@ class CustomDialog extends StatelessWidget {
     return AppButtons(
       type:
           ButtonType
-              .secondaryFillButton, // The type of button (filled with secondary color).
+              .secondaryTextButton, // The type of button (filled with secondary color).
       // Button title: If total to pay is 0.00, display 'Add Products', otherwise show the total amount to pay.
-      title: totalToPay == "0.00" ? 'Add Products' : 'Go to pay: $totalToPay',
+      title: totalToPay == "0.00" ? 'Add Products' : 'Go To Pay : $totalToPay',
 
       // When the button is pressed, the dialog is triggered.
       onPressed: () {

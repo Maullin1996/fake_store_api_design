@@ -31,12 +31,9 @@ class ResponsiveDesign {
   /// Creates a [ResponsiveDesign] instance with the given screen [height] and [width].
   ///
   /// Automatically computes the responsive properties on initialization.
-  ResponsiveDesign({required this.height, required this.width}) {
+  ResponsiveDesign({required this.width}) {
     _calculateGridProperties();
   }
-
-  /// The screen height.
-  final double height;
 
   /// The screen width.
   final double width;
@@ -99,8 +96,8 @@ class ResponsiveDesign {
       childAspectRatio = 0.47;
       mainAxisSpacing = 4;
       crossAxisSpacing = 4;
-      imageHomeContainerWidth = 110;
-      imageHomeContainerheight = 140;
+      imageHomeContainerWidth = 90;
+      imageHomeContainerheight = 100;
       imageinfoContainerWidth = 250;
       imageinfoContainerheight = 300;
       imageCartContainerWidth = 70;
@@ -116,8 +113,8 @@ class ResponsiveDesign {
       childAspectRatio = 0.5;
       mainAxisSpacing = 4;
       crossAxisSpacing = 4;
-      imageHomeContainerWidth = 110;
-      imageHomeContainerheight = 140;
+      imageHomeContainerWidth = 90;
+      imageHomeContainerheight = 100;
       imageinfoContainerWidth = 250;
       imageinfoContainerheight = 300;
       imageCartContainerWidth = 70;
@@ -133,8 +130,8 @@ class ResponsiveDesign {
       childAspectRatio = 0.55;
       mainAxisSpacing = 8;
       crossAxisSpacing = 8;
-      imageHomeContainerWidth = 150;
-      imageHomeContainerheight = 180;
+      imageHomeContainerWidth = 130;
+      imageHomeContainerheight = 150;
       imageinfoContainerWidth = 300;
       imageinfoContainerheight = 350;
       imageCartContainerWidth = 120;
@@ -199,8 +196,8 @@ class ResponsiveDesign {
       childAspectRatio = 0.5;
       mainAxisSpacing = 4;
       crossAxisSpacing = 4;
-      imageHomeContainerWidth = 110;
-      imageHomeContainerheight = 140;
+      imageHomeContainerWidth = 90;
+      imageHomeContainerheight = 100;
       imageinfoContainerWidth = 250;
       imageinfoContainerheight = 300;
       imageCartContainerWidth = 70;

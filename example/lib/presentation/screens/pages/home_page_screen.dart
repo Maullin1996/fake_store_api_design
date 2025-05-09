@@ -16,6 +16,7 @@ class HomePageScreen extends ConsumerStatefulWidget {
 
 class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   String selectedCategory = 'All';
+  bool isLoading = false;
   bool userStatus = false;
   final List<String> categories = [
     'All', // Display all categories.
@@ -43,6 +44,16 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
         TypeVerification.notAdded,
       );
     }
+  }
+
+  Future<void> _refreshProducts() async {
+    setState(() {
+      isLoading = true;
+    });
+    Future.delayed(Duration(milliseconds: 200));
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -73,7 +84,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
       name: userMock.name.firstname,
       lastName: userMock.name.lastname,
       errorMessage: null,
-      isLoading: false,
+      isLoading: isLoading,
       products: productMock(true),
       myFavoriteList: myFavoriteList,
       myCartList: myCartList,
@@ -85,6 +96,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
       onPressedFavorite: _handleIsFavorite,
       onPressedbuy: _handleBuyProduct,
       onItemSelected: (String selectedItem) {},
+      refreshProducts: _refreshProducts,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 /// A stateless widget for displaying an image from the network.
@@ -31,6 +32,8 @@ class AppNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(url, width: widthImage, height: heightImage);
+    return FadeIn(
+      child: Image.network(url, width: widthImage, height: heightImage),
+    );
   }
 }

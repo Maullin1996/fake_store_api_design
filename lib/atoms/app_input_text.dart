@@ -51,7 +51,6 @@ class AppInputText extends StatelessWidget {
     return SizedBox(
       width:
           ResponsiveDesign(
-            height: MediaQuery.sizeOf(context).height,
             width: MediaQuery.sizeOf(context).width,
           ).appInputTextWidth,
       child: TextFormField(

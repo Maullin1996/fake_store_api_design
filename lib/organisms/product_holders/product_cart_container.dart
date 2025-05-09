@@ -58,7 +58,6 @@ class ProductCartContainer extends StatelessWidget {
     // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(
-      height: MediaQuery.sizeOf(context).height,
       width: MediaQuery.sizeOf(context).width,
     );
 

@@ -1,4 +1,3 @@
-import 'package:fake_store_design/atoms/break_points.dart';
 import 'package:flutter/material.dart';
 import 'tokens.dart';
 
@@ -83,7 +82,6 @@ class AppButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(
-      height: MediaQuery.sizeOf(context).height,
       width: MediaQuery.sizeOf(context).width,
     );
 

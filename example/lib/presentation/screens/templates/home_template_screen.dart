@@ -16,6 +16,8 @@ class HomeTemplateScreen extends ConsumerStatefulWidget {
 class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
   String selectedCategory = 'All';
 
+  bool isLoading = false;
+
   final List<String> categories = [
     'All', // Display all categories.
     "electronics", // Category for electronics.
@@ -42,11 +44,22 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
     }
   }
 
+  Future<void> _refreshProducts() async {
+    setState(() {
+      isLoading = true;
+    });
+    await Future.delayed(Duration(milliseconds: 1000));
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
 
     return HomeTamplate(
+      refreshProducts: _refreshProducts,
       address: 'CRA 88A # 55W - 44 Sur Medellin',
       email: 'allstorehouse@correo.com',
       instagram: 'all.storehouse',
@@ -55,7 +68,7 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
       isLogIn: false,
       name: 'Pepito',
       lastName: 'Perez',
-      isLoading: false,
+      isLoading: isLoading,
       errorMessage: null,
       products: productMock(false),
       myFavoriteList: myFavoriteList,

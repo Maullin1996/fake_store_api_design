@@ -81,6 +81,9 @@ class HomeTamplate extends StatelessWidget {
   /// Callback function triggered when an item is selected from the suggestions.
   final void Function(String selectedItem) onItemSelected;
 
+  /// Callback function that refresh all the product on the screen.
+  final Future<void> Function() refreshProducts;
+
   /// Creates an instance of [HomeTemplate].
   ///
   /// This widget represents the home screen where products are displayed, and
@@ -102,6 +105,7 @@ class HomeTamplate extends StatelessWidget {
     required this.onCategorySelected,
     required this.categories,
     required this.onItemSelected,
+    required this.refreshProducts,
     this.errorMessage,
     this.onPressedFavorite,
     this.onPressedinfo,
@@ -135,8 +139,11 @@ class HomeTamplate extends StatelessWidget {
                 cartonPressed: cartonPressed,
               ),
       backgroundColor: AppColors.onPrimary,
-      body: SingleChildScrollView(
-        child: Column(
+      body: RefreshIndicator(
+        onRefresh: refreshProducts,
+        color: AppColors.secondary,
+        backgroundColor: AppColors.onPrimary,
+        child: ListView(
           children: [
             SearchAnchorWidget<String>(
               items:
@@ -191,10 +198,8 @@ class HomeTamplate extends StatelessWidget {
     required List<dynamic> myCartList,
   }) {
     final textTheme = Theme.of(context).textTheme;
-    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
-      height: MediaQuery.sizeOf(context).height,
-      width: MediaQuery.sizeOf(context).width,
-    );
+    final double width = MediaQuery.sizeOf(context).width;
+    final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
 
     if (isLoading) {
       return SizedBox(
@@ -202,11 +207,28 @@ class HomeTamplate extends StatelessWidget {
         child: const Center(child: CircularProgressIndicator()),
       ); // Loading state
     } else if (errorMessage != null) {
-      return Center(
-        child: Text(
-          'Error: $errorMessage', // Error message
-          style: textTheme.bodyMedium?.copyWith(color: AppColors.error),
-        ),
+      return Column(
+        children: [
+          SizedBox(height: AppSpacing.extraLarge),
+          Icon(
+            Icons.arrow_downward_rounded,
+            size: 90,
+            color: AppColors.primary,
+          ),
+          SizedBox(height: AppSpacing.medium),
+          Text(
+            'Error to get te products',
+            style: textTheme.displayLarge,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: AppSpacing.medium),
+          Text(
+            'Pull To Update or Refresh',
+            style: textTheme.displayLarge,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: width * 0.3),
+        ],
       );
     }
 

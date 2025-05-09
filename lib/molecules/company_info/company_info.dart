@@ -27,21 +27,39 @@ class CompanyInfo extends StatelessWidget {
 
   Widget _buildWidget(double screenWidth, TextTheme textTheme) {
     Widget infoStructure(IconData iconData, String text) {
-      return Row(
-        children: [
-          Icon(iconData),
-          SizedBox(width: AppSpacing.small),
-          Text(
-            text,
-            style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-            softWrap: true,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      );
+      if (screenWidth <= BreakPoints.small) {
+        return Row(
+          children: [
+            Icon(iconData),
+            SizedBox(width: AppSpacing.small),
+            SizedBox(
+              width: screenWidth * 0.8,
+              child: Text(
+                text,
+                style: textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        );
+      } else {
+        return Row(
+          children: [
+            Icon(iconData),
+            SizedBox(width: AppSpacing.small),
+            Text(
+              text,
+              style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        );
+      }
     }
 
-    if (screenWidth <= 800) {
+    if (screenWidth <= BreakPoints.small) {
       return Padding(
         padding: EdgeInsets.symmetric(vertical: AppSpacing.small),
         child: Row(

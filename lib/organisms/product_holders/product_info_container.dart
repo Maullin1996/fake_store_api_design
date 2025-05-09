@@ -60,7 +60,6 @@ class ProductInfoContainer extends StatelessWidget {
     // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(
-      height: MediaQuery.sizeOf(context).height,
       width: MediaQuery.sizeOf(context).width,
     );
     // The container holding the product details
@@ -153,8 +152,9 @@ class ProductInfoContainer extends StatelessWidget {
               title: 'Add to the cart', // Button text
               type:
                   ButtonType
-                      .secondaryFillButton, // Button type (secondary with fill style)
+                      .secondaryTextButton, // Button type (secondary with fill style)
               onPressed: onPressedbuy, // Callback for the button
+              fontSizeTextButton: AppTypography.h2,
             ),
           ),
         ],
