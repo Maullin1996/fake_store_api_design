@@ -102,15 +102,18 @@ class ProducthomeContainer extends StatelessWidget {
                   height: AppSpacing.small,
                 ), // Small spacing above the image
                 // Center the product image
-                Center(
-                  child: AppNetworkImage(
-                    url: url, // URL of the product image
-                    widthImage:
-                        responsiveDesign
-                            .imageHomeContainerWidth, // Set the image width
-                    heightImage:
-                        responsiveDesign
-                            .imageHomeContainerheight, // Set the image height
+                Hero(
+                  tag: url,
+                  child: Center(
+                    child: AppNetworkImage(
+                      url: url, // URL of the product image
+                      widthImage:
+                          responsiveDesign
+                              .imageHomeContainerWidth, // Set the image width
+                      heightImage:
+                          responsiveDesign
+                              .imageHomeContainerheight, // Set the image height
+                    ),
                   ),
                 ),
                 // Favorite icon section

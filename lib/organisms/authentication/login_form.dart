@@ -40,13 +40,14 @@ class LoginForm extends StatelessWidget {
     // Returning the form widget.
     return Container(
       // Applying padding around the form.
-      padding: EdgeInsets.all(AppSpacing.medium),
+      padding: EdgeInsets.only(
+        left: AppSpacing.medium,
+        right: AppSpacing.medium,
+        bottom: AppSpacing.medium,
+      ),
 
       // Setting the width of the container to match the screen width.
       width: MediaQuery.sizeOf(context).width,
-
-      // Setting the background color for the form container.
-      color: AppColors.secondary,
 
       child: Center(
         child: Column(
@@ -55,7 +56,12 @@ class LoginForm extends StatelessWidget {
 
           children: [
             // Title for the login form.
-            Text('Log in', style: textTheme.displayLarge),
+            Text('Login', style: textTheme.displayLarge),
+
+            SizedBox(height: AppSpacing.small),
+
+            // Subtittle for the login form.
+            Text('Sign in to continue', style: textTheme.bodyLarge),
 
             // Adding some vertical spacing between elements.
             SizedBox(height: AppSpacing.medium),
@@ -97,13 +103,14 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: AppSpacing.medium),
+            SizedBox(height: AppSpacing.small),
             // Centering the login button.
             AppButtons(
+              fontSizeTextButton: AppTypography.h1,
               type:
                   ButtonType
-                      .primaryFillButton, // Type of button (filled button).
-              title: 'Login', // Text to be displayed on the button.
+                      .secondaryTextButton, // Type of button (filled button).
+              title: 'Enter', // Text to be displayed on the button.
               isLoading:
                   isLoadingButton, // Shows a loading indicator when true.
               onPressed:

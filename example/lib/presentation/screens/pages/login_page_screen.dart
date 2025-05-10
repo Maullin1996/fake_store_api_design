@@ -76,6 +76,7 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
             _handleLogIn(_usernameController.text, _passwordController.text);
           }
         },
+        path: 'assets/images/Logotipo.png',
       ),
     );
   }

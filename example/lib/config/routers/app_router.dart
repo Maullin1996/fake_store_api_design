@@ -42,10 +42,6 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(path: '/user_info', builder: (context, state) => const UserInfo()),
     GoRoute(
-      path: '/authentication_message',
-      builder: (context, state) => const AuthenticationMessage(),
-    ),
-    GoRoute(
       path: '/product_complements',
       builder: (context, state) => const ProductComplements(),
     ),

@@ -12,7 +12,6 @@ export 'package:example/presentation/screens/atoms/input_text_screen.dart';
 export 'package:example/presentation/screens/atoms/spacing_radius_screen.dart';
 export 'package:example/presentation/screens/atoms/typography_screen.dart';
 //Menu for the molecules Screen
-export 'package:example/presentation/screens/molecules/authentication_message.dart';
 export 'package:example/presentation/screens/molecules/custom_appbar.dart';
 export 'package:example/presentation/screens/molecules/product_complements.dart';
 export 'package:example/presentation/screens/molecules/user_info.dart';

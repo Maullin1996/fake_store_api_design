@@ -26,11 +26,6 @@ final List<MoleculesMenu> moleculesMenu = [
     route: '/user_info',
   ),
   MoleculesMenu(
-    title: 'Authentication message',
-    iconData: AppIcons.login,
-    route: '/authentication_message',
-  ),
-  MoleculesMenu(
     title: 'Product complements',
     iconData: AppIcons.info,
     route: '/product_complements',

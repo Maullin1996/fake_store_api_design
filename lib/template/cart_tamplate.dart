@@ -42,6 +42,9 @@ class CartTemplate extends StatelessWidget {
   /// The callback function for when the dialog button is pressed.
   final VoidCallback? onDialogButtonPressed;
 
+  /// The callback function to handle info button presses on products.
+  final void Function(dynamic)? onPressedinfo;
+
   /// Creates an instance of [CartTemplate].
   ///
   /// The [authentication] parameter determines if the user is logged in. The [listCart]
@@ -60,6 +63,7 @@ class CartTemplate extends StatelessWidget {
     this.onPressedplus,
     this.onDialogButtonPressed,
     this.totalToPay = '',
+    this.onPressedinfo,
   });
 
   @override
@@ -97,6 +101,8 @@ class CartTemplate extends StatelessWidget {
                 final product =
                     listCart[index]; // Get the product at this index
                 return ProductCartContainer(
+                  onPressedinfo:
+                      () => onPressedinfo?.call(product), // Info button action,
                   descrition: product.description,
                   url: product.image, // Image URL for the product
                   productName: product.title, // Name of the product

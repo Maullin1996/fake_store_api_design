@@ -43,6 +43,9 @@ class LoginTemplate extends StatelessWidget {
   /// Whether to obscure the text in the input.
   final bool obscureText;
 
+  /// The path of the logo image.
+  final String path;
+
   /// Change obcureText state.
   final Function()? iconOnPressed;
 
@@ -65,6 +68,7 @@ class LoginTemplate extends StatelessWidget {
     this.isLoadingButton,
     this.iconOnPressed,
     required this.obscureText,
+    required this.path,
   });
 
   @override
@@ -76,13 +80,11 @@ class LoginTemplate extends StatelessWidget {
         cartonPressed: cartonPressed, // Action for cart button press
         backonPressed: backonPressed, // Action for back button press
       ),
-      backgroundColor:
-          AppColors.secondary, // Background color for the login screen
+      backgroundColor: AppColors.onPrimary,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // A widget welcoming the user to the authentication process
-            AuthenticationWelcome(),
+            AppAssetsImage(path: path, heightImage: 300, widthImage: 300),
 
             // The login form where users input their credentials
             LoginForm(

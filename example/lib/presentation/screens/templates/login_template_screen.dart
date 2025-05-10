@@ -14,6 +14,7 @@ class _LoginTemplateScreenState extends State<LoginTemplateScreen> {
   @override
   Widget build(BuildContext context) {
     return LoginTemplate(
+      path: 'assets/images/Logotipo.png',
       obscureText: obscureText,
       iconOnPressed: () {
         setState(() {

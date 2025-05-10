@@ -78,15 +78,18 @@ class ProductInfoContainer extends StatelessWidget {
       child: ListView(
         children: [
           // Center the product image with specified width and height
-          Center(
-            child: AppNetworkImage(
-              url: url, // Product image URL
-              widthImage:
-                  responsiveDesign
-                      .imageinfoContainerWidth, // Width of the image
-              heightImage:
-                  responsiveDesign
-                      .imageinfoContainerheight, // Height of the image
+          Hero(
+            tag: url,
+            child: Center(
+              child: AppNetworkImage(
+                url: url, // Product image URL
+                widthImage:
+                    responsiveDesign
+                        .imageinfoContainerWidth, // Width of the image
+                heightImage:
+                    responsiveDesign
+                        .imageinfoContainerheight, // Height of the image
+              ),
             ),
           ),
           SizedBox(
