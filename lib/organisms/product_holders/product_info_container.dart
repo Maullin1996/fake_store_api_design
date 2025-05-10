@@ -59,10 +59,10 @@ class ProductInfoContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
-    final ResponsiveDesign responsiveDesign = ResponsiveDesign(
-      width: MediaQuery.sizeOf(context).width,
-    );
+    final double width = MediaQuery.sizeOf(context).width;
+    final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
     // The container holding the product details
+
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: AppSpacing.small, // Vertical padding around the content
@@ -70,10 +70,7 @@ class ProductInfoContainer extends StatelessWidget {
             responsiveDesign
                 .productAndUserHorizontalPadding, // Horizontal padding around the content
       ),
-      width:
-          MediaQuery.sizeOf(
-            context,
-          ).width, // Set the width to the screen's width
+      width: width, // Set the width to the screen's width
       color: AppColors.onPrimary, // Background color for the product container
       child: ListView(
         children: [

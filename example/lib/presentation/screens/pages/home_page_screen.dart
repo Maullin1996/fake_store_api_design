@@ -60,7 +60,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   Widget build(BuildContext context) {
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
     final List<Product> myCartList = ref.watch(cartListProvider);
-    return HomeTamplate(
+    return HomeTemplate(
       address: 'CRA 88A # 55W - 44 Sur Medellin',
       email: 'allstorehouse@correo.com',
       instagram: 'all.storehouse',

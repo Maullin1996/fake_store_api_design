@@ -1,4 +1,4 @@
-import 'package:fake_store_design/atoms/app_spacings.dart';
+import 'package:fake_store_design/atoms/app_spacing.dart';
 
 /// Defines standard breakpoints for responsive layouts based on device diagonal size.
 ///

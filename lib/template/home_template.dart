@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 /// and provides actions for interacting with the products (like adding to favorites,
 /// viewing product details, and purchasing). The screen adjusts the layout and
 /// app bar based on the user's authentication state.
-class HomeTamplate extends StatelessWidget {
+class HomeTemplate extends StatelessWidget {
   /// The Address of the E-commerce
   final String address;
 
@@ -90,7 +90,7 @@ class HomeTamplate extends StatelessWidget {
   /// users can interact with them through the favorite, info, and buy buttons.
   /// The layout changes based on whether the user is logged in or not, and
   /// it handles loading and error states.
-  const HomeTamplate({
+  const HomeTemplate({
     super.key,
     required this.address,
     required this.email,

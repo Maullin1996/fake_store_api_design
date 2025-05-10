@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 /// A stateless widget for displaying an image from the network.
@@ -31,6 +32,10 @@ class AppNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(url, width: widthImage, height: heightImage);
+    return CachedNetworkImage(
+      imageUrl: url,
+      width: widthImage,
+      height: heightImage,
+    );
   }
 }

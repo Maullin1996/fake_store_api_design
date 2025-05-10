@@ -1,5 +1,5 @@
 import 'package:fake_store_design/atoms/app_radius.dart';
-import 'package:fake_store_design/atoms/colors.dart';
+import 'package:fake_store_design/atoms/app_colors.dart';
 import 'package:flutter/material.dart';
 
 /// A customizable search widget built on top of [SearchAnchor.bar], which provides

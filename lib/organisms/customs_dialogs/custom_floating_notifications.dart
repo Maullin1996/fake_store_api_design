@@ -82,12 +82,11 @@ class CustomFloatingNotifications {
     String message;
 
     // If the type is errorMessage and an errorMessage is provided, use it; otherwise, use the predefined messages.
-    if (type == TypeVerification.errorMessage && errorMessage != null) {
-      message = errorMessage!; // Use the custom error message.
-    } else {
-      message =
-          _messages[type]!; // Use the predefined message based on the verification type.
-    }
+    (type == TypeVerification.errorMessage && errorMessage != null)
+        ? message =
+            errorMessage! // Use the custom error message.
+        : message =
+            _messages[type]!; // Use the predefined message based on the verification type.
 
     // Show the toast message with the appropriate style.
     Fluttertoast.showToast(

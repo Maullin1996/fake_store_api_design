@@ -1,6 +1,6 @@
 import 'package:example/config/mock/product_mock.dart';
 import 'package:example/presentation/widgets/custom_appbar_navigator.dart';
-import 'package:fake_store_design/molecules/serch_bar/search_bar.dart';
+import 'package:fake_store_design/molecules/serch_bar/search_anchor_widget.dart';
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatefulWidget {

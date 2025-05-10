@@ -58,7 +58,7 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
   Widget build(BuildContext context) {
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
 
-    return HomeTamplate(
+    return HomeTemplate(
       refreshProducts: _refreshProducts,
       address: 'CRA 88A # 55W - 44 Sur Medellin',
       email: 'allstorehouse@correo.com',

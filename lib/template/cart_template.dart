@@ -100,6 +100,7 @@ class CartTemplate extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 final product =
                     listCart[index]; // Get the product at this index
+
                 return ProductCartContainer(
                   onPressedinfo:
                       () => onPressedinfo?.call(product), // Info button action,

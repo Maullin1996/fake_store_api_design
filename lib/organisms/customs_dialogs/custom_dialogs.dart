@@ -115,11 +115,7 @@ Future<dynamic> dialogs({
                     end: 720.0,
                   ), // Rotating the icon from 0 to 720 degrees.
                   curve: Curves.easeInOut, // Easing curve for smooth animation.
-                  builder: (
-                    BuildContext context,
-                    dynamic angle,
-                    Widget? child,
-                  ) {
+                  builder: (BuildContext context, double angle, Widget? child) {
                     return Transform(
                       alignment:
                           Alignment
