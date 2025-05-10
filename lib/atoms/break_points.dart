@@ -96,8 +96,8 @@ class ResponsiveDesign {
       childAspectRatio = 0.47;
       mainAxisSpacing = 4;
       crossAxisSpacing = 4;
-      imageHomeContainerWidth = 90;
-      imageHomeContainerheight = 100;
+      imageHomeContainerWidth = 110;
+      imageHomeContainerheight = 140;
       imageinfoContainerWidth = 250;
       imageinfoContainerheight = 300;
       imageCartContainerWidth = 70;
@@ -113,8 +113,8 @@ class ResponsiveDesign {
       childAspectRatio = 0.5;
       mainAxisSpacing = 4;
       crossAxisSpacing = 4;
-      imageHomeContainerWidth = 90;
-      imageHomeContainerheight = 100;
+      imageHomeContainerWidth = 110;
+      imageHomeContainerheight = 140;
       imageinfoContainerWidth = 250;
       imageinfoContainerheight = 300;
       imageCartContainerWidth = 70;

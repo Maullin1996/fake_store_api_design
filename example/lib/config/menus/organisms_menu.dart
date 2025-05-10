@@ -44,4 +44,9 @@ final List<OrganismsMenu> organismsMenu = [
     iconData: CupertinoIcons.cube_box,
     route: '/product_info_holder',
   ),
+  OrganismsMenu(
+    title: 'Skeleton Loading',
+    iconData: Icons.receipt_long,
+    route: '/skeleton_loading',
+  ),
 ];

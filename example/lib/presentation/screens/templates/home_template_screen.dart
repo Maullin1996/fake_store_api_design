@@ -69,7 +69,7 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
       name: 'Pepito',
       lastName: 'Perez',
       isLoading: isLoading,
-      errorMessage: null,
+      errorMessage: '',
       products: productMock(false),
       myFavoriteList: myFavoriteList,
       myCartList: productMock(false),

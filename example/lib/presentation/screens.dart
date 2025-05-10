@@ -17,6 +17,7 @@ export 'package:example/presentation/screens/molecules/custom_appbar.dart';
 export 'package:example/presentation/screens/molecules/product_complements.dart';
 export 'package:example/presentation/screens/molecules/user_info.dart';
 export 'package:example/presentation/screens/molecules/custom_search_bar.dart';
+export 'package:example/presentation/screens/molecules/company_information.dart';
 //Menu for the organisms Screen
 export 'package:example/presentation/screens/organisms/custom_dialogs.dart';
 export 'package:example/presentation/screens/organisms/login_form.dart';
@@ -24,6 +25,8 @@ export 'package:example/presentation/screens/organisms/product_cart.dart';
 export 'package:example/presentation/screens/organisms/product_home.dart';
 export 'package:example/presentation/screens/organisms/product_info_holder.dart';
 export 'package:example/presentation/screens/organisms/custom_floating_notification.dart';
+export 'package:example/presentation/screens/organisms/skeleton_loading_organism.dart';
+
 //Menu for the templates Screen
 export 'package:example/presentation/screens/templates/cart_template_screen.dart';
 export 'package:example/presentation/screens/templates/home_template_screen.dart';

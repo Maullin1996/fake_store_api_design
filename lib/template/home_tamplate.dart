@@ -34,7 +34,7 @@ class HomeTamplate extends StatelessWidget {
   final List<dynamic> products;
 
   /// An optional error message to be displayed in case of an error.
-  final String? errorMessage;
+  final String errorMessage;
 
   /// A flag indicating whether the products are currently loading.
   final bool isLoading;
@@ -106,7 +106,7 @@ class HomeTamplate extends StatelessWidget {
     required this.categories,
     required this.onItemSelected,
     required this.refreshProducts,
-    this.errorMessage,
+    required this.errorMessage,
     this.onPressedFavorite,
     this.onPressedinfo,
     this.onPressedbuy,
@@ -140,6 +140,7 @@ class HomeTamplate extends StatelessWidget {
               ),
       backgroundColor: AppColors.onPrimary,
       body: RefreshIndicator(
+        edgeOffset: AppSpacing.extraLarge,
         onRefresh: refreshProducts,
         color: AppColors.secondary,
         backgroundColor: AppColors.onPrimary,
@@ -191,7 +192,7 @@ class HomeTamplate extends StatelessWidget {
   /// message is provided, it is displayed. Otherwise, the list of products is shown.
   Widget _buildBody({
     required BuildContext context,
-    String? errorMessage,
+    required String errorMessage,
     required bool isLoading,
     required dynamic products,
     required List<dynamic> myFavoriteList,
@@ -202,11 +203,27 @@ class HomeTamplate extends StatelessWidget {
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
 
     if (isLoading) {
-      return SizedBox(
-        height: MediaQuery.sizeOf(context).height - AppSpacing.extraLarge,
-        child: const Center(child: CircularProgressIndicator()),
+      return GridView.builder(
+        shrinkWrap: true, // Prevents GridView from taking extra space
+        physics:
+            const NeverScrollableScrollPhysics(), // Disables scrolling within the grid
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: responsiveDesign.columnAmount, // columns
+          mainAxisSpacing:
+              responsiveDesign
+                  .mainAxisSpacing, // Vertical spacing between items
+          crossAxisSpacing:
+              responsiveDesign
+                  .crossAxisSpacing, // Horizontal spacing between items
+          childAspectRatio:
+              responsiveDesign.childAspectRatio, // Aspect ratio of each item
+        ),
+        itemCount: 10, // Number of products
+        itemBuilder: (context, index) {
+          return SkeletonLoadingContainer(width: width);
+        },
       ); // Loading state
-    } else if (errorMessage != null) {
+    } else if (errorMessage.isNotEmpty) {
       return Column(
         children: [
           SizedBox(height: AppSpacing.extraLarge),
@@ -232,7 +249,7 @@ class HomeTamplate extends StatelessWidget {
       );
     }
 
-    return FadeInUp(
+    return FadeIn(
       child: GridView.builder(
         shrinkWrap: true, // Prevents GridView from taking extra space
         physics:

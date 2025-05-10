@@ -1,6 +1,5 @@
 import 'package:example/domain/models/product_entity.dart';
 import 'package:example/presentation/home_screen.dart';
-import 'package:example/presentation/screens/molecules/company_information.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -87,6 +86,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/product_info_holder',
       builder: (context, state) => const ProductInfoHolder(),
+    ),
+    GoRoute(
+      path: '/skeleton_loading',
+      builder: (context, state) => const SkeletonLoadingOrganism(),
     ),
 
     //tamplates

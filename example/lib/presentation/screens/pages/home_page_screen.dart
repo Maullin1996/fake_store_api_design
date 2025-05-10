@@ -83,7 +83,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
       },
       name: userMock.name.firstname,
       lastName: userMock.name.lastname,
-      errorMessage: null,
+      errorMessage: '',
       isLoading: isLoading,
       products: productMock(true),
       myFavoriteList: myFavoriteList,
