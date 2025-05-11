@@ -144,19 +144,27 @@ class HomeTemplate extends StatelessWidget {
         onRefresh: refreshProducts,
         color: AppColors.secondary,
         backgroundColor: AppColors.onPrimary,
-        child: ListView(
-          children: [
-            SearchAnchorWidget<String>(
-              items:
-                  products.map((product) => product.title.toString()).toList(),
-              displayString: (item) => item,
-              onItemSelected: onItemSelected,
-            ),
-            // Category selection widget
-            ListCategory(
-              categories: categories,
-              selectedCategory: selectedCategory,
-              onCategorySelected: onCategorySelected,
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SearchAnchorWidget<String>(
+                    items:
+                        products
+                            .map((product) => product.title.toString())
+                            .toList(),
+                    displayString: (item) => item,
+                    onItemSelected: onItemSelected,
+                  ),
+                  // Category selection widget
+                  ListCategory(
+                    categories: categories,
+                    selectedCategory: selectedCategory,
+                    onCategorySelected: onCategorySelected,
+                  ),
+                ],
+              ),
             ),
             _buildBody(
               context: context,
@@ -166,18 +174,25 @@ class HomeTemplate extends StatelessWidget {
               errorMessage: errorMessage,
               isLoading: isLoading,
             ),
-            SizedBox(
-              height:
-                  products.isNotEmpty
-                      ? AppSpacing.small
-                      : MediaQuery.sizeOf(context).height,
-            ),
-            // The contact information
-            CompanyInfo(
-              address: address,
-              email: email,
-              whatsapp: whatsapp,
-              instagram: instagram,
+
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height:
+                        products.isNotEmpty
+                            ? AppSpacing.small
+                            : MediaQuery.sizeOf(context).height,
+                  ),
+                  // The contact information
+                  CompanyInfo(
+                    address: address,
+                    email: email,
+                    whatsapp: whatsapp,
+                    instagram: instagram,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -203,10 +218,10 @@ class HomeTemplate extends StatelessWidget {
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
 
     if (isLoading) {
-      return GridView.builder(
-        shrinkWrap: true, // Prevents GridView from taking extra space
-        physics:
-            const NeverScrollableScrollPhysics(), // Disables scrolling within the grid
+      return SliverGrid(
+        delegate: SliverChildBuilderDelegate(childCount: 10, (context, index) {
+          return SkeletonLoadingContainer(width: width);
+        }),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: responsiveDesign.columnAmount, // columns
           mainAxisSpacing:
@@ -218,57 +233,45 @@ class HomeTemplate extends StatelessWidget {
           childAspectRatio:
               responsiveDesign.childAspectRatio, // Aspect ratio of each item
         ),
-        itemCount: 10, // Number of products
-        itemBuilder: (context, index) {
-          return SkeletonLoadingContainer(width: width);
-        },
       ); // Loading state
     } else if (errorMessage.isNotEmpty) {
-      return Column(
-        children: [
-          SizedBox(height: AppSpacing.extraLarge),
-          Icon(
-            Icons.arrow_downward_rounded,
-            size: 90,
-            color: AppColors.primary,
-          ),
-          SizedBox(height: AppSpacing.medium),
-          Text(
-            'Error to get te products',
-            style: textTheme.displayLarge,
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: AppSpacing.medium),
-          Text(
-            'Pull To Update or Refresh',
-            style: textTheme.displayLarge,
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: width * 0.3),
-        ],
+      return SliverToBoxAdapter(
+        child: Column(
+          children: [
+            SizedBox(height: AppSpacing.extraLarge),
+            Icon(
+              Icons.arrow_downward_rounded,
+              size: 90,
+              color: AppColors.primary,
+            ),
+            SizedBox(height: AppSpacing.medium),
+            Text(
+              'Error to get te products',
+              style: textTheme.displayLarge,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: AppSpacing.medium),
+            Text(
+              'Pull To Update or Refresh',
+              style: textTheme.displayLarge,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: width * 0.3),
+          ],
+        ),
       );
     }
 
-    return FadeIn(
-      child: GridView.builder(
-        shrinkWrap: true, // Prevents GridView from taking extra space
-        physics:
-            const NeverScrollableScrollPhysics(), // Disables scrolling within the grid
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: responsiveDesign.columnAmount, // columns
-          mainAxisSpacing:
-              responsiveDesign
-                  .mainAxisSpacing, // Vertical spacing between items
-          crossAxisSpacing:
-              responsiveDesign
-                  .crossAxisSpacing, // Horizontal spacing between items
-          childAspectRatio:
-              responsiveDesign.childAspectRatio, // Aspect ratio of each item
-        ),
-        itemCount: products.length, // Number of products
-        itemBuilder: (context, index) {
-          final product = products[index];
-          return ProducthomeContainer(
+    return SliverGrid(
+      delegate: SliverChildBuilderDelegate(childCount: products.length, (
+        context,
+        index,
+      ) {
+        final product = products[index];
+
+        return FadeIn(
+          duration: const Duration(milliseconds: 300),
+          child: ProducthomeContainer(
             isPromotion: product.isPromotion,
             discount: product.discount,
             url: product.image, // Product image URL
@@ -285,8 +288,18 @@ class HomeTemplate extends StatelessWidget {
                 () => onPressedinfo?.call(product), // Info button action
             onPressedbuy:
                 () => onPressedbuy?.call(product), // Buy button action
-          );
-        },
+          ),
+        );
+      }),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: responsiveDesign.columnAmount, // columns
+        mainAxisSpacing:
+            responsiveDesign.mainAxisSpacing, // Vertical spacing between items
+        crossAxisSpacing:
+            responsiveDesign
+                .crossAxisSpacing, // Horizontal spacing between items
+        childAspectRatio:
+            responsiveDesign.childAspectRatio, // Aspect ratio of each item
       ),
     );
   }

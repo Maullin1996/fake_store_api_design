@@ -18,6 +18,7 @@ class CompanyInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final double screenWidth = MediaQuery.sizeOf(context).width;
+
     return Container(
       width: screenWidth,
       color: AppColors.secondary,
@@ -27,87 +28,85 @@ class CompanyInfo extends StatelessWidget {
 
   Widget _buildWidget(double screenWidth, TextTheme textTheme) {
     Widget infoStructure(IconData iconData, String text) {
-      if (screenWidth <= BreakPoints.small) {
-        return Row(
-          children: [
-            Icon(iconData),
-            SizedBox(width: AppSpacing.small),
-            SizedBox(
-              width: screenWidth * 0.8,
-              child: Text(
+      return (screenWidth <= BreakPoints.small)
+          ? Row(
+            children: [
+              Icon(iconData),
+              SizedBox(width: AppSpacing.small),
+              SizedBox(
+                width: screenWidth * 0.8,
+                child: Text(
+                  text,
+                  style: textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          )
+          : Row(
+            children: [
+              Icon(iconData),
+              SizedBox(width: AppSpacing.small),
+              Text(
                 text,
                 style: textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ],
-        );
-      } else {
-        return Row(
-          children: [
-            Icon(iconData),
-            SizedBox(width: AppSpacing.small),
-            Text(
-              text,
-              style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        );
-      }
+            ],
+          );
     }
 
-    if (screenWidth <= BreakPoints.small) {
-      return Padding(
-        padding: EdgeInsets.symmetric(vertical: AppSpacing.small),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                infoStructure(AppIcons.city, address),
-                SizedBox(height: AppSpacing.xSmall),
-                infoStructure(AppIcons.mail, email),
-                SizedBox(height: AppSpacing.xSmall),
-                infoStructure(AppIcons.whatsapp, whatsapp),
-                SizedBox(height: AppSpacing.xSmall),
-                infoStructure(AppIcons.instagram, instagram),
-                SizedBox(height: AppSpacing.xSmall),
-              ],
-            ),
-          ],
-        ),
-      );
-    } else {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppSpacing.small),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                infoStructure(AppIcons.city, address),
-                SizedBox(height: AppSpacing.xSmall),
-                infoStructure(AppIcons.mail, email),
-                SizedBox(height: AppSpacing.xSmall),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                infoStructure(AppIcons.whatsapp, whatsapp),
-                SizedBox(height: AppSpacing.xSmall),
-                infoStructure(AppIcons.instagram, instagram),
-                SizedBox(height: AppSpacing.xSmall),
-              ],
-            ),
-          ],
-        ),
-      );
-    }
+    return (screenWidth <= BreakPoints.small)
+        ? Padding(
+          padding: EdgeInsets.symmetric(vertical: AppSpacing.small),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  infoStructure(AppIcons.city, address),
+                  SizedBox(height: AppSpacing.xSmall),
+                  infoStructure(AppIcons.mail, email),
+                  SizedBox(height: AppSpacing.xSmall),
+                  infoStructure(AppIcons.whatsapp, whatsapp),
+                  SizedBox(height: AppSpacing.xSmall),
+                  infoStructure(AppIcons.instagram, instagram),
+                  SizedBox(height: AppSpacing.xSmall),
+                ],
+              ),
+            ],
+          ),
+        )
+        : Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppSpacing.small),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  infoStructure(AppIcons.city, address),
+                  SizedBox(height: AppSpacing.xSmall),
+                  infoStructure(AppIcons.mail, email),
+                  SizedBox(height: AppSpacing.xSmall),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  infoStructure(AppIcons.whatsapp, whatsapp),
+                  SizedBox(height: AppSpacing.xSmall),
+                  infoStructure(AppIcons.instagram, instagram),
+                  SizedBox(height: AppSpacing.xSmall),
+                ],
+              ),
+            ],
+          ),
+        );
   }
 }
