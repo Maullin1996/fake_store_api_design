@@ -14,7 +14,13 @@ class SkeletonLoadingOrganism extends StatelessWidget {
         colorType: ColorType.primary,
       ),
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
-      body: SkeletonLoadingContainer(width: width),
+      body: Center(
+        child: SizedBox(
+          height: 350,
+          width: 200,
+          child: SkeletonLoadingContainer(width: width),
+        ),
+      ),
     );
   }
 }

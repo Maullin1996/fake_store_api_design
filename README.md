@@ -12,6 +12,8 @@ A modern e-commerce application built with Flutter that showcases a seamless sho
     - [Product Info Container](#product-info-container)
     - [Product Cart Container](#product-cart-container)
     - [Product Home Container](#product-home-container)
+    - [Skeleton info Container](#skeleton-info-container)
+    - [Company Info](#company_info)
     - [Custom Dialog](#custom-dialog)
     - [Custom Appbars](#custom-appbars)
     - [List Category](#list-category)
@@ -69,21 +71,26 @@ This Flutter project is structured around several templates and components that 
 - Displays detailed information about a specific product, including its image, description, price, and a button to add it to the cart.
     ```bash
     class ProductInfoContainer extends StatelessWidget {
-      // The URL of the product image.
+      /// The URL of the product image.
       final String url;
-      // The name of the product.
+      /// Must be a valid assets image URL.
+      final String assetsImage;
+      /// The name of the product.
       final String productName;
-      // A detailed description of the product.
+      /// A detailed description of the product.
       final String description;
-      // The price of the product.
-      final String productPrice;
-      // The callback function for the "Add to cart" button.
+      /// The price of the product.
+      final double productPrice;
+      /// Whether the product is in promotion.
+      final bool isPromotion;
+      /// Discount value
+      final double discount;
+      /// The callback function for the "Add to cart" button.
       final Function()? onPressedbuy;
-      // Whether the product is marked as a favorite.
+      /// Whether the product is marked as a favorite.
       final bool isFavorite;
-      // The callback function for the favorite button.
+      /// The callback function for the favorite button.
       final Function()? onPressedFavorite;
-      // constructor and build method...
     }
 <p align = "center">
   <img src="assets/images/product_info.png" alt="alt text" width="250" />
@@ -92,21 +99,31 @@ This Flutter project is structured around several templates and components that 
 - ### Product Cart Container
 - Displays detailed information about the product that you want to buy, including its image, price, quantity, and a two buttons to increase or decrease the quantity of the productyou want to buy.
     ```bash
-    class ProductCartContainer extends StatelessWidget {
-      // The URL of the product image.
+      class ProductCartContainer extends StatelessWidget {
+      /// Image URL for the product.
       final String url;
-      // The name of the product.
+      /// Local fallback image path if [url] fails to load.
+      final String assetsImage;
+      /// Name of the product.
       final String productName;
-      // The current amount quantity of the product in the cart.
+      /// Quantity or unit description of the product (e.g., "2 x 500ml").
       final String amount;
-      // The price of the product.
-      final String productPrice;
-      // The callback function to handle the increase action for the product quantity.
+      /// Regular price of the product.
+      final double productPrice;
+      /// Detailed product description.
+      final String description;
+      /// Whether the product is under a promotional discount.
+      final bool isPromotion;
+      /// Discount percentage to apply if [isPromotion] is true (e.g., 0.2 for 20%).
+      final double discount;
+      /// Callback when the plus button is pressed.
       final Function()? onPressedplus;
-      // The callback function to handle the decrease action for the product quantity.
+      /// Callback when the minus button is pressed.
       final Function()? onPressedminus;
-      // constructor and build method...
-    }
+      /// Callback when the container is tapped for more info.
+      final Function()? onPressedinfo;
+        // constructor and build method...
+      }
 <p align = "center">
   <img src="assets/images/product_cart.png" alt="alt text" width="300" />
 </p>
@@ -115,28 +132,66 @@ This Flutter project is structured around several templates and components that 
 - Displays a product's image, name, category, price, and buttons for
 buying the product, viewing more information, and adding it to favorites.
     ```bash
-    class ProducthomeContainer extends StatelessWidget {
-      // The URL of the product image.
-      final String url;
-      // The name of the product.
-      final String productName;
-      // The category to which the product belongs.
-      final String productCategory;
-      // The price of the product.
-      final String productPrice;
-      // The callback function for the buy button.
-      final Function()? onPressedbuy;
-      // The callback function for the information button.
-      final Function()? onPressedinfo;
-      // The callback function for the favorite button.
-      final Function()? onPressedFavorite;
-      // Whether the product is marked as a favorite.
-      final bool isFavorite;
+      class ProducthomeContainer extends StatelessWidget {
+        /// URL of the product image.
+        final String url;
+        /// Local asset fallback image.
+        final String assetsImage;
+        /// Product name displayed prominently.
+        final String productName;
+        /// Category of the product (e.g., "Beverages").
+        final String productCategory;
+        /// Regular price of the product.
+        final double productPrice;
+        /// Callback when the "Add to Cart" button is pressed.
+        final Function()? onPressedbuy;
+        /// Callback when the product container is tapped for more info.
+        final Function()? onPressedinfo;
+        /// Callback when the favorite icon is pressed.
+        final Function()? onPressedFavorite;
+        /// Whether the product is currently marked as favorite.
+        final bool isFavorite;
+        /// Whether the product has a promotional price.
+        final bool isPromotion;
+        /// Discount percentage applied if [isPromotion] is true.
+        final double discount;
+        // constructor and build method...
+      }
+
+<p align = "center">
+  <img src="assets/images/product_home.png" alt="alt text" width="200" />
+</p>
+
+- ### Skeleton info Container
+- Displays a shimmering layout that mimics the structure of a product card, including image, title, category, price, and button
+    ```bash
+      class SkeletonLoadingContainer extends StatelessWidget {
+        /// The total width available for layout and internal scaling.
+        final double width;
+        // constructor and build method...
+      }
+
+<p align = "center">
+  <img src="assets/images/skeleton_loading.png" alt="alt text" width="200" />
+</p>
+
+- ### Company Info
+- A widget that displays company contact information such as address, email, WhatsApp, and Instagram.
+    ```bash
+    class CompanyInfo extends StatelessWidget {
+      /// Company's physical address.
+      final String address;
+      /// Company's support email.
+      final String email;
+      /// WhatsApp contact number or link.
+      final String whatsapp;
+      /// Instagram handle or profile link.
+      final String instagram;
       // constructor and build method...
     }
 
 <p align = "center">
-  <img src="assets/images/product_home.png" alt="alt text" width="200" />
+  <img src="assets/images/company_info.png" alt="alt text" width="400" />
 </p>
 
 - ### Custom Dialog
@@ -256,30 +311,33 @@ The selected category button is styled differently to indicate the current selec
 - Shows the user's shopping cart with a list of added products. It provides options to remove or add quantities to items in the cart, and displays the total amount to be paid.
     ```bash
     class CartTemplate extends StatelessWidget {
-      class CartTemplate extends StatelessWidget {
-        // The authentication state of the user.
-        final bool authentication;
-        // The first name of the user (if authenticated).
-        final String? name;
-        // The last name of the user (if authenticated).
-        final String? lastName;
-        // The total price to pay for the items in the cart.
-        final String totalToPay;
-        // The list of products in the cart.
-        final List<dynamic> listCart;
-        // The callback function for the "back" button.
-        final VoidCallback? backonPressed;
-        // The callback function for logging out.
-        final VoidCallback? logOutonPressed;
-        // The callback function for logging in.
-        final VoidCallback? logInonPressed;
-        // The callback function for decreasing the quantity of a product in the cart.
-        final void Function(dynamic)? onPressedminus;
-        // The callback function for increasing the quantity of a product in the cart.
-        final void Function(dynamic)? onPressedplus;
-        // The callback function for when the dialog button is pressed.
-        final VoidCallback? onDialogButtonPressed;
-      // constructor and build method...
+      /// Indicates if the user is authenticated.
+      final bool authentication;
+      /// Path to the local fallback image asset.
+      final String assetsImage;
+      /// Users first name (optional, used when authenticated).
+      final String? name;
+      /// Users last name (optional, used when authenticated).
+      final String? lastName;
+      /// Total amount to pay displayed in the bottom dialog.
+      final String totalToPay;
+      /// List of cart items to render.
+      final List<dynamic> listCart;
+      /// Callback triggered when the back button is pressed.
+      final VoidCallback? backonPressed;
+      /// Callback triggered when logout is requested.
+      final VoidCallback? logOutonPressed;
+      /// Callback triggered when login is requested.
+      final VoidCallback? logInonPressed;
+      /// Callback triggered when the minus button is tapped on a cart item.
+      final void Function(dynamic)? onPressedminus;
+      /// Callback triggered when the plus button is tapped on a cart item.
+      final void Function(dynamic)? onPressedplus;
+      /// Callback triggered when the dialog button (checkout/login) is pressed.
+      final VoidCallback? onDialogButtonPressed;
+      /// Callback triggered when a cart item is tapped for more information.
+      final void Function(dynamic)? onPressedinfo;
+          // constructor and build method...
     }
 <p align = "center">
   <img src="assets/images/cart_template.png" alt="alt text" width="250" />
@@ -288,41 +346,57 @@ The selected category button is styled differently to indicate the current selec
 - ### Home Template
 - The home screen of the app, where users can browse through different product categories, view a list of products, and add products to their favorites or cart.
     ```bash
-    class HomeTamplate extends StatelessWidget {
-      // A flag indicating whether the user is logged in.
+    class HomeTemplate extends StatelessWidget {
+      /// The companys physical address shown at the bottom.
+      final String address;
+      /// Local fallback image asset path for products.
+      final String assetsImage;
+      /// The companys support email address.
+      final String email;
+      /// The companys WhatsApp contact.
+      final String whatsapp;
+      /// The companys Instagram handle.
+      final String instagram;
+      /// List of product categories to filter the product list.
+      final List<String> categories;
+      /// Indicates whether the user is logged in.
       final bool isLogIn;
-      // A list of products to be displayed on the home screen.
+      /// Complete list of available products.
       final List<dynamic> products;
-      // An optional error message to be displayed in case of an error.
-      final String? errorMessage;
-      // A flag indicating whether the products are currently loading.
+      /// Message to display in case of an error fetching products.
+      final String errorMessage;
+      /// Indicates if the product list is currently loading.
       final bool isLoading;
-      // A list of the user favorite products.
+      /// List of users favorite products.
       final List<dynamic> myFavoriteList;
-      // A list of the products in the user shopping cart.
+      /// List of products added to the users cart.
       final List<dynamic> myCartList;
-      // The selected category to filter the displayed products.
+      /// Currently selected category filter.
       final String selectedCategory;
-      // The callback function to handle favorite button presses on products.
+      /// Callback when the favorite icon is pressed.
       final void Function(dynamic)? onPressedFavorite;
-      // The callback function to handle info button presses on products.
+      /// Callback when product info is tapped.
       final void Function(dynamic)? onPressedinfo;
-      // The callback function to handle buy button presses on products.
+      /// Callback when buy button is pressed.
       final void Function(dynamic)? onPressedbuy;
-      // The callback function to handle the log in action.
+      /// Callback when login is requested.
       final VoidCallback? logInonPressed;
-      // The callback function to handle the cart button press.
+      /// Callback when the cart icon is tapped.
       final VoidCallback? cartonPressed;
-      // The callback function to handle user profile button press.
+      /// Callback when the user icon is tapped.
       final VoidCallback? useronPressed;
-      // The callback function to handle log out action.
+      /// Callback when logout is requested.
       final VoidCallback? logOutonPressed;
-      // The first name of the user (if logged in).
+      /// First name of the logged-in user.
       final String? name;
-      // The last name of the user (if logged in).
+      /// Last name of the logged-in user.
       final String? lastName;
-      // The callback function to handle category selection.
+      /// Callback to select a new product category.
       final void Function(String) onCategorySelected;
+      /// Callback when a product is selected from search results.
+      final void Function(String selectedItem) onItemSelected;
+      /// Callback to refresh the product list.
+      final Future<void> Function() refreshProducts;
       // constructor and build method...
     }
 
@@ -334,26 +408,32 @@ The selected category button is styled differently to indicate the current selec
 - Handles the user login flow, including text fields for username and password and a button to submit the credentials.
     ```bash
     class LoginTemplate extends StatelessWidget {
-      // A flag indicating whether the login button is in a loading state.
+      /// A flag indicating whether the login button is in a loading state.
       final bool? isLoadingButton;
-      // The callback function for when the cart button is pressed.
+      /// The callback function for when the cart button is pressed.
       final VoidCallback? cartonPressed;
-      // The callback function for when the back button is pressed.
+      /// The callback function for when the back button is pressed.
       final VoidCallback? backonPressed;
-      // The callback function for when the login button is pressed.
+      /// The callback function for when the login button is pressed.
       final VoidCallback? onPressed;
-      // The callback function to handle changes to the password field.
+      /// The callback function to handle changes to the password field.
       final Function(String)? onChangePassword;
-      // The callback function to handle changes to the username field.
+      /// The callback function to handle changes to the username field.
       final Function(String)? onChangeUsername;
-      // A controller for the username input field.
+      /// A controller for the username input field.
       final TextEditingController? usernameController;
-      // A controller for the password input field.
+      /// A controller for the password input field.
       final TextEditingController? passwordController;
-      // A validator function for the password field.
+      /// A validator function for the password field.
       final String? Function(String?)? validatorPassword;
-      // A validator function for the username field.
+      /// A validator function for the username field.
       final String? Function(String?)? validatorUsername;
+      /// Whether to obscure the text in the input.
+      final bool obscureText;
+      /// The path of the logo image.
+      final String path;
+      /// Change obcureText state.
+      final Function()? iconOnPressed;
       // constructor and build method...
     }
 
@@ -394,32 +474,33 @@ The selected category button is styled differently to indicate the current selec
 - Shows the user's profile information, such as their name, email, phone, and address. Users can log out, view their cart, or navigate back to the previous screen.
     ```bash
     class UserTemplate extends StatelessWidget {
-      // The callback function for when the back button is pressed.
-      final VoidCallback? backonPressed;
-      // The callback function for when the cart button is pressed.
-      final VoidCallback? cartonPressed;
-      // The callback function for when the log out button is pressed.
-      final VoidCallback? logOutonPressed;
-      // The user last name.
-      final String lastName;
-      // The user first name.
-      final String name;
-      // The user username.
-      final String username;
-      // The user email address.
-      final String email;
-      // The user phone number.
-      final String phone;
-      // The user city of residence.
-      final String city;
-      // The user street address.
-      final String street;
-      // The user street number.
-      final String number;
-      // The user postal code.
-      final String zipcode;
-      // constructor and build method...
-    }
+        /// The callback function for when the back button is pressed.
+        final VoidCallback? backonPressed;
+        /// The callback function for when the cart button is pressed.
+        final VoidCallback? cartonPressed;
+        /// The callback function for when the log out button is pressed.
+        final VoidCallback? logOutonPressed;
+        /// The user's last name.
+        final String lastName;
+        /// The user's first name.
+        final String name;
+        /// The user's username.
+        final String username;
+        /// The user's email address.
+        final String email;
+        /// The user's phone number.
+        final String phone;
+        /// The user's city of residence.
+        final String city;
+        /// The user's street address.
+        final String street;
+        /// The user's street number.
+        final String number;
+        /// The user's postal code.
+        final String zipcode;
+        // constructor and build method...
+      }
+
 <p align = "center">
   <img src="assets/images/user_template.png" alt="alt text" width="250" />
 </p>

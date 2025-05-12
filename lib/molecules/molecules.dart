@@ -1,3 +1,4 @@
+export 'package:fake_store_design/molecules/product_molecules/price_section.dart';
 export 'package:fake_store_design/molecules/appbar_molecules/custom_appbars.dart';
 export 'package:fake_store_design/molecules/is_favorite/is_favorite.dart';
 export 'package:fake_store_design/molecules/list_category/list_category.dart';

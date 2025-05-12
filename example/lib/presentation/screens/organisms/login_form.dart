@@ -19,7 +19,7 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
         title: 'Log In Form',
         colorType: ColorType.primary,
       ),
-      backgroundColor: const Color.fromARGB(255, 238, 238, 238),
+      backgroundColor: AppColors.onPrimary,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

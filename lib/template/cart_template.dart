@@ -2,54 +2,53 @@ import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 
-/// A widget representing the cart screen for authenticated and unauthenticated users.
+/// Template widget that displays the shopping cart screen.
 ///
-/// This screen displays a list of products in the cart, including the ability to
-/// adjust product quantities. It also displays different dialogs depending on
-/// whether the user is logged in or not. The widget conditionally shows the appropriate
-/// app bar and dialog based on the authentication state of the user.
+/// Depending on the [authentication] flag, the UI adapts to show
+/// either a login or logout app bar and appropriate checkout dialogs.
+/// It renders a scrollable list of cart products, along with a fixed
+/// dialog at the bottom to handle purchase or authentication prompts.
 class CartTemplate extends StatelessWidget {
-  /// The authentication state of the user.
+  /// Indicates if the user is authenticated.
   final bool authentication;
 
-  /// The first name of the user (if authenticated).
+  /// Path to the local fallback image asset.
+  final String assetsImage;
+
+  /// User's first name (optional, used when authenticated).
   final String? name;
 
-  /// The last name of the user (if authenticated).
+  /// User's last name (optional, used when authenticated).
   final String? lastName;
 
-  /// The total price to pay for the items in the cart.
+  /// Total amount to pay displayed in the bottom dialog.
   final String totalToPay;
 
-  /// The list of products in the cart.
+  /// List of cart items to render.
   final List<dynamic> listCart;
 
-  /// The callback function for the "back" button.
+  /// Callback triggered when the back button is pressed.
   final VoidCallback? backonPressed;
 
-  /// The callback function for logging out.
+  /// Callback triggered when logout is requested.
   final VoidCallback? logOutonPressed;
 
-  /// The callback function for logging in.
+  /// Callback triggered when login is requested.
   final VoidCallback? logInonPressed;
 
-  /// The callback function for decreasing the quantity of a product in the cart.
+  /// Callback triggered when the minus button is tapped on a cart item.
   final void Function(dynamic)? onPressedminus;
 
-  /// The callback function for increasing the quantity of a product in the cart.
+  /// Callback triggered when the plus button is tapped on a cart item.
   final void Function(dynamic)? onPressedplus;
 
-  /// The callback function for when the dialog button is pressed.
+  /// Callback triggered when the dialog button (checkout/login) is pressed.
   final VoidCallback? onDialogButtonPressed;
 
-  /// The callback function to handle info button presses on products.
+  /// Callback triggered when a cart item is tapped for more information.
   final void Function(dynamic)? onPressedinfo;
 
-  /// Creates an instance of [CartTemplate].
-  ///
-  /// The [authentication] parameter determines if the user is logged in. The [listCart]
-  /// contains the products in the cart, and the [totalToPay] indicates the amount to be paid.
-  /// The other parameters provide actions for logging in, logging out, and modifying the cart's contents.
+  /// Creates a [CartTemplate] widget.
   const CartTemplate({
     super.key,
     required this.authentication,
@@ -64,86 +63,75 @@ class CartTemplate extends StatelessWidget {
     this.onDialogButtonPressed,
     this.totalToPay = '',
     this.onPressedinfo,
+    required this.assetsImage,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Scaffold is used to create the basic visual structure of the screen
     return Scaffold(
-      // The app bar changes based on whether the user is authenticated
       appBar:
           authentication
               ? CustomAppbars(
-                appbarType: AppbarType.cartAppbarlogout, // For logged-in users
+                appbarType: AppbarType.cartAppbarlogout,
                 backonPressed: backonPressed,
                 logOutonPressed: logOutonPressed,
                 name: name,
                 lastName: lastName,
               )
               : CustomAppbars(
-                appbarType:
-                    AppbarType.cartAppbarlogin, // For unauthenticated users
+                appbarType: AppbarType.cartAppbarlogin,
                 backonPressed: backonPressed,
                 logInonPressed: logInonPressed,
               ),
-      backgroundColor: Color.fromARGB(255, 238, 238, 238), // Background color
+      backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       body: Stack(
         children: [
-          // List of cart products displayed in a scrollable list
+          // Cart item list with fade animation.
           FadeInUp(
             child: ListView.separated(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: AppSpacing.medium,
                 bottom: AppSpacing.large,
-              ), // Padding at the bottom
-              itemCount: listCart.length, // Number of items in the cart
-              itemBuilder: (BuildContext context, int index) {
-                final product =
-                    listCart[index]; // Get the product at this index
+              ),
+              itemCount: listCart.length,
+              itemBuilder: (context, index) {
+                final product = listCart[index];
 
                 return ProductCartContainer(
-                  onPressedinfo:
-                      () => onPressedinfo?.call(product), // Info button action,
-                  descrition: product.description,
-                  url: product.image, // Image URL for the product
-                  productName: product.title, // Name of the product
-                  amount:
-                      'x${product.quantity}', // Product quantity in the cart
-                  productPrice: product.price, // Product price
+                  onPressedinfo: () => onPressedinfo?.call(product),
+                  description: product.description,
+                  url: product.image,
+                  assetsImage: assetsImage,
+                  productName: product.title,
+                  amount: 'x${product.quantity}',
+                  productPrice: product.price,
                   isPromotion: product.isPromotion,
                   discount: product.discount,
-                  onPressedminus:
-                      () => onPressedminus?.call(product), // Decrease quantity
-                  onPressedplus:
-                      () => onPressedplus?.call(product), // Increase quantity
+                  onPressedminus: () => onPressedminus?.call(product),
+                  onPressedplus: () => onPressedplus?.call(product),
                 );
               },
               separatorBuilder:
-                  (context, index) => SizedBox(
-                    height: AppSpacing.small,
-                  ), // Spacer between items
+                  (context, index) => const SizedBox(height: AppSpacing.small),
             ),
           ),
-          // Positioned widget to display the dialog at the bottom of the screen
+
+          // Dialog bar for checkout or login.
           Positioned(
-            bottom: AppSpacing.small, // Bottom margin for the dialog
+            bottom: AppSpacing.small,
             left: 0,
             right: 0,
             child: Center(
               child:
                   authentication
                       ? CustomDialog(
-                        totalToPay: totalToPay, // Display total price
-                        dialogType:
-                            DialogType
-                                .authenticated, // Dialog for authenticated users
+                        totalToPay: totalToPay,
+                        dialogType: DialogType.authenticated,
                         onDialogButtonPressed: onDialogButtonPressed,
                       )
                       : CustomDialog(
-                        totalToPay: totalToPay, // Display total price
-                        dialogType:
-                            DialogType
-                                .unauthenticated, // Dialog for unauthenticated users
+                        totalToPay: totalToPay,
+                        dialogType: DialogType.unauthenticated,
                         onDialogButtonPressed: onDialogButtonPressed,
                       ),
             ),

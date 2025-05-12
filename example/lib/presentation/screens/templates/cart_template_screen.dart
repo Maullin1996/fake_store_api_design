@@ -20,6 +20,7 @@ class _CartTemplateScreenState extends State<CartTemplateScreen> {
   @override
   Widget build(BuildContext context) {
     return CartTemplate(
+      assetsImage: 'assets/images/error.png',
       authentication: authentication,
       listCart: productMock(false),
       backonPressed: () {

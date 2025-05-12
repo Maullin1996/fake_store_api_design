@@ -19,6 +19,7 @@ class _CartPageScreenState extends ConsumerState<CartPageScreen> {
   Widget build(BuildContext context) {
     final List<Product> cartList = ref.watch(cartListProvider);
     return CartTemplate(
+      assetsImage: 'assets/images/error.png',
       onDialogButtonPressed: () {
         if (userStatus) {
           ref.read(cartListProvider.notifier).emptyCart();

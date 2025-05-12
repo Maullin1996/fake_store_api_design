@@ -1,11 +1,24 @@
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 
+/// A widget that displays company contact information such as address,
+/// email, WhatsApp, and Instagram.
+///
+/// The layout is responsive and adapts based on screen size.
 class CompanyInfo extends StatelessWidget {
+  /// Company's physical address.
   final String address;
+
+  /// Company's support email.
   final String email;
+
+  /// WhatsApp contact number or link.
   final String whatsapp;
+
+  /// Instagram handle or profile link.
   final String instagram;
+
+  /// Creates a [CompanyInfo] widget.
   const CompanyInfo({
     super.key,
     required this.address,
@@ -26,14 +39,19 @@ class CompanyInfo extends StatelessWidget {
     );
   }
 
+  /// Builds the layout depending on the screen width.
+  ///
+  /// On small screens, all contact information is stacked vertically.
+  /// On larger screens, it's split into two columns.
   Widget _buildWidget(double screenWidth, TextTheme textTheme) {
+    /// Builds a row with an icon and text, with overflow handling.
     Widget infoStructure(IconData iconData, String text) {
-      return (screenWidth <= BreakPoints.small)
-          ? Row(
-            children: [
-              Icon(iconData),
-              SizedBox(width: AppSpacing.small),
-              SizedBox(
+      return Row(
+        children: [
+          Icon(iconData),
+          SizedBox(width: AppSpacing.small),
+          screenWidth <= BreakPoints.small
+              ? SizedBox(
                 width: screenWidth * 0.8,
                 child: Text(
                   text,
@@ -42,71 +60,69 @@ class CompanyInfo extends StatelessWidget {
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            ],
-          )
-          : Row(
-            children: [
-              Icon(iconData),
-              SizedBox(width: AppSpacing.small),
-              Text(
+              )
+              : Text(
                 text,
                 style: textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
-            ],
-          );
+        ],
+      );
     }
 
-    return (screenWidth <= BreakPoints.small)
-        ? Padding(
-          padding: EdgeInsets.symmetric(vertical: AppSpacing.small),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    // Layout for small screens (stacked, single column)
+    if (screenWidth <= BreakPoints.small) {
+      return Padding(
+        padding: EdgeInsets.symmetric(vertical: AppSpacing.small),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                infoStructure(AppIcons.city, address),
+                SizedBox(height: AppSpacing.xSmall),
+                infoStructure(AppIcons.mail, email),
+                SizedBox(height: AppSpacing.xSmall),
+                infoStructure(AppIcons.whatsapp, whatsapp),
+                SizedBox(height: AppSpacing.xSmall),
+                infoStructure(AppIcons.instagram, instagram),
+                SizedBox(height: AppSpacing.xSmall),
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+
+    // Layout for larger screens (two columns)
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.small),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  infoStructure(AppIcons.city, address),
-                  SizedBox(height: AppSpacing.xSmall),
-                  infoStructure(AppIcons.mail, email),
-                  SizedBox(height: AppSpacing.xSmall),
-                  infoStructure(AppIcons.whatsapp, whatsapp),
-                  SizedBox(height: AppSpacing.xSmall),
-                  infoStructure(AppIcons.instagram, instagram),
-                  SizedBox(height: AppSpacing.xSmall),
-                ],
-              ),
+              infoStructure(AppIcons.city, address),
+              SizedBox(height: AppSpacing.xSmall),
+              infoStructure(AppIcons.mail, email),
+              SizedBox(height: AppSpacing.xSmall),
             ],
           ),
-        )
-        : Padding(
-          padding: const EdgeInsets.symmetric(vertical: AppSpacing.small),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  infoStructure(AppIcons.city, address),
-                  SizedBox(height: AppSpacing.xSmall),
-                  infoStructure(AppIcons.mail, email),
-                  SizedBox(height: AppSpacing.xSmall),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  infoStructure(AppIcons.whatsapp, whatsapp),
-                  SizedBox(height: AppSpacing.xSmall),
-                  infoStructure(AppIcons.instagram, instagram),
-                  SizedBox(height: AppSpacing.xSmall),
-                ],
-              ),
+              infoStructure(AppIcons.whatsapp, whatsapp),
+              SizedBox(height: AppSpacing.xSmall),
+              infoStructure(AppIcons.instagram, instagram),
+              SizedBox(height: AppSpacing.xSmall),
             ],
           ),
-        );
+        ],
+      ),
+    );
   }
 }

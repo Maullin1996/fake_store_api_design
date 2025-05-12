@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fake_store_design/atoms/tokens.dart';
 import 'package:flutter/material.dart';
 
 /// A stateless widget for displaying an image from the network.
@@ -9,6 +10,9 @@ class AppNetworkImage extends StatelessWidget {
   ///
   /// Must be a valid network image URL.
   final String url;
+
+  /// Must be a valid assets image URL.
+  final String assetsImage;
 
   /// Optional width of the image.
   ///
@@ -28,6 +32,7 @@ class AppNetworkImage extends StatelessWidget {
     required this.url,
     this.widthImage,
     this.heightImage,
+    required this.assetsImage,
   });
 
   @override
@@ -36,6 +41,13 @@ class AppNetworkImage extends StatelessWidget {
       imageUrl: url,
       width: widthImage,
       height: heightImage,
+      placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+      errorWidget:
+          (context, url, error) => AppAssetsImage(
+            path: assetsImage,
+            widthImage: widthImage,
+            heightImage: heightImage,
+          ),
     );
   }
 }

@@ -1,7 +1,7 @@
+import 'package:fake_store_design/molecules/molecules.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
-import '../../molecules/is_favorite/is_favorite.dart';
 
 /// A widget that represents a product detail view container.
 ///
@@ -11,6 +11,9 @@ import '../../molecules/is_favorite/is_favorite.dart';
 class ProductInfoContainer extends StatelessWidget {
   /// The URL of the product image.
   final String url;
+
+  /// Must be a valid assets image URL.
+  final String assetsImage;
 
   /// The name of the product.
   final String productName;
@@ -53,6 +56,7 @@ class ProductInfoContainer extends StatelessWidget {
     this.onPressedbuy,
     this.isFavorite = false,
     this.onPressedFavorite,
+    required this.assetsImage,
   });
 
   @override
@@ -80,6 +84,7 @@ class ProductInfoContainer extends StatelessWidget {
             child: Center(
               child: AppNetworkImage(
                 url: url, // Product image URL
+                assetsImage: assetsImage,
                 widthImage:
                     responsiveDesign
                         .imageinfoContainerWidth, // Width of the image
@@ -110,38 +115,11 @@ class ProductInfoContainer extends StatelessWidget {
             height: AppSpacing.medium,
           ), // Space between description and price
 
-          isPromotion
-              ? // Display the product price
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Product promotion price text with custom font size
-                  Text(
-                    '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
-                    style: textTheme.labelLarge?.copyWith(
-                      fontSize: AppTypography.h2,
-                      color: AppColors.disabledButton,
-                      decoration: TextDecoration.lineThrough,
-                      decorationColor: AppColors.disabledButton,
-                      decorationThickness: 2.0,
-                    ),
-                  ),
-                  // Product promotion price text with custom font size
-                  Text(
-                    '\$ ${(productPrice - productPrice * discount).toStringAsFixed(2)}', // Display price with a dollar sign
-                    style: textTheme.labelLarge?.copyWith(
-                      fontSize: AppTypography.h2,
-                    ),
-                  ),
-                ],
-              )
-              : // Display the product price
-              Text(
-                '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
-                style: textTheme.labelLarge?.copyWith(
-                  fontSize: AppTypography.h2,
-                ),
-              ),
+          PriceSection(
+            isPromotion: isPromotion,
+            productPrice: productPrice,
+            discount: discount,
+          ),
 
           SizedBox(
             height: AppSpacing.small,

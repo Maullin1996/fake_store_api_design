@@ -32,6 +32,7 @@ class InfoUserHolder extends StatelessWidget {
   /// to represent a specific piece of information (e.g., username, phone).
   Widget _buildInfoRow(BuildContext context, IconData icon, String text) {
     final textTheme = Theme.of(context).textTheme;
+
     return Row(
       children: [
         // Display the icon with a size of 35 and color [AppColors.secondary].
@@ -54,6 +55,7 @@ class InfoUserHolder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     return Container(
       // Set padding around the container to add spacing.
       padding: EdgeInsets.only(bottom: AppSpacing.medium),

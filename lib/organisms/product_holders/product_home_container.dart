@@ -3,47 +3,45 @@ import 'package:flutter/material.dart';
 import '../../atoms/tokens.dart';
 import '../../molecules/molecules.dart';
 
-/// A widget that represents a product card displayed on the home screen.
+/// A stateless widget that displays a product card for the home screen.
 ///
-/// This widget displays a product's image, name, category, price, and buttons for
-/// buying the product, viewing more information, and adding it to favorites.
+/// Shows product image, name, category, price (with optional discount),
+/// and allows user interactions like viewing details, favoriting, or adding to cart.
 class ProducthomeContainer extends StatelessWidget {
-  /// The URL of the product image.
+  /// URL of the product image.
   final String url;
 
-  /// The name of the product.
+  /// Local asset fallback image.
+  final String assetsImage;
+
+  /// Product name displayed prominently.
   final String productName;
 
-  /// The category to which the product belongs.
+  /// Category of the product (e.g., "Beverages").
   final String productCategory;
 
-  /// The price of the product.
+  /// Regular price of the product.
   final double productPrice;
 
-  /// The callback function for the buy button.
+  /// Callback when the "Add to Cart" button is pressed.
   final Function()? onPressedbuy;
 
-  /// The callback function for the information button.
+  /// Callback when the product container is tapped for more info.
   final Function()? onPressedinfo;
 
-  /// The callback function for the favorite button.
+  /// Callback when the favorite icon is pressed.
   final Function()? onPressedFavorite;
 
-  /// Whether the product is marked as a favorite.
+  /// Whether the product is currently marked as favorite.
   final bool isFavorite;
 
-  /// Whether the product is in promotion.
+  /// Whether the product has a promotional price.
   final bool isPromotion;
 
-  /// Discount value
+  /// Discount percentage applied if [isPromotion] is true.
   final double discount;
 
-  /// Creates an instance of [ProducthomeContainer].
-  ///
-  /// The [url], [productName], [productCategory], and [productPrice] are required,
-  /// while the [onPressedbuy], [onPressedinfo], and [onPressedFavorite] are optional
-  /// to handle the respective button actions. The [isFavorite] flag indicates whether
-  /// the product is marked as a favorite.
+  /// Creates a [ProducthomeContainer].
   const ProducthomeContainer({
     super.key,
     required this.url,
@@ -56,123 +54,87 @@ class ProducthomeContainer extends StatelessWidget {
     this.onPressedinfo,
     required this.isFavorite,
     this.onPressedFavorite,
+    required this.assetsImage,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.sizeOf(context).width;
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
 
-    // The main container for displaying the product details
     return IntrinsicHeight(
       child: IntrinsicWidth(
-        child: GestureDetector(
-          onTap: onPressedinfo,
-          child: Container(
-            padding: EdgeInsets.only(
-              top: AppSpacing.small,
-              left: AppSpacing.small, // Padding on the left side
-              right: AppSpacing.small, // Padding on the right side
-              bottom: AppSpacing.small, // Padding at the bottom
-            ),
-            decoration: BoxDecoration(
-              color:
-                  AppColors
-                      .onPrimary, // Background color for the product container
-              boxShadow: [
-                BoxShadow(
-                  offset: Offset(5, 5), // Shadow offset
-                  color: Colors.black.withValues(alpha: 0.2), // Shadow color
-                  blurRadius: 5, // Shadow blur effect
-                  spreadRadius: 3, // Spread radius for the shadow
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment:
-                  MainAxisAlignment.start, // Align items to the start (top)
-              crossAxisAlignment:
-                  CrossAxisAlignment.start, // Align items to the start (left)
-              mainAxisSize:
-                  MainAxisSize.min, // Let the column take minimum space
-              children: [
-                SizedBox(
-                  height: AppSpacing.small,
-                ), // Small spacing above the image
-                // Center the product image
-                Hero(
-                  tag: url,
+        child: Container(
+          padding: const EdgeInsets.all(AppSpacing.small),
+          decoration: BoxDecoration(
+            color: AppColors.onPrimary,
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(5, 5),
+                color: Colors.black.withAlpha(50),
+                blurRadius: 5,
+                spreadRadius: 3,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: AppSpacing.small),
+
+              // Displays the product image inside a Hero widget for smooth transitions.
+              Hero(
+                tag: url,
+                child: GestureDetector(
+                  onTap: onPressedinfo,
                   child: Center(
                     child: AppNetworkImage(
-                      url: url, // URL of the product image
-                      widthImage:
-                          responsiveDesign
-                              .imageHomeContainerWidth, // Set the image width
-                      heightImage:
-                          responsiveDesign
-                              .imageHomeContainerheight, // Set the image height
+                      url: url,
+                      assetsImage: assetsImage,
+                      widthImage: responsiveDesign.imageHomeContainerWidth,
+                      heightImage: responsiveDesign.imageHomeContainerheight,
                     ),
                   ),
                 ),
-                // Favorite icon section
-                Spacer(), // Flexible space between the image and text below
-                IsFavorite(
-                  productName: productName,
-                  textStyle: textTheme.displaySmall!.copyWith(
-                    fontSize:
-                        AppTypography
-                            .h4, // Adjust font size for the product name
-                  ),
-                  isFavorite: isFavorite, // Whether the product is a favorite
-                  onPressedFavorite:
-                      onPressedFavorite, // Callback for favorite button
+              ),
+
+              const Spacer(),
+
+              // Product title with favorite icon toggle.
+              IsFavorite(
+                productName: productName,
+                textStyle: textTheme.displaySmall!.copyWith(
+                  fontSize: AppTypography.h4,
                 ),
+                isFavorite: isFavorite,
+                onPressedFavorite: onPressedFavorite,
+              ),
 
-                // Product category text
-                Text(productCategory, style: textTheme.bodyMedium),
+              // Product category label.
+              Text(productCategory, style: textTheme.bodyMedium),
 
-                isPromotion
-                    ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Product promotion price text with custom font size
-                        Text(
-                          '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
-                          style: textTheme.labelLarge?.copyWith(
-                            color: AppColors.disabledButton,
-                            decoration: TextDecoration.lineThrough,
-                            decorationColor: AppColors.disabledButton,
-                            decorationThickness: 2.0,
-                          ),
-                        ),
-                        // Product promotion price text with custom font size
-                        Text(
-                          '\$ ${(productPrice - productPrice * discount).toStringAsFixed(2)}', // Display price with a dollar sign
-                          style: textTheme.labelLarge,
-                        ),
-                      ],
-                    )
-                    : Text(
-                      '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
-                      style: textTheme.labelLarge,
-                    ),
+              // Price section with promotional logic.
+              PriceSection(
+                isPromotion: isPromotion,
+                productPrice: productPrice,
+                discount: discount,
+              ),
 
-                Spacer(), // Flexible space between the image and text below
-                // Action buttons: Buy and Info
-                Center(
-                  child: AppButtons(
-                    type: ButtonType.secondaryTextButton,
-                    title: 'Add to Cart',
-                    fontSizeTextButton: AppTypography.h3,
-                    onPressed: onPressedbuy, // Callback for buy button
-                  ),
+              const Spacer(),
+
+              // Add to cart button centered at the bottom.
+              Center(
+                child: AppButtons(
+                  type: ButtonType.secondaryTextButton,
+                  title: 'Add to Cart',
+                  fontSizeTextButton: AppTypography.h3,
+                  onPressed: onPressedbuy,
                 ),
-
-                // Action buttons: Buy and Info
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

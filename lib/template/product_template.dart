@@ -28,6 +28,9 @@ class ProductTemplate extends StatelessWidget {
   /// The URL of the product's image.
   final String url;
 
+  /// Must be a valid assets image URL.
+  final String assetsImage;
+
   /// A description of the product.
   final String description;
 
@@ -61,6 +64,7 @@ class ProductTemplate extends StatelessWidget {
     required this.productPrice,
     required this.isPromotion,
     required this.discount,
+    required this.assetsImage,
   });
 
   @override
@@ -75,6 +79,7 @@ class ProductTemplate extends StatelessWidget {
       ),
       // The main body of the screen displaying the product details
       body: ProductInfoContainer(
+        assetsImage: assetsImage,
         url: url, // Product image URL
         productName: productName, // Product name
         description: description, // Product description

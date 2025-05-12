@@ -84,6 +84,7 @@ class LoginTemplate extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            //Shows the logo of the company
             AppAssetsImage(path: path, heightImage: 300, widthImage: 300),
 
             // The login form where users input their credentials

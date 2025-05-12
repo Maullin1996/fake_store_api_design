@@ -1,95 +1,90 @@
+import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:fake_store_design/molecules/company_info/company_info.dart';
-//import 'package:fake_store_design/models/base_product.dart';
 
-import 'package:flutter/material.dart';
-
-/// A widget representing the home screen of the application.
+/// A reusable template that represents the main home screen of the app.
 ///
-/// This screen displays a list of products, along with a category selection menu,
-/// and provides actions for interacting with the products (like adding to favorites,
-/// viewing product details, and purchasing). The screen adjusts the layout and
-/// app bar based on the user's authentication state.
+/// Displays a list of product categories, a search bar, a product grid,
+/// and company contact information. Handles user authentication states,
+/// loading states, and error display gracefully.
 class HomeTemplate extends StatelessWidget {
-  /// The Address of the E-commerce
+  /// The company's physical address shown at the bottom.
   final String address;
 
-  /// The emanil of the E-commerce
+  /// Local fallback image asset path for products.
+  final String assetsImage;
+
+  /// The company's support email address.
   final String email;
 
-  /// The whatsapp of the E-commerce
+  /// The company's WhatsApp contact.
   final String whatsapp;
 
-  /// The instagram of the E-commerce
+  /// The company's Instagram handle.
   final String instagram;
 
-  /// A list of the categories of the products to sell.
+  /// List of product categories to filter the product list.
   final List<String> categories;
 
-  /// A flag indicating whether the user is logged in.
+  /// Indicates whether the user is logged in.
   final bool isLogIn;
 
-  /// A list of products to be displayed on the home screen.
+  /// Complete list of available products.
   final List<dynamic> products;
 
-  /// An optional error message to be displayed in case of an error.
+  /// Message to display in case of an error fetching products.
   final String errorMessage;
 
-  /// A flag indicating whether the products are currently loading.
+  /// Indicates if the product list is currently loading.
   final bool isLoading;
 
-  /// A list of the user's favorite products.
+  /// List of user's favorite products.
   final List<dynamic> myFavoriteList;
 
-  /// A list of the products in the user's shopping cart.
+  /// List of products added to the user's cart.
   final List<dynamic> myCartList;
 
-  /// The selected category to filter the displayed products.
+  /// Currently selected category filter.
   final String selectedCategory;
 
-  /// The callback function to handle favorite button presses on products.
+  /// Callback when the favorite icon is pressed.
   final void Function(dynamic)? onPressedFavorite;
 
-  /// The callback function to handle info button presses on products.
+  /// Callback when product info is tapped.
   final void Function(dynamic)? onPressedinfo;
 
-  /// The callback function to handle buy button presses on products.
+  /// Callback when buy button is pressed.
   final void Function(dynamic)? onPressedbuy;
 
-  /// The callback function to handle the log in action.
+  /// Callback when login is requested.
   final VoidCallback? logInonPressed;
 
-  /// The callback function to handle the cart button press.
+  /// Callback when the cart icon is tapped.
   final VoidCallback? cartonPressed;
 
-  /// The callback function to handle user profile button press.
+  /// Callback when the user icon is tapped.
   final VoidCallback? useronPressed;
 
-  /// The callback function to handle log out action.
+  /// Callback when logout is requested.
   final VoidCallback? logOutonPressed;
 
-  /// The first name of the user (if logged in).
+  /// First name of the logged-in user.
   final String? name;
 
-  /// The last name of the user (if logged in).
+  /// Last name of the logged-in user.
   final String? lastName;
 
-  /// The callback function to handle category selection.
+  /// Callback to select a new product category.
   final void Function(String) onCategorySelected;
 
-  /// Callback function triggered when an item is selected from the suggestions.
+  /// Callback when a product is selected from search results.
   final void Function(String selectedItem) onItemSelected;
 
-  /// Callback function that refresh all the product on the screen.
+  /// Callback to refresh the product list.
   final Future<void> Function() refreshProducts;
 
-  /// Creates an instance of [HomeTemplate].
-  ///
-  /// This widget represents the home screen where products are displayed, and
-  /// users can interact with them through the favorite, info, and buy buttons.
-  /// The layout changes based on whether the user is logged in or not, and
-  /// it handles loading and error states.
+  /// Creates the [HomeTemplate] screen.
   const HomeTemplate({
     super.key,
     required this.address,
@@ -116,17 +111,16 @@ class HomeTemplate extends StatelessWidget {
     this.logOutonPressed,
     this.name,
     this.lastName,
+    required this.assetsImage,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Scaffold is used to create the basic visual structure of the screen
     return Scaffold(
-      // The app bar changes based on whether the user is logged in
       appBar:
           isLogIn
               ? CustomAppbars(
-                appbarType: AppbarType.homeLogOutAppbar, // For logged-out users
+                appbarType: AppbarType.homeLogOutAppbar,
                 useronPressed: useronPressed,
                 name: name,
                 lastName: lastName,
@@ -134,7 +128,7 @@ class HomeTemplate extends StatelessWidget {
                 logOutonPressed: logOutonPressed,
               )
               : CustomAppbars(
-                appbarType: AppbarType.homeLogInAppbar, // For logged-in users
+                appbarType: AppbarType.homeLogInAppbar,
                 logInonPressed: logInonPressed,
                 cartonPressed: cartonPressed,
               ),
@@ -146,6 +140,7 @@ class HomeTemplate extends StatelessWidget {
         backgroundColor: AppColors.onPrimary,
         child: CustomScrollView(
           slivers: [
+            // Header with search and categories
             SliverToBoxAdapter(
               child: Column(
                 children: [
@@ -157,7 +152,6 @@ class HomeTemplate extends StatelessWidget {
                     displayString: (item) => item,
                     onItemSelected: onItemSelected,
                   ),
-                  // Category selection widget
                   ListCategory(
                     categories: categories,
                     selectedCategory: selectedCategory,
@@ -166,7 +160,10 @@ class HomeTemplate extends StatelessWidget {
                 ],
               ),
             ),
+
+            // Product grid or loading/error state
             _buildBody(
+              assetsImage: assetsImage,
               context: context,
               products: products,
               myFavoriteList: myFavoriteList,
@@ -175,6 +172,7 @@ class HomeTemplate extends StatelessWidget {
               isLoading: isLoading,
             ),
 
+            // Company info footer
             SliverToBoxAdapter(
               child: Column(
                 children: [
@@ -182,9 +180,8 @@ class HomeTemplate extends StatelessWidget {
                     height:
                         products.isNotEmpty
                             ? AppSpacing.small
-                            : MediaQuery.sizeOf(context).height,
+                            : MediaQuery.sizeOf(context).height * 0.8,
                   ),
-                  // The contact information
                   CompanyInfo(
                     address: address,
                     email: email,
@@ -200,12 +197,9 @@ class HomeTemplate extends StatelessWidget {
     );
   }
 
-  /// Builds the body of the home screen, handling the loading state, error state,
-  /// and the display of products.
-  ///
-  /// If the products are loading, a progress indicator is shown. If an error
-  /// message is provided, it is displayed. Otherwise, the list of products is shown.
+  /// Builds the product list section depending on the loading or error state.
   Widget _buildBody({
+    required String assetsImage,
     required BuildContext context,
     required String errorMessage,
     required bool isLoading,
@@ -215,92 +209,73 @@ class HomeTemplate extends StatelessWidget {
   }) {
     final textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.sizeOf(context).width;
-    final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
+    final responsiveDesign = ResponsiveDesign(width: width);
 
     if (isLoading) {
       return SliverGrid(
-        delegate: SliverChildBuilderDelegate(childCount: 10, (context, index) {
-          return SkeletonLoadingContainer(width: width);
-        }),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: responsiveDesign.columnAmount, // columns
-          mainAxisSpacing:
-              responsiveDesign
-                  .mainAxisSpacing, // Vertical spacing between items
-          crossAxisSpacing:
-              responsiveDesign
-                  .crossAxisSpacing, // Horizontal spacing between items
-          childAspectRatio:
-              responsiveDesign.childAspectRatio, // Aspect ratio of each item
+        delegate: SliverChildBuilderDelegate(
+          childCount: 10,
+          (context, index) => SkeletonLoadingContainer(width: width),
         ),
-      ); // Loading state
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: responsiveDesign.columnAmount,
+          mainAxisSpacing: responsiveDesign.mainAxisSpacing,
+          crossAxisSpacing: responsiveDesign.crossAxisSpacing,
+          childAspectRatio: responsiveDesign.childAspectRatio,
+        ),
+      );
     } else if (errorMessage.isNotEmpty) {
       return SliverToBoxAdapter(
         child: Column(
           children: [
             SizedBox(height: AppSpacing.extraLarge),
-            Icon(
-              Icons.arrow_downward_rounded,
-              size: 90,
-              color: AppColors.primary,
-            ),
-            SizedBox(height: AppSpacing.medium),
             Text(
-              'Error to get te products',
+              'Error to get the products',
               style: textTheme.displayLarge,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: AppSpacing.medium),
             Text(
-              'Pull To Update or Refresh',
+              'Pull to update or refresh',
               style: textTheme.displayLarge,
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: width * 0.3),
+            SizedBox(height: width * 0.02),
           ],
         ),
       );
+    } else {
+      return SliverGrid(
+        delegate: SliverChildBuilderDelegate(childCount: products.length, (
+          context,
+          index,
+        ) {
+          final product = products[index];
+
+          return FadeIn(
+            duration: const Duration(milliseconds: 300),
+            child: ProducthomeContainer(
+              assetsImage: assetsImage,
+              isPromotion: product.isPromotion,
+              discount: product.discount,
+              url: product.image,
+              productName: product.title,
+              productCategory: product.category,
+              productPrice: product.price,
+              isFavorite: myFavoriteList.contains(product),
+              onPressedFavorite: () => onPressedFavorite?.call(product),
+              onPressedinfo: () => onPressedinfo?.call(product),
+              onPressedbuy: () => onPressedbuy?.call(product),
+            ),
+          );
+        }),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: responsiveDesign.columnAmount,
+          mainAxisSpacing: responsiveDesign.mainAxisSpacing,
+          crossAxisSpacing: responsiveDesign.crossAxisSpacing,
+          childAspectRatio: responsiveDesign.childAspectRatio,
+        ),
+      );
     }
-
-    return SliverGrid(
-      delegate: SliverChildBuilderDelegate(childCount: products.length, (
-        context,
-        index,
-      ) {
-        final product = products[index];
-
-        return FadeIn(
-          duration: const Duration(milliseconds: 300),
-          child: ProducthomeContainer(
-            isPromotion: product.isPromotion,
-            discount: product.discount,
-            url: product.image, // Product image URL
-            productName: product.title, // Product name
-            productCategory: product.category, // Product category
-            productPrice: product.price, // Product price
-            isFavorite: myFavoriteList.contains(
-              product,
-            ), // Whether the product is in favorites
-            onPressedFavorite:
-                () =>
-                    onPressedFavorite?.call(product), // Favorite button action
-            onPressedinfo:
-                () => onPressedinfo?.call(product), // Info button action
-            onPressedbuy:
-                () => onPressedbuy?.call(product), // Buy button action
-          ),
-        );
-      }),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: responsiveDesign.columnAmount, // columns
-        mainAxisSpacing:
-            responsiveDesign.mainAxisSpacing, // Vertical spacing between items
-        crossAxisSpacing:
-            responsiveDesign
-                .crossAxisSpacing, // Horizontal spacing between items
-        childAspectRatio:
-            responsiveDesign.childAspectRatio, // Aspect ratio of each item
-      ),
-    );
   }
 }

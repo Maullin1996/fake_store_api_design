@@ -2,47 +2,47 @@ import 'package:flutter/material.dart';
 
 import '../../design_system.dart';
 
-/// A widget that represents a container for a product in the cart.
+/// A stateless widget that displays a product inside the shopping cart UI.
 ///
-/// This widget displays a product's image, name, quantity, price, and buttons to
-/// adjust the quantity (increase/decrease). It provides interactive buttons to
-/// modify the quantity of the product.
+/// Shows the product image, name, quantity (amount), and pricing information,
+/// including promotional pricing if applicable. Also includes buttons to increase
+/// or decrease quantity, and optionally displays a product description depending
+/// on the screen size.
 class ProductCartContainer extends StatelessWidget {
-  /// The URL of the product image.
+  /// Image URL for the product.
   final String url;
 
-  /// The name of the product.
+  /// Local fallback image path if [url] fails to load.
+  final String assetsImage;
+
+  /// Name of the product.
   final String productName;
 
-  /// The current amount (quantity) of the product in the cart.
+  /// Quantity or unit description of the product (e.g., "2 x 500ml").
   final String amount;
 
-  /// The price of the product.
+  /// Regular price of the product.
   final double productPrice;
 
-  /// The description of the product.
-  final String descrition;
+  /// Detailed product description.
+  final String description;
 
-  /// Whether the product is in promotion.
+  /// Whether the product is under a promotional discount.
   final bool isPromotion;
 
-  /// Discount value
+  /// Discount percentage to apply if [isPromotion] is true (e.g., 0.2 for 20%).
   final double discount;
 
-  /// The callback function to handle the increase action for the product quantity.
+  /// Callback when the plus button is pressed.
   final Function()? onPressedplus;
 
-  /// The callback function to handle the decrease action for the product quantity.
+  /// Callback when the minus button is pressed.
   final Function()? onPressedminus;
 
-  /// The callback function for the information button.
+  /// Callback when the container is tapped for more info.
   final Function()? onPressedinfo;
 
-  /// Creates an instance of [ProductCartContainer].
-  ///
-  /// The [url], [productName], [amount], and [productPrice] are required, while the
-  /// [onPressedplus] and [onPressedminus] functions are optional to handle the
-  /// increase and decrease button actions.
+  /// Creates a [ProductCartContainer].
   const ProductCartContainer({
     super.key,
     required this.url,
@@ -51,21 +51,20 @@ class ProductCartContainer extends StatelessWidget {
     required this.productPrice,
     required this.isPromotion,
     required this.discount,
-    required this.descrition,
+    required this.description,
     this.onPressedplus,
     this.onPressedminus,
     this.onPressedinfo,
+    required this.assetsImage,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(
       width: MediaQuery.sizeOf(context).width,
     );
 
-    // The main container for displaying the product information
     return GestureDetector(
       onTap: onPressedinfo,
       child: Container(
@@ -75,109 +74,65 @@ class ProductCartContainer extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           horizontal: responsiveDesign.cartHorizontalPadding,
           vertical: responsiveDesign.cartHorizontalPadding,
-        ), // Padding around the entire container
+        ),
         decoration: BoxDecoration(
-          color: AppColors.onPrimary, // Background color for the container
-          borderRadius: BorderRadius.circular(
-            AppRadius.small,
-          ), // Rounded corners
+          color: AppColors.onPrimary,
+          borderRadius: BorderRadius.circular(AppRadius.small),
         ),
         child: Row(
-          // Row to align the image, details, and price on the same line
           children: [
-            // Display the product image using the AppNetworkImage widget
+            // Product image (from network with local fallback).
             AppNetworkImage(
               url: url,
+              assetsImage: assetsImage,
               heightImage: responsiveDesign.imageCartContainerheight,
               widthImage: responsiveDesign.imageCartContainerWidth,
             ),
-
-            SizedBox(
-              width: AppSpacing.small,
-            ), // Small spacing between the image and the text
-
+            SizedBox(width: AppSpacing.small),
+            // Product info: name, amount, and optional description.
             Expanded(
-              // The product details section, takes remaining space
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start, // Align text to the start (left)
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Display the product name
                   Text(
                     productName,
                     style: textTheme.displaySmall,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-
-                  SizedBox(
-                    height: AppSpacing.small,
-                  ), // Small spacing between the name and amount
-                  // Display the amount (quantity) of the product
+                  SizedBox(height: AppSpacing.small),
                   Text(
                     amount,
                     style: textTheme.labelLarge?.copyWith(
-                      fontSize:
-                          AppTypography.h3, // Custom font size for the amount
+                      fontSize: AppTypography.h3,
                     ),
                   ),
                   SizedBox(height: AppSpacing.small),
-                  responsiveDesign.descriptionCartContainer
-                      ? Text(descrition, style: textTheme.bodyLarge)
-                      : SizedBox(),
+                  if (responsiveDesign.descriptionCartContainer)
+                    Text(description, style: textTheme.bodyLarge),
                 ],
               ),
             ),
-
-            // Column to display the product price and action buttons (increase/decrease)
+            // Price and quantity adjustment buttons.
             Column(
-              mainAxisAlignment:
-                  MainAxisAlignment
-                      .center, // Align items vertically in the center
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                isPromotion
-                    ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Product promotion price text with custom font size
-                        Text(
-                          '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
-                          style: textTheme.labelLarge?.copyWith(
-                            color: AppColors.disabledButton,
-                            decoration: TextDecoration.lineThrough,
-                            decorationColor: AppColors.disabledButton,
-                            decorationThickness: 2.0,
-                          ),
-                        ),
-                        // Product promotion price text with custom font size
-                        Text(
-                          '\$ ${(productPrice - productPrice * discount).toStringAsFixed(2)}', // Display price with a dollar sign
-                          style: textTheme.labelLarge,
-                        ),
-                      ],
-                    )
-                    : Text(
-                      '\$ ${productPrice.toStringAsFixed(2)}', // Display price with a dollar sign
-                      style: textTheme.labelLarge,
-                    ),
-
-                // Row for the buttons to increase or decrease the quantity
+                PriceSection(
+                  isPromotion: isPromotion,
+                  productPrice: productPrice,
+                  discount: discount,
+                ),
                 Row(
                   children: [
-                    // Button to increase quantity
                     AppButtons(
                       type: ButtonType.secondaryIconButton,
                       icon: AppIcons.plus,
-                      onPressed:
-                          onPressedplus, // Calls the provided callback for increase
+                      onPressed: onPressedplus,
                     ),
-
-                    // Button to decrease quantity
                     AppButtons(
                       type: ButtonType.secondaryIconButton,
                       icon: AppIcons.minus,
-                      onPressed:
-                          onPressedminus, // Calls the provided callback for decrease
+                      onPressed: onPressedminus,
                     ),
                   ],
                 ),

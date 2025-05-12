@@ -5,7 +5,7 @@ import 'package:fake_store_design/atoms/app_spacing.dart';
 /// These values are used to determine how the UI should adapt on different screen sizes.
 abstract class BreakPoints {
   /// Extra small devices.
-  static const xsmall = 390;
+  static const xsmall = 350;
 
   /// Small devices.
   static const small = 550;
@@ -192,12 +192,12 @@ class ResponsiveDesign {
       iconZise = 35;
     } else {
       descriptionCartContainer = false;
-      columnAmount = 2;
+      columnAmount = 1;
       childAspectRatio = 0.5;
       mainAxisSpacing = 4;
       crossAxisSpacing = 4;
-      imageHomeContainerWidth = 90;
-      imageHomeContainerheight = 100;
+      imageHomeContainerWidth = 170;
+      imageHomeContainerheight = 190;
       imageinfoContainerWidth = 250;
       imageinfoContainerheight = 300;
       imageCartContainerWidth = 70;

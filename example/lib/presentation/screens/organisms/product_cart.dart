@@ -22,7 +22,8 @@ class ProductCart extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(horizontal: AppRadius.small),
             child: ProductCartContainer(
-              descrition: 'High-performance laptop with advanced features.',
+              assetsImage: 'assets/images/error.png',
+              description: 'High-performance laptop with advanced features.',
               discount: 1,
               isPromotion: false,
               url:

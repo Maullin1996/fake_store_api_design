@@ -38,6 +38,7 @@ class _ProductHomeState extends State<ProductHome> {
             ),
             Center(
               child: ProducthomeContainer(
+                assetsImage: 'assets/images/error.png',
                 url:
                     'https://ih1.redbubble.net/image.4905811472.8675/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
                 productName: 'productName',
@@ -60,10 +61,10 @@ class _ProductHomeState extends State<ProductHome> {
             ),
             Center(
               child: ProducthomeContainer(
+                assetsImage: 'assets/images/error.png',
                 discount: 1,
                 isPromotion: false,
-                url:
-                    'https://ih1.redbubble.net/image.4905811472.8675/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
+                url: 'k',
                 productName: 'productName',
                 productCategory: 'productCategory',
                 productPrice: 600,

@@ -59,6 +59,7 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
 
     return HomeTemplate(
+      assetsImage: 'assets/images/error.png',
       refreshProducts: _refreshProducts,
       address: 'CRA 88A # 55W - 44 Sur Medellin',
       email: 'allstorehouse@correo.com',
