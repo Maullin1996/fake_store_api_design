@@ -167,7 +167,6 @@ class HomeTemplate extends StatelessWidget {
               context: context,
               products: products,
               myFavoriteList: myFavoriteList,
-              myCartList: myCartList,
               errorMessage: errorMessage,
               isLoading: isLoading,
             ),
@@ -178,7 +177,7 @@ class HomeTemplate extends StatelessWidget {
                 children: [
                   SizedBox(
                     height:
-                        products.isNotEmpty
+                        (products.isNotEmpty && errorMessage.isEmpty)
                             ? AppSpacing.small
                             : MediaQuery.sizeOf(context).height * 0.8,
                   ),
@@ -205,7 +204,6 @@ class HomeTemplate extends StatelessWidget {
     required bool isLoading,
     required dynamic products,
     required List<dynamic> myFavoriteList,
-    required List<dynamic> myCartList,
   }) {
     final textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.sizeOf(context).width;
