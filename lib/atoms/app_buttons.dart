@@ -116,18 +116,21 @@ class AppButtons extends StatelessWidget {
         return TextButton(
           style: TextButton.styleFrom(shape: const BeveledRectangleBorder()),
           onPressed: onPressed,
-          child: Text(
-            title,
-            style: textTheme.displaySmall?.copyWith(
-              fontSize: fontSizeTextButton,
-              color:
-                  onPressed != null
-                      ? (type == ButtonType.primaryTextButton
-                          ? AppColors.primary
-                          : AppColors.secondary)
-                      : AppColors.disabledButton,
-            ),
-          ),
+          child:
+              isLoading!
+                  ? const CircularProgressIndicator()
+                  : Text(
+                    title,
+                    style: textTheme.displaySmall?.copyWith(
+                      fontSize: fontSizeTextButton,
+                      color:
+                          onPressed != null
+                              ? (type == ButtonType.primaryTextButton
+                                  ? AppColors.primary
+                                  : AppColors.secondary)
+                              : AppColors.disabledButton,
+                    ),
+                  ),
         );
 
       // Icon-only button with customizable icon and color.
