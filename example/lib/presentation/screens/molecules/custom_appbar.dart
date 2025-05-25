@@ -54,15 +54,7 @@ class CustomAppbar extends StatelessWidget {
             ),
             SizedBox(height: AppSpacing.medium),
 
-            Text('Log In', style: textTheme.displayMedium),
-            CustomAppbars(
-              appbarType: AppbarType.logInAppbar,
-              backonPressed: () {},
-              cartonPressed: () {},
-            ),
-            SizedBox(height: AppSpacing.medium),
-
-            Text('Log out Cart', style: textTheme.displayMedium),
+            Text('Products', style: textTheme.displayMedium),
             CustomAppbars(
               appbarType: AppbarType.productAppbar,
               backonPressed: () {},

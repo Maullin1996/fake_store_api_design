@@ -202,7 +202,7 @@ class HomeTemplate extends StatelessWidget {
     required BuildContext context,
     required String errorMessage,
     required bool isLoading,
-    required dynamic products,
+    required List<dynamic> products,
     required List<dynamic> myFavoriteList,
   }) {
     final textTheme = Theme.of(context).textTheme;
@@ -253,6 +253,7 @@ class HomeTemplate extends StatelessWidget {
           return FadeIn(
             duration: const Duration(milliseconds: 300),
             child: ProducthomeContainer(
+              id: product.id,
               assetsImage: assetsImage,
               isPromotion: product.isPromotion,
               discount: product.discount,

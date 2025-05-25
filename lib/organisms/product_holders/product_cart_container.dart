@@ -66,6 +66,7 @@ class ProductCartContainer extends StatelessWidget {
     );
 
     return GestureDetector(
+      key: Key('info_gesture'),
       onTap: onPressedinfo,
       child: Container(
         margin: EdgeInsets.symmetric(

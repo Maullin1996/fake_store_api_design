@@ -44,6 +44,7 @@ class ListCategory extends StatelessWidget {
 
           // Return a button for each category.
           return AppButtons(
+            key: Key("$index"),
             title: category, // Set the button's title as the category name.
             type:
                 selectedCategory ==

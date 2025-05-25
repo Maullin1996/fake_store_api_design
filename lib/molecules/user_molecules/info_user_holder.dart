@@ -33,22 +33,29 @@ class InfoUserHolder extends StatelessWidget {
   Widget _buildInfoRow(BuildContext context, IconData icon, String text) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Row(
-      children: [
-        // Display the icon with a size of 35 and color [AppColors.secondary].
-        Icon(icon, size: 35, color: AppColors.secondary),
+    return SizedBox(
+      child: Row(
+        children: [
+          // Display the icon with a size of 35 and color [AppColors.secondary].
+          Icon(icon, size: 35, color: AppColors.secondary),
 
-        // Add spacing between the icon and the text.
-        SizedBox(width: AppSpacing.small),
+          // Add spacing between the icon and the text.
+          SizedBox(width: AppSpacing.small),
 
-        // Display the text with a specific style.
-        Text(
-          text,
-          overflow: TextOverflow.ellipsis,
-          softWrap: true,
-          style: textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w400),
-        ),
-      ],
+          // Display the text with a specific style.
+          SizedBox(
+            width: MediaQuery.sizeOf(context).width * 0.7,
+            child: Text(
+              text,
+              overflow: TextOverflow.ellipsis,
+              softWrap: true,
+              style: textTheme.headlineLarge?.copyWith(
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

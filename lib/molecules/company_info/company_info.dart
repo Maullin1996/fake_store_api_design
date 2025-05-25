@@ -77,6 +77,7 @@ class CompanyInfo extends StatelessWidget {
       return Padding(
         padding: EdgeInsets.symmetric(vertical: AppSpacing.small),
         child: Row(
+          key: Key("1 column"),
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Column(
@@ -101,6 +102,7 @@ class CompanyInfo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.small),
       child: Row(
+        key: Key("2 column"),
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Column(

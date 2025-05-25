@@ -26,6 +26,7 @@ class _ProductInfoHolderState extends State<ProductInfoHolder> {
       ),
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       body: ProductInfoContainer(
+        id: 1,
         assetsImage: 'assets/images/error.png',
         url:
             'https://ih1.redbubble.net/image.4905811472.8675/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',

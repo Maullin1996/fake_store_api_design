@@ -14,7 +14,7 @@ class PriceSection extends StatelessWidget {
 
   /// The discount percentage to apply if [isPromotion] is true.
   /// Should be a value between 0.0 and 1.0 (e.g., 0.2 for 20%).
-  final double discount;
+  final double? discount;
 
   /// Creates a [PriceSection] widget.
   ///
@@ -23,7 +23,7 @@ class PriceSection extends StatelessWidget {
     super.key,
     required this.isPromotion,
     required this.productPrice,
-    required this.discount,
+    this.discount = 1,
   });
 
   @override
@@ -46,7 +46,7 @@ class PriceSection extends StatelessWidget {
             ),
             // Final price after applying the discount.
             Text(
-              '\$ ${(productPrice - productPrice * discount).toStringAsFixed(2)}',
+              '\$ ${(productPrice - productPrice * discount!).toStringAsFixed(2)}',
               style: textTheme.labelLarge,
             ),
           ],

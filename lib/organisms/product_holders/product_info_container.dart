@@ -12,6 +12,9 @@ class ProductInfoContainer extends StatelessWidget {
   /// The URL of the product image.
   final String url;
 
+  /// unique identifier
+  final int id;
+
   /// Must be a valid assets image URL.
   final String assetsImage;
 
@@ -57,6 +60,7 @@ class ProductInfoContainer extends StatelessWidget {
     this.isFavorite = false,
     this.onPressedFavorite,
     required this.assetsImage,
+    required this.id,
   });
 
   @override
@@ -80,7 +84,7 @@ class ProductInfoContainer extends StatelessWidget {
         children: [
           // Center the product image with specified width and height
           Hero(
-            tag: url,
+            tag: id,
             child: Center(
               child: AppNetworkImage(
                 url: url, // Product image URL
@@ -127,6 +131,7 @@ class ProductInfoContainer extends StatelessWidget {
           // Centered "Add to cart" button
           Center(
             child: AppButtons(
+              key: Key("AddToTheCart"),
               title: 'Add to the cart', // Button text
               type:
                   ButtonType

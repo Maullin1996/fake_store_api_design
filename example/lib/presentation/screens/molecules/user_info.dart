@@ -24,7 +24,7 @@ class UserInfo extends StatelessWidget {
             Text('User Information', style: textTheme.displayMedium),
             InfoUserHolder(
               username: 'Username',
-              email: 'Email',
+              email: "tester_google@google.com.cooooooooooo",
               phone: 'Phone',
               city: 'City',
               street: 'Street',

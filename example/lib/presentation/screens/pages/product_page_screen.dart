@@ -18,6 +18,7 @@ class ProductPageScreen extends ConsumerWidget {
     bool productsValidation = product == null ? true : false;
     final List<Product> myFavoriteList = ref.watch(myFavoriteListProvider);
     return ProductTemplate(
+      id: productsValidation ? productMock(true)[0].id : product!.id,
       assetsImage: 'assets/images/error.png',
       isFavorite: myFavoriteList.contains(product),
       url: productsValidation ? productMock(true)[0].image : product!.image,

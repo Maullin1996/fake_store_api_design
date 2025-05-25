@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +90,8 @@ class CartTemplate extends StatelessWidget {
         children: [
           // Cart item list with fade animation.
           FadeInUp(
+            delay: const Duration(milliseconds: 500),
+            animate: !Platform.environment.containsKey('FLUTTER_TEST'),
             child: ListView.separated(
               padding: const EdgeInsets.only(
                 top: AppSpacing.medium,
@@ -98,6 +102,7 @@ class CartTemplate extends StatelessWidget {
                 final product = listCart[index];
 
                 return ProductCartContainer(
+                  key: Key("Product-$index"),
                   onPressedinfo: () => onPressedinfo?.call(product),
                   description: product.description,
                   url: product.image,

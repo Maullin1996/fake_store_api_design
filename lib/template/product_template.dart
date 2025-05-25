@@ -13,6 +13,9 @@ class ProductTemplate extends StatelessWidget {
   /// A flag indicating whether the product is marked as a favorite.
   final bool isFavorite;
 
+  /// unique identifier
+  final int id;
+
   /// The callback function for when the cart button is pressed.
   final VoidCallback? cartonPressed;
 
@@ -65,6 +68,7 @@ class ProductTemplate extends StatelessWidget {
     required this.isPromotion,
     required this.discount,
     required this.assetsImage,
+    required this.id,
   });
 
   @override
@@ -79,6 +83,7 @@ class ProductTemplate extends StatelessWidget {
       ),
       // The main body of the screen displaying the product details
       body: ProductInfoContainer(
+        id: id,
         assetsImage: assetsImage,
         url: url, // Product image URL
         productName: productName, // Product name

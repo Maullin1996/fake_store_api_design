@@ -27,7 +27,7 @@ class LoginForm extends StatelessWidget {
     this.onChangePassword,
     this.validatorPassword,
     this.passwordController,
-    this.isLoadingButton,
+    this.isLoadingButton = false,
     this.iconOnPressed,
     required this.obscureText,
   });
@@ -68,6 +68,7 @@ class LoginForm extends StatelessWidget {
 
             // Username input field.
             AppInputText(
+              key: Key("username"),
               label: 'Username', // Label text for the field.
               floatingLabelBehavior: false, // Making the label always visible.
               onChange:
@@ -83,6 +84,7 @@ class LoginForm extends StatelessWidget {
 
             // Password input field.
             AppInputText(
+              key: Key("password"),
               label: 'Password', // Label text for the password field.
               floatingLabelBehavior: false, // Making the label always visible.
               obscureText:
@@ -94,6 +96,7 @@ class LoginForm extends StatelessWidget {
               textEditingController:
                   passwordController, // Controller for managing password input.
               suffixIcon: IconButton(
+                key: Key("Icon button"),
                 onPressed: iconOnPressed,
                 icon: Icon(
                   obscureText
@@ -106,6 +109,7 @@ class LoginForm extends StatelessWidget {
             SizedBox(height: AppSpacing.small),
             // Centering the login button.
             AppButtons(
+              key: Key("enter button"),
               fontSizeTextButton: AppTypography.h1,
               type:
                   ButtonType

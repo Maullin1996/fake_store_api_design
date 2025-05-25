@@ -30,6 +30,7 @@ class CustomDialog extends StatelessWidget {
 
     // The button to trigger the dialog.
     return AppButtons(
+      key: Key("EnterDialogButton"),
       type:
           ButtonType
               .secondaryTextButton, // The type of button (filled with secondary color).
@@ -82,7 +83,7 @@ Future<dynamic> dialogs({
       size: 90,
       color: AppColors.error,
     ); // Error icon for unauthenticated users.
-    titleTextButton = 'Log In'; // Button text for unauthenticated users.
+    titleTextButton = 'Login'; // Button text for unauthenticated users.
   }
 
   // Show the dialog.
@@ -139,6 +140,7 @@ Future<dynamic> dialogs({
                   height: AppSpacing.small,
                 ), // Space between the text and the button.
                 AppButtons(
+                  key: Key("ButtonDialogNavigation"),
                   type:
                       ButtonType
                           .secondaryTextButton, // Type of button (text button).

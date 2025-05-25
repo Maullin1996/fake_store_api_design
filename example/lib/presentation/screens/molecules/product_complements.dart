@@ -61,6 +61,30 @@ class _ProductComplementsState extends State<ProductComplements> {
               onPressedFavorite: _handleIsFvaorite,
             ),
           ),
+          SizedBox(height: AppSpacing.medium),
+          Text('Price section normal price', style: textTheme.displayMedium),
+          Container(
+            width: MediaQuery.sizeOf(context).width,
+            padding: EdgeInsets.all(AppSpacing.small),
+            color: AppColors.onPrimary,
+            child: Center(
+              child: PriceSection(isPromotion: false, productPrice: 1000),
+            ),
+          ),
+          SizedBox(height: AppSpacing.medium),
+          Text('Price section discount', style: textTheme.displayMedium),
+          Container(
+            width: MediaQuery.sizeOf(context).width,
+            padding: EdgeInsets.all(AppSpacing.small),
+            color: AppColors.onPrimary,
+            child: Center(
+              child: PriceSection(
+                isPromotion: true,
+                productPrice: 1000,
+                discount: 0.1,
+              ),
+            ),
+          ),
         ],
       ),
     );

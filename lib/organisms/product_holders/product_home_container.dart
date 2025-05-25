@@ -11,6 +11,9 @@ class ProducthomeContainer extends StatelessWidget {
   /// URL of the product image.
   final String url;
 
+  /// unique identifier
+  final int id;
+
   /// Local asset fallback image.
   final String assetsImage;
 
@@ -55,6 +58,7 @@ class ProducthomeContainer extends StatelessWidget {
     required this.isFavorite,
     this.onPressedFavorite,
     required this.assetsImage,
+    required this.id,
   });
 
   @override
@@ -87,7 +91,7 @@ class ProducthomeContainer extends StatelessWidget {
 
               // Displays the product image inside a Hero widget for smooth transitions.
               Hero(
-                tag: url,
+                tag: id,
                 child: GestureDetector(
                   onTap: onPressedinfo,
                   child: Center(
