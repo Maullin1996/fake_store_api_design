@@ -2,36 +2,33 @@ import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void main() {
-  Widget buildWidget({
-    required bool isPromotion,
-    required bool isFavorite,
-    Function()? onPressedbuy,
-    Function()? onPressedFavorite,
-    Function()? onPressedinfo,
-  }) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: ProducthomeContainer(
-            id: 1,
-            url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-            productName: "Fjallraven",
-            productCategory: "men's clothing",
-            productPrice: 1000000.95,
-            isPromotion: isPromotion,
-            discount: 0.1,
-            isFavorite: isFavorite,
-            assetsImage: "assets/test/company_info.png",
-            onPressedFavorite: onPressedFavorite,
-            onPressedbuy: onPressedbuy,
-            onPressedinfo: onPressedinfo,
-          ),
-        ),
+Widget buildWidget({
+  required bool isPromotion,
+  required bool isFavorite,
+  Function()? onPressedbuy,
+  Function()? onPressedFavorite,
+}) {
+  return MaterialApp(
+    home: Scaffold(
+      body: ProductInfoContainer(
+        id: 1,
+        url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+        productName: "Fjallraven",
+        description:
+            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+        productPrice: 1000000.95,
+        isPromotion: isPromotion,
+        discount: 0.1,
+        isFavorite: isFavorite,
+        assetsImage: "assets/test/company_info.png",
+        onPressedFavorite: onPressedFavorite,
+        onPressedbuy: onPressedbuy,
       ),
-    );
-  }
+    ),
+  );
+}
 
+void main() {
   group(
     'Verify the product home container when the product is not in	promotion',
     () {
@@ -44,16 +41,15 @@ void main() {
         // Act
         final productName = find.text("Fjallraven");
         final productPrice = find.text("\$ 1000000.95");
-        final productCategory = find.text("men's clothing");
-        final buttonText = find.text("Add to Cart");
+        final productDescription = find.text(
+          "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+        );
 
         // Assert
-        expect(productCategory, findsOneWidget);
+        expect(productDescription, findsOneWidget);
         expect(productPrice, findsOneWidget);
         expect(productName, findsOneWidget);
-        expect(buttonText, findsOneWidget);
       });
-
       testWidgets("Check if the image is displayed", (
         WidgetTester tester,
       ) async {
@@ -66,15 +62,9 @@ void main() {
         // Assert
         expect(productImage, findsOneWidget);
       });
-
       testWidgets("Check the button actions", (WidgetTester tester) async {
-        bool navigateTo = false;
         bool isFavorite = false;
         bool addCart = false;
-
-        void onPressedinfo() {
-          navigateTo = true;
-        }
 
         void onPressedFavorite() {
           isFavorite = true;
@@ -89,19 +79,22 @@ void main() {
             isPromotion: false,
             isFavorite: isFavorite,
             onPressedFavorite: onPressedFavorite,
-            onPressedinfo: onPressedinfo,
             onPressedbuy: onPressedbuy,
           ),
         );
 
         // Act
+        // Scroll down to make the text button visible
+        await tester.scrollUntilVisible(
+          find.byKey(ValueKey("AddToTheCart")),
+          500.0,
+        );
+        await tester.pump();
         await tester.tap(find.byType(IconButton));
         await tester.tap(find.byType(TextButton));
-        await tester.tap(find.byType(AppNetworkImage));
         await tester.pump();
 
         // Assert
-        expect(navigateTo, isTrue);
         expect(isFavorite, isTrue);
         expect(addCart, isTrue);
       });

@@ -2,22 +2,22 @@ import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+Widget buildWidget(String totalToPay) {
+  return MaterialApp(
+    home: Scaffold(
+      body: Center(
+        child: CustomDialog(
+          dialogType: DialogType.unauthenticated,
+          totalToPay: totalToPay,
+          onDialogButtonPressed: () {},
+        ),
+      ),
+    ),
+  );
+}
+
 void main() {
   group("Verify that the button show the correct text", () {
-    Widget buildWidget(String totalToPay) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: CustomDialog(
-              dialogType: DialogType.unauthenticated,
-              totalToPay: totalToPay,
-              onDialogButtonPressed: () {},
-            ),
-          ),
-        ),
-      );
-    }
-
     testWidgets("case 1: Empty cart", (WidgetTester tester) async {
       // Act
       await tester.pumpWidget(buildWidget("0.00"));

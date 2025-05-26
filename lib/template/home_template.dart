@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
@@ -182,6 +184,7 @@ class HomeTemplate extends StatelessWidget {
                             : MediaQuery.sizeOf(context).height * 0.8,
                   ),
                   CompanyInfo(
+                    key: Key("companiInfo"),
                     address: address,
                     email: email,
                     whatsapp: whatsapp,
@@ -252,7 +255,9 @@ class HomeTemplate extends StatelessWidget {
 
           return FadeIn(
             duration: const Duration(milliseconds: 300),
+            animate: !Platform.environment.containsKey('FLUTTER_TEST'),
             child: ProducthomeContainer(
+              key: Key("ProductHome-$index"),
               id: product.id,
               assetsImage: assetsImage,
               isPromotion: product.isPromotion,

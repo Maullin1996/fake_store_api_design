@@ -2,35 +2,35 @@ import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void main() {
-  Widget buildWidget({
-    required bool isPromotion,
-    Function()? onPressedplus,
-    Function()? onPressedminus,
-    Function()? onPressedinfo,
-  }) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: ProductCartContainer(
-            url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-            productName: "Fjallraven",
-            amount: "2",
-            productPrice: 1000000.95,
-            isPromotion: isPromotion,
-            discount: 0.1,
-            description:
-                "Your perfect pack for everyday use and walks in the forest.",
-            assetsImage: "assets/test/company_info.png",
-            onPressedinfo: onPressedinfo,
-            onPressedminus: onPressedminus,
-            onPressedplus: onPressedplus,
-          ),
+Widget buildWidget({
+  required bool isPromotion,
+  Function()? onPressedplus,
+  Function()? onPressedminus,
+  Function()? onPressedinfo,
+}) {
+  return MaterialApp(
+    home: Scaffold(
+      body: Center(
+        child: ProductCartContainer(
+          url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+          productName: "Fjallraven",
+          amount: "2",
+          productPrice: 1000000.95,
+          isPromotion: isPromotion,
+          discount: 0.1,
+          description:
+              "Your perfect pack for everyday use and walks in the forest.",
+          assetsImage: "assets/test/company_info.png",
+          onPressedinfo: onPressedinfo,
+          onPressedminus: onPressedminus,
+          onPressedplus: onPressedplus,
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
+void main() {
   group(
     'Verify the product cart container when the product is not in	promotion',
     () {

@@ -39,7 +39,7 @@ void main() {
         await tester.pumpWidget(buildWidget(authentication: false));
         await tester.pump(const Duration(milliseconds: 900));
         // Act
-        // Scroll down to make the text button visible
+        // Scroll down to make the product visible
         await tester.scrollUntilVisible(
           find.byKey(ValueKey("Product-9")),
           500.0,

@@ -49,6 +49,9 @@ class LoginTemplate extends StatelessWidget {
   /// Change obcureText state.
   final Function()? iconOnPressed;
 
+  // key for the forms
+  final GlobalKey<FormState>? formKey;
+
   /// Creates an instance of [LoginTemplate].
   ///
   /// This widget represents the login screen where users can input their
@@ -67,6 +70,7 @@ class LoginTemplate extends StatelessWidget {
     this.validatorUsername,
     this.isLoadingButton,
     this.iconOnPressed,
+    this.formKey,
     required this.obscureText,
     required this.path,
   });
@@ -82,33 +86,36 @@ class LoginTemplate extends StatelessWidget {
       ),
       backgroundColor: AppColors.onPrimary,
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //Shows the logo of the company
-            AppAssetsImage(path: path, heightImage: 300, widthImage: 300),
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              //Shows the logo of the company
+              AppAssetsImage(path: path, heightImage: 300, widthImage: 300),
 
-            // The login form where users input their credentials
-            LoginForm(
-              isLoadingButton:
-                  isLoadingButton, // Indicates if the button is in loading state
-              onPressed:
-                  onPressed, // The action triggered when the login button is pressed
-              onChangePassword:
-                  onChangePassword, // The action triggered when the password is changed
-              passwordController:
-                  passwordController, // Controller for password input field
-              onChangeUsername:
-                  onChangeUsername, // The action triggered when the username is changed
-              usernameController:
-                  usernameController, // Controller for username input field
-              validatorPassword:
-                  validatorPassword, // Validator for the password field
-              validatorUsername:
-                  validatorUsername, // Validator for the username field
-              obscureText: obscureText, // obscureText state
-              iconOnPressed: iconOnPressed, // Change the obscureText state
-            ),
-          ],
+              // The login form where users input their credentials
+              LoginForm(
+                isLoadingButton:
+                    isLoadingButton, // Indicates if the button is in loading state
+                onPressed:
+                    onPressed, // The action triggered when the login button is pressed
+                onChangePassword:
+                    onChangePassword, // The action triggered when the password is changed
+                passwordController:
+                    passwordController, // Controller for password input field
+                onChangeUsername:
+                    onChangeUsername, // The action triggered when the username is changed
+                usernameController:
+                    usernameController, // Controller for username input field
+                validatorPassword:
+                    validatorPassword, // Validator for the password field
+                validatorUsername:
+                    validatorUsername, // Validator for the username field
+                obscureText: obscureText, // obscureText state
+                iconOnPressed: iconOnPressed, // Change the obscureText state
+              ),
+            ],
+          ),
         ),
       ),
     );

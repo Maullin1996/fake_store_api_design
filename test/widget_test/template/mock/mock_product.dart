@@ -20,7 +20,25 @@ class MockProduct {
     required this.isPromotion,
     required this.discount,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MockProduct &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }
+
+List<String> categoriesMock = const [
+  "All",
+  "Clothing",
+  "Footwear",
+  "Outerwear",
+  "Baseball Cap",
+];
 
 final mockCartItems = [
   MockProduct(
