@@ -102,7 +102,7 @@ class CartTemplate extends StatelessWidget {
                 final product = listCart[index];
 
                 return ProductCartContainer(
-                  key: Key("Product-$index"),
+                  key: Key("ProductCartContainer-$index"),
                   onPressedinfo: () => onPressedinfo?.call(product),
                   description: product.description,
                   url: product.image,
