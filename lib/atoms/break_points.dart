@@ -4,8 +4,11 @@ import 'package:fake_store_design/atoms/app_spacing.dart';
 ///
 /// These values are used to determine how the UI should adapt on different screen sizes.
 abstract class BreakPoints {
+  /// Extra Extra small devices.
+  static const xxsmall = 350;
+
   /// Extra small devices.
-  static const xsmall = 350;
+  static const xsmall = 400;
 
   /// Small devices.
   static const small = 550;
@@ -89,15 +92,31 @@ class ResponsiveDesign {
   /// across different device sizes.
   void _calculateGridProperties() {
     double diagonal = width;
-
-    if (diagonal >= BreakPoints.xsmall && diagonal <= BreakPoints.small) {
+    if (diagonal >= BreakPoints.xxsmall && diagonal <= BreakPoints.xsmall) {
       descriptionCartContainer = false;
       columnAmount = 2;
       childAspectRatio = 0.47;
       mainAxisSpacing = 4;
       crossAxisSpacing = 4;
-      imageHomeContainerWidth = 90;
-      imageHomeContainerheight = 110;
+      imageHomeContainerWidth = 100;
+      imageHomeContainerheight = 120;
+      imageinfoContainerWidth = 250;
+      imageinfoContainerheight = 300;
+      imageCartContainerWidth = 70;
+      imageCartContainerheight = 100;
+      appInputTextWidth = width - 40;
+      cartHorizontalPadding = AppSpacing.small;
+      iconZise = 25;
+      productAndUserHorizontalPadding = AppSpacing.medium;
+    } else if (diagonal >= BreakPoints.xsmall &&
+        diagonal <= BreakPoints.small) {
+      descriptionCartContainer = false;
+      columnAmount = 2;
+      childAspectRatio = 0.47;
+      mainAxisSpacing = 4;
+      crossAxisSpacing = 4;
+      imageHomeContainerWidth = 120;
+      imageHomeContainerheight = 140;
       imageinfoContainerWidth = 250;
       imageinfoContainerheight = 300;
       imageCartContainerWidth = 70;

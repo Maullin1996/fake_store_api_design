@@ -3,48 +3,51 @@ import 'package:flutter/material.dart';
 import '../../atoms/tokens.dart';
 import '../../molecules/molecules.dart';
 
-/// A stateless widget that displays a product card for the home screen.
+/// A widget that displays a product card used on the home screen grid.
 ///
-/// Shows product image, name, category, price (with optional discount),
-/// and allows user interactions like viewing details, favoriting, or adding to cart.
-class ProducthomeContainer extends StatelessWidget {
-  /// URL of the product image.
+/// Includes product image, name, category, pricing (with promotion support),
+/// and user interactions such as favoriting, viewing details, and adding to cart.
+///
+/// This widget maintains its state even when it is scrolled out of view
+/// using [AutomaticKeepAliveClientMixin].
+class ProducthomeContainer extends StatefulWidget {
+  /// URL of the product image to load from network.
   final String url;
 
-  /// unique identifier
+  /// Unique identifier used for animations and tracking.
   final int id;
 
-  /// Local asset fallback image.
+  /// Fallback asset image if network image fails.
   final String assetsImage;
 
-  /// Product name displayed prominently.
+  /// Display name of the product.
   final String productName;
 
-  /// Category of the product (e.g., "Beverages").
+  /// Category or type of the product.
   final String productCategory;
 
-  /// Regular price of the product.
+  /// Base price of the product before any discounts.
   final double productPrice;
 
-  /// Callback when the "Add to Cart" button is pressed.
+  /// Called when the "Add to Cart" button is tapped.
   final Function()? onPressedbuy;
 
-  /// Callback when the product container is tapped for more info.
+  /// Called when the product image is tapped for more details.
   final Function()? onPressedinfo;
 
-  /// Callback when the favorite icon is pressed.
+  /// Called when the favorite icon is tapped.
   final Function()? onPressedFavorite;
 
-  /// Whether the product is currently marked as favorite.
+  /// Indicates whether the product is marked as a favorite.
   final bool isFavorite;
 
-  /// Whether the product has a promotional price.
+  /// Whether this product has a promotional discount.
   final bool isPromotion;
 
-  /// Discount percentage applied if [isPromotion] is true.
+  /// Percentage discount applied if [isPromotion] is true.
   final double discount;
 
-  /// Creates a [ProducthomeContainer].
+  /// Creates a [ProducthomeContainer] with required product display information.
   const ProducthomeContainer({
     super.key,
     required this.url,
@@ -62,7 +65,22 @@ class ProducthomeContainer extends StatelessWidget {
   });
 
   @override
+  State<ProducthomeContainer> createState() => _ProducthomeContainerState();
+}
+
+/// State implementation for [ProducthomeContainer] that keeps itself alive
+/// while offscreen in a scrollable list/grid.
+class _ProducthomeContainerState extends State<ProducthomeContainer>
+    with AutomaticKeepAliveClientMixin {
+  /// Keeps the widget alive when it’s offscreen in a sliver list/grid.
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    // Required call when using AutomaticKeepAliveClientMixin.
+    super.build(context);
+
     final textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.sizeOf(context).width;
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
@@ -89,15 +107,15 @@ class ProducthomeContainer extends StatelessWidget {
             children: [
               const SizedBox(height: AppSpacing.small),
 
-              // Displays the product image inside a Hero widget for smooth transitions.
+              // Displays the product image inside a Hero for page transitions.
               Hero(
-                tag: id,
+                tag: widget.id,
                 child: GestureDetector(
-                  onTap: onPressedinfo,
+                  onTap: widget.onPressedinfo,
                   child: Center(
                     child: AppNetworkImage(
-                      url: url,
-                      assetsImage: assetsImage,
+                      url: widget.url,
+                      assetsImage: widget.assetsImage,
                       widthImage: responsiveDesign.imageHomeContainerWidth,
                       heightImage: responsiveDesign.imageHomeContainerheight,
                     ),
@@ -107,35 +125,35 @@ class ProducthomeContainer extends StatelessWidget {
 
               const Spacer(),
 
-              // Product title with favorite icon toggle.
+              // Displays product name with a favorite toggle icon.
               IsFavorite(
-                productName: productName,
+                productName: widget.productName,
                 textStyle: textTheme.displaySmall!.copyWith(
                   fontSize: AppTypography.h4,
                 ),
-                isFavorite: isFavorite,
-                onPressedFavorite: onPressedFavorite,
+                isFavorite: widget.isFavorite,
+                onPressedFavorite: widget.onPressedFavorite,
               ),
 
-              // Product category label.
-              Text(productCategory, style: textTheme.bodyMedium),
+              // Displays the product category.
+              Text(widget.productCategory, style: textTheme.bodyMedium),
 
-              // Price section with promotional logic.
+              // Displays the product price and promotional info if applicable.
               PriceSection(
-                isPromotion: isPromotion,
-                productPrice: productPrice,
-                discount: discount,
+                isPromotion: widget.isPromotion,
+                productPrice: widget.productPrice,
+                discount: widget.discount,
               ),
 
               const Spacer(),
 
-              // Add to cart button centered at the bottom.
+              // Button to add the product to the shopping cart.
               Center(
                 child: AppButtons(
                   type: ButtonType.secondaryTextButton,
                   title: 'Add to Cart',
                   fontSizeTextButton: AppTypography.h3,
-                  onPressed: onPressedbuy,
+                  onPressed: widget.onPressedbuy,
                 ),
               ),
             ],

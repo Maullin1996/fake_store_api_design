@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:fake_store_design/molecules/company_info/company_info.dart';
 
@@ -184,7 +181,7 @@ class HomeTemplate extends StatelessWidget {
                             : MediaQuery.sizeOf(context).height * 0.8,
                   ),
                   CompanyInfo(
-                    key: Key("companiInfo"),
+                    key: Key("companiInfoKey"),
                     address: address,
                     email: email,
                     whatsapp: whatsapp,
@@ -214,9 +211,13 @@ class HomeTemplate extends StatelessWidget {
 
     if (isLoading) {
       return SliverGrid(
+        key: Key('SkeletonLoadingScroll'),
         delegate: SliverChildBuilderDelegate(
           childCount: 10,
-          (context, index) => SkeletonLoadingContainer(width: width),
+          (context, index) => SkeletonLoadingContainer(
+            width: width,
+            key: Key("SkeletonLoading$index"),
+          ),
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: responsiveDesign.columnAmount,
@@ -227,6 +228,7 @@ class HomeTemplate extends StatelessWidget {
       );
     } else if (errorMessage.isNotEmpty) {
       return SliverToBoxAdapter(
+        key: Key('ErroMessageScroll'),
         child: Column(
           children: [
             SizedBox(height: AppSpacing.extraLarge),
@@ -247,30 +249,27 @@ class HomeTemplate extends StatelessWidget {
       );
     } else {
       return SliverGrid(
+        key: Key('ProducthomeContainerScroll'),
         delegate: SliverChildBuilderDelegate(childCount: products.length, (
           context,
           index,
         ) {
           final product = products[index];
 
-          return FadeIn(
-            duration: const Duration(milliseconds: 300),
-            animate: !Platform.environment.containsKey('FLUTTER_TEST'),
-            child: ProducthomeContainer(
-              key: Key("ProductHome-$index"),
-              id: product.id,
-              assetsImage: assetsImage,
-              isPromotion: product.isPromotion,
-              discount: product.discount,
-              url: product.image,
-              productName: product.title,
-              productCategory: product.category,
-              productPrice: product.price,
-              isFavorite: myFavoriteList.contains(product),
-              onPressedFavorite: () => onPressedFavorite?.call(product),
-              onPressedinfo: () => onPressedinfo?.call(product),
-              onPressedbuy: () => onPressedbuy?.call(product),
-            ),
+          return ProducthomeContainer(
+            key: Key("ProductHome${product.id}"),
+            id: product.id,
+            assetsImage: assetsImage,
+            isPromotion: product.isPromotion,
+            discount: product.discount,
+            url: product.image,
+            productName: product.title,
+            productCategory: product.category,
+            productPrice: product.price,
+            isFavorite: myFavoriteList.contains(product),
+            onPressedFavorite: () => onPressedFavorite?.call(product),
+            onPressedinfo: () => onPressedinfo?.call(product),
+            onPressedbuy: () => onPressedbuy?.call(product),
           );
         }),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -73,7 +73,7 @@ class CompanyInfo extends StatelessWidget {
     }
 
     // Layout for small screens (stacked, single column)
-    if (screenWidth <= BreakPoints.small) {
+    if (screenWidth <= BreakPoints.medium) {
       return Padding(
         padding: EdgeInsets.symmetric(vertical: AppSpacing.small),
         child: Row(

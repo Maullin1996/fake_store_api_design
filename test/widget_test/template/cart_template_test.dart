@@ -5,6 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'mock/mock_product.dart';
 
+// uncomment the line of code to perform the tests
+// animate: !Platform.environment.containsKey('FLUTTER_TEST'),
+
 Widget buildWidget({
   required bool authentication,
   String totalToPay = "0.00",
@@ -41,7 +44,7 @@ void main() {
         // Act
         // Scroll down to make the product visible
         await tester.scrollUntilVisible(
-          find.byKey(ValueKey("Product-9")),
+          find.byKey(ValueKey("ProductCartContainer-9")),
           500.0,
         );
         await tester.pump();
@@ -147,7 +150,9 @@ void main() {
       // Act: simulate tapping the plus icon on the product with id=1
       await tester.tap(
         find.descendant(
-          of: find.byKey(ValueKey('Product-1')), // Widget key for the product
+          of: find.byKey(
+            ValueKey('ProductCartContainer-1'),
+          ), // Widget key for the product
           matching: find.byIcon(AppIcons.plus), // Plus icon inside the product
         ),
       );
