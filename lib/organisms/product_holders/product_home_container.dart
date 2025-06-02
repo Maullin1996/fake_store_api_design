@@ -95,8 +95,8 @@ class _ProducthomeContainerState extends State<ProducthomeContainer>
               BoxShadow(
                 offset: const Offset(5, 5),
                 color: Colors.black.withAlpha(50),
-                blurRadius: 5,
-                spreadRadius: 3,
+                blurRadius: 2,
+                spreadRadius: 1,
               ),
             ],
           ),

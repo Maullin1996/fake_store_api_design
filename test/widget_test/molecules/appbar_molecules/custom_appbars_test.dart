@@ -111,7 +111,6 @@ void main() {
       );
 
       //act
-      //act
       await tester.tap(find.byIcon(AppIcons.logout));
       await tester.tap(find.byIcon(AppIcons.cart));
       await tester.tap(find.byIcon(AppIcons.user));

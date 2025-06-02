@@ -78,10 +78,8 @@ void main() {
 
       // Calculate initial total based on mock cart items
       for (var product in mockCartItems) {
-        // If discount is 100%, just add price
         (product.discount == 1.0)
             ? totalToPay = totalToPay + product.price
-            // Otherwise, apply the discount
             : totalToPay =
                 totalToPay + (product.price * (1.0 - product.discount));
       }
@@ -124,21 +122,18 @@ void main() {
 
       // Calculate initial total based on mock cart items
       for (var product in mockCartItems) {
-        // If discount is 100%, just add price
         (product.discount == 1.0)
             ? totalToPay = totalToPay + product.price
-            // Otherwise, apply the discount
             : totalToPay =
                 totalToPay + (product.price * (1.0 - product.discount));
       }
 
-      // Mock function to simulate tapping the plus (+) button on a product
+      // Mock function to simulate tapping the plus (+)
       void plusButton(product) {
-        // For simplicity, simulate the price increase of the second product
         totalToPay = totalToPay + product.price;
       }
 
-      // Build the widget tree with the mock callback and initial total
+      // Arrange
       await tester.pumpWidget(
         buildWidget(
           authentication: false,
@@ -147,17 +142,14 @@ void main() {
         ),
       );
 
-      // Act: simulate tapping the plus icon on the product with id=1
+      // Act
       await tester.tap(
         find.descendant(
-          of: find.byKey(
-            ValueKey('ProductCartContainer-1'),
-          ), // Widget key for the product
-          matching: find.byIcon(AppIcons.plus), // Plus icon inside the product
+          of: find.byKey(ValueKey('ProductCartContainer-1')),
+          matching: find.byIcon(AppIcons.plus),
         ),
       );
 
-      // Allow the tap to process
       await tester.pump();
 
       // Rebuild the widget with updated total price to reflect changes
@@ -169,7 +161,7 @@ void main() {
         ),
       );
 
-      // Assert: Look for the updated total price text
+      // Assert
       final totalToPayText = find.text(
         'Go To Pay : ${totalToPay.toStringAsFixed(2)}',
       );

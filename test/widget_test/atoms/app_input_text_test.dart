@@ -54,7 +54,7 @@ void main() {
     await tester.enterText(find.byType(TextFormField), "password123");
     await tester.pump();
 
-    // Find the EditableText widget which is a child of TextFormField
+    // Find the EditableText
     final editableText = tester.widget<EditableText>(
       find.descendant(
         of: find.byType(TextFormField),
@@ -205,7 +205,7 @@ void main() {
   testWidgets("should have responsive width based on screen size", (
     WidgetTester tester,
   ) async {
-    // Arrange - with a specific screen size
+    // Arrange
     tester.view.physicalSize = const Size(1080, 1920);
     tester.view.devicePixelRatio = 1.0;
 
@@ -218,7 +218,7 @@ void main() {
     //Act
     final sizedBox = tester.widget<SizedBox>(find.byType(SizedBox).first);
 
-    // Assert that width is calculated based on ResponsiveDesign
+    // Assert
     final expectedWidth = ResponsiveDesign(width: 1080).appInputTextWidth;
     expect(sizedBox.width, expectedWidth);
 

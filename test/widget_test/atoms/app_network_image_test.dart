@@ -70,7 +70,7 @@ void main() {
       ),
     );
 
-    // The image should be loading, so we should see a CircularProgressIndicator
+    // The image should be loading
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
     expect(find.byType(Center), findsOneWidget);
   });
@@ -103,7 +103,6 @@ void main() {
         home: AppNetworkImage(
           url: 'https://example.com/test-image.jpg',
           assetsImage: 'assets/test/company_info.png',
-          // widthImage and heightImage are null by default
         ),
       ),
     );
