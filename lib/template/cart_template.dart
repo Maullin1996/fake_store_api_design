@@ -90,9 +90,9 @@ class CartTemplate extends StatelessWidget {
           // Cart item list with fade animation.
           FadeInUp(
             delay: const Duration(milliseconds: 500),
-            //animate: !Platform.environment.containsKey('FLUTTER_TEST'),
+            animate: !Platform.environment.containsKey('FLUTTER_TEST'),
             child: ListView.separated(
-              padding: const EdgeInsets.only(
+              padding: EdgeInsets.only(
                 top: AppSpacing.medium,
                 bottom: AppSpacing.large,
               ),
@@ -116,7 +116,7 @@ class CartTemplate extends StatelessWidget {
                 );
               },
               separatorBuilder:
-                  (context, index) => const SizedBox(height: AppSpacing.small),
+                  (context, index) => SizedBox(height: AppSpacing.small),
             ),
           ),
 

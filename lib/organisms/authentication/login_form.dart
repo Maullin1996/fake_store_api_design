@@ -1,12 +1,16 @@
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
-
-import '../../atoms/tokens.dart';
 
 /// A widget representing a login form.
 ///
 /// This form allows users to input their username and password to log in.
 /// It includes validation, custom input fields, and a button that shows a loading state.
 class LoginForm extends StatelessWidget {
+  //final String loginTitle;
+  //final String subtitle;
+  // final String labelUsername;
+  // final String labelPassword;
+  //final String titleButtonLogin;
   final bool? isLoadingButton;
   final Function()? onPressed;
   final Function()? iconOnPressed;
@@ -30,6 +34,11 @@ class LoginForm extends StatelessWidget {
     this.isLoadingButton = false,
     this.iconOnPressed,
     required this.obscureText,
+    //required this.loginTitle,
+    //required this.subtitle,
+    // required this.labelUsername,
+    // required this.labelPassword,
+    //required this.titleButtonLogin,
   });
 
   @override
@@ -56,12 +65,12 @@ class LoginForm extends StatelessWidget {
 
           children: [
             // Title for the login form.
-            Text('Login', style: textTheme.displayLarge),
+            Text(Copys.loginTitle, style: textTheme.displayLarge),
 
             SizedBox(height: AppSpacing.small),
 
             // Subtittle for the login form.
-            Text('Sign in to continue', style: textTheme.bodyLarge),
+            Text(Copys.loginSubtitle, style: textTheme.bodyLarge),
 
             // Adding some vertical spacing between elements.
             SizedBox(height: AppSpacing.medium),
@@ -69,7 +78,7 @@ class LoginForm extends StatelessWidget {
             // Username input field.
             AppInputText(
               key: Key("username"),
-              label: 'Username', // Label text for the field.
+              label: Copys.loginLabelUsername, // Label text for the field.
               floatingLabelBehavior: false, // Making the label always visible.
               onChange:
                   onChangeUsername, // Function to handle changes in the username field.
@@ -85,7 +94,9 @@ class LoginForm extends StatelessWidget {
             // Password input field.
             AppInputText(
               key: Key("password"),
-              label: 'Password', // Label text for the password field.
+              label:
+                  Copys
+                      .loginLabelPassword, // Label text for the password field.
               floatingLabelBehavior: false, // Making the label always visible.
               obscureText:
                   obscureText, // Ensuring the password is hidden when typed.
@@ -114,7 +125,9 @@ class LoginForm extends StatelessWidget {
               type:
                   ButtonType
                       .secondaryTextButton, // Type of button (filled button).
-              title: 'Enter', // Text to be displayed on the button.
+              title:
+                  Copys
+                      .loginTitleButtonLogin, // Text to be displayed on the button.
               isLoading:
                   isLoadingButton, // Shows a loading indicator when true.
               onPressed:

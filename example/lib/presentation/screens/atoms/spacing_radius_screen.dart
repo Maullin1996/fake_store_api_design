@@ -33,7 +33,7 @@ class SpacingRadiusScreen extends StatelessWidget {
       ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(
+        padding: EdgeInsets.symmetric(
           vertical: AppSpacing.small,
           horizontal: AppSpacing.small,
         ),

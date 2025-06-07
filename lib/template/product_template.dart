@@ -49,6 +49,9 @@ class ProductTemplate extends StatelessWidget {
   /// Discount value
   final double discount;
 
+  /// Text button to add to the cart
+  //final String textButonProduct;
+
   /// Creates an instance of [ProductTemplate].
   ///
   /// This widget represents a screen displaying detailed product information,
@@ -69,6 +72,7 @@ class ProductTemplate extends StatelessWidget {
     required this.discount,
     required this.assetsImage,
     required this.id,
+    //required this.textButonProduct,
   });
 
   @override
@@ -89,6 +93,7 @@ class ProductTemplate extends StatelessWidget {
         productName: productName, // Product name
         description: description, // Product description
         productPrice: productPrice, // Product price
+        //textButonProduct: textButonProduct,
         onPressedbuy: onPressedbuy, // Action for the buy button
         isFavorite: isFavorite, // Whether the product is marked as a favorite
         onPressedFavorite: onPressedFavorite,

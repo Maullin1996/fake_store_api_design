@@ -3,12 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  setUp(() async {
+    await AtomicDesignConfig.initializeFromAsset(
+      'assets/config/app_config.json',
+    );
+  });
   testWidgets("Verify the texts on screen", (WidgetTester tester) async {
     //Arrange
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: LoginForm(
+            // loginTitle: "Login",
+            // subtitle: "Sign in to continue",
+            // labelUsername: "Username",
+            // labelPassword: "Password",
+            // titleButtonLogin: "Enter",
             obscureText: true,
             onPressed: () {},
             isLoadingButton: false,
@@ -40,6 +50,11 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: LoginForm(
+            // loginTitle: "Login",
+            // subtitle: "Sign in to continue",
+            // labelUsername: "Username",
+            // labelPassword: "Password",
+            // titleButtonLogin: "Enter",
             obscureText: true,
             onPressed: () => enterButtonNavigation = true,
             isLoadingButton: false,
@@ -69,6 +84,11 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: LoginForm(
+            // loginTitle: "Login",
+            // subtitle: "Sign in to continue",
+            // labelUsername: "Username",
+            // labelPassword: "Password",
+            // titleButtonLogin: "Enter",
             obscureText: true,
             onPressed: () {},
             isLoadingButton: false,

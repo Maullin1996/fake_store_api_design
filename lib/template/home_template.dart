@@ -9,19 +9,22 @@ import 'package:fake_store_design/molecules/company_info/company_info.dart';
 /// loading states, and error display gracefully.
 class HomeTemplate extends StatelessWidget {
   /// The company's physical address shown at the bottom.
-  final String address;
+  //final String address;
+
+  /// Text button to add to the cart
+  //final String textButonProduct;
 
   /// Local fallback image asset path for products.
   final String assetsImage;
 
   /// The company's support email address.
-  final String email;
+  //final String email;
 
   /// The company's WhatsApp contact.
-  final String whatsapp;
+  //final String whatsapp;
 
   /// The company's Instagram handle.
-  final String instagram;
+  //final String instagram;
 
   /// List of product categories to filter the product list.
   final List<String> categories;
@@ -74,6 +77,12 @@ class HomeTemplate extends StatelessWidget {
   /// Last name of the logged-in user.
   final String? lastName;
 
+  // /// Fisrt error message to render
+  // final String firstMessage;
+
+  // /// Fisrt error message to render
+  // final String secondMessage;
+
   /// Callback to select a new product category.
   final void Function(String) onCategorySelected;
 
@@ -86,10 +95,10 @@ class HomeTemplate extends StatelessWidget {
   /// Creates the [HomeTemplate] screen.
   const HomeTemplate({
     super.key,
-    required this.address,
-    required this.email,
-    required this.whatsapp,
-    required this.instagram,
+    // required this.address,
+    // required this.email,
+    // required this.whatsapp,
+    // required this.instagram,
     required this.isLoading,
     required this.isLogIn,
     required this.products,
@@ -101,6 +110,10 @@ class HomeTemplate extends StatelessWidget {
     required this.onItemSelected,
     required this.refreshProducts,
     required this.errorMessage,
+    required this.assetsImage,
+    //required this.textButonProduct,
+    //required this.firstMessage,
+    //required this.secondMessage,
     this.onPressedFavorite,
     this.onPressedinfo,
     this.onPressedbuy,
@@ -110,7 +123,6 @@ class HomeTemplate extends StatelessWidget {
     this.logOutonPressed,
     this.name,
     this.lastName,
-    required this.assetsImage,
   });
 
   @override
@@ -168,6 +180,8 @@ class HomeTemplate extends StatelessWidget {
               myFavoriteList: myFavoriteList,
               errorMessage: errorMessage,
               isLoading: isLoading,
+              //firstMessage: firstMessage,
+              //secondMessage: secondMessage,
             ),
 
             // Company info footer
@@ -182,10 +196,10 @@ class HomeTemplate extends StatelessWidget {
                   ),
                   CompanyInfo(
                     key: Key("companiInfoKey"),
-                    address: address,
-                    email: email,
-                    whatsapp: whatsapp,
-                    instagram: instagram,
+                    // address: address,
+                    // email: email,
+                    // whatsapp: whatsapp,
+                    // instagram: instagram,
                   ),
                 ],
               ),
@@ -204,6 +218,8 @@ class HomeTemplate extends StatelessWidget {
     required bool isLoading,
     required List<dynamic> products,
     required List<dynamic> myFavoriteList,
+    // required String firstMessage,
+    // required String secondMessage,
   }) {
     final textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.sizeOf(context).width;
@@ -233,13 +249,13 @@ class HomeTemplate extends StatelessWidget {
           children: [
             SizedBox(height: AppSpacing.extraLarge),
             Text(
-              'Error to get the products',
+              Copys.errorMessageFirstMessage,
               style: textTheme.displayLarge,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: AppSpacing.medium),
             Text(
-              'Pull to update or refresh',
+              Copys.errorMessageSecondMessage,
               style: textTheme.displayLarge,
               textAlign: TextAlign.center,
             ),
@@ -266,6 +282,7 @@ class HomeTemplate extends StatelessWidget {
             productName: product.title,
             productCategory: product.category,
             productPrice: product.price,
+            //textButonProduct: textButonProduct,
             isFavorite: myFavoriteList.contains(product),
             onPressedFavorite: () => onPressedFavorite?.call(product),
             onPressedinfo: () => onPressedinfo?.call(product),

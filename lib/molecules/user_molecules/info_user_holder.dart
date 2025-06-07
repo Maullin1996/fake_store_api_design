@@ -1,6 +1,5 @@
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
-
-import '../../atoms/tokens.dart';
 
 /// A widget that displays a user's personal and address information.
 ///
@@ -77,7 +76,10 @@ class InfoUserHolder extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title for personal information section.
-              Text('Personal Information', style: textTheme.headlineLarge),
+              Text(
+                Copys.infoUserHolderUserinfo,
+                style: textTheme.headlineLarge,
+              ),
 
               // Add some vertical spacing.
               SizedBox(height: AppSpacing.medium),
@@ -91,7 +93,10 @@ class InfoUserHolder extends StatelessWidget {
 
               // Title for address information section.
               SizedBox(height: AppSpacing.mediumLarge),
-              Text('Address Information', style: textTheme.headlineLarge),
+              Text(
+                Copys.infoUserHolderUserlocation,
+                style: textTheme.headlineLarge,
+              ),
               SizedBox(height: AppSpacing.medium),
 
               // Display each piece of address information using _buildInfoRow.

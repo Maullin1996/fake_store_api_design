@@ -40,7 +40,7 @@ abstract class AppThemes {
       bodyMedium: TextStyle(
         fontSize: AppTypography.h4,
         fontWeight: FontWeight.normal,
-        color: Color(0xFF5C5C5C), // Equivalente a 255, 92, 92, 92
+        color: Color(0xFF5C5C5C),
         fontFamily: AppTypography.familyOpenSans,
       ),
       bodySmall: TextStyle(

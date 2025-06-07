@@ -4,6 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Fill Button', () {
+    setUp(() async {
+      await AtomicDesignConfig.initializeFromAsset(
+        'assets/config/app_config.json',
+      );
+    });
     testWidgets("primaryFillButton AppColors.primary", (
       WidgetTester tester,
     ) async {
@@ -114,6 +119,11 @@ void main() {
     );
   });
   group('Text Button', () {
+    setUp(() async {
+      await AtomicDesignConfig.initializeFromAsset(
+        'assets/config/app_config.json',
+      );
+    });
     testWidgets("primaryTextButton AppColors.primary", (
       WidgetTester tester,
     ) async {
@@ -202,6 +212,11 @@ void main() {
     );
   });
   group('Icon Button', () {
+    setUp(() async {
+      await AtomicDesignConfig.initializeFromAsset(
+        'assets/config/app_config.json',
+      );
+    });
     testWidgets("primaryIconButton AppColors.primary", (
       WidgetTester tester,
     ) async {

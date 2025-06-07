@@ -11,10 +11,10 @@ Widget buildWidget({
 }) {
   return MaterialApp(
     home: HomeTemplate(
-      address: "45584",
-      email: "test@gmail.com",
-      whatsapp: "311122365",
-      instagram: "allstorehouse",
+      // address: "45584",
+      // email: "test@gmail.com",
+      // whatsapp: "311122365",
+      // instagram: "allstorehouse",
       isLoading: isLoading,
       categories: categoriesMock,
       myCartList: [],
@@ -42,6 +42,11 @@ Widget buildWidget({
 
 void main() {
   group('User is Login', () {
+    setUp(() async {
+      await AtomicDesignConfig.initializeFromAsset(
+        'assets/config/app_config.json',
+      );
+    });
     testWidgets("Error message", (WidgetTester tester) async {
       // Arrange
       await tester.pumpWidget(

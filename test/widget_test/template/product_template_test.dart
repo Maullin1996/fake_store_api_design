@@ -1,5 +1,4 @@
-import 'package:fake_store_design/atoms/tokens.dart';
-import 'package:fake_store_design/template/product_template.dart';
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -25,6 +24,11 @@ Widget buildWidget({bool isPromotion = false, bool isFavorite = true}) {
 }
 
 void main() {
+  setUp(() async {
+    await AtomicDesignConfig.initializeFromAsset(
+      'assets/config/app_config.json',
+    );
+  });
   testWidgets("Find icons on the screen", (WidgetTester tester) async {
     // Arrange
     await tester.pumpWidget(buildWidget());

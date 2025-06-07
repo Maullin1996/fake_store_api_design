@@ -1,3 +1,4 @@
+import 'package:fake_store_design/config/copys.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -36,7 +37,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
     this.logOutonPressed, // Optional callback for logout button
     this.useronPressed, // Optional callback for user profile button
     this.name, // Optional user name
-    this.lastName, // Optional user last name
+    this.lastName,
   });
 
   @override
@@ -149,7 +150,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
           ),
         ];
         title = Center(
-          child: Text('Home', style: textTheme.displayMedium),
+          child: Text(Copys.appbartTexthome, style: textTheme.displayMedium),
         ); // Title "Home"
         actions = [
           AppButtons(

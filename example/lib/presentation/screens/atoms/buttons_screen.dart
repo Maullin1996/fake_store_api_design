@@ -80,6 +80,7 @@ class ButtonsScreen extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: AppButtons(
+                          title: 'Enter title',
                           icon: AppIcons.home,
                           iconSize: 40,
                           type: type,
@@ -89,6 +90,7 @@ class ButtonsScreen extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: AppButtons(
+                          title: 'Enter title',
                           icon: AppIcons.city,
                           iconSize: 40,
                           type: type,

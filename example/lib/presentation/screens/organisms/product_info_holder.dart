@@ -37,6 +37,7 @@ class _ProductInfoHolderState extends State<ProductInfoHolder> {
         isFavorite: isFavorite,
         isPromotion: false,
         discount: 1,
+        //textButonProduct: "Add to Cart",
         onPressedFavorite: _handleIsFvaorite,
         onPressedbuy: () {},
       ),

@@ -27,6 +27,11 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
           children: [
             Text('Custom form', style: textTheme.displayMedium),
             LoginForm(
+              // loginTitle: "Login",
+              // subtitle: "Sign in to continue",
+              // labelUsername: "Username",
+              // labelPassword: "Password",
+              // titleButtonLogin: "Enter",
               onPressed: () {},
               isLoadingButton: false,
               obscureText: oscureText,

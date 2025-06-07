@@ -34,6 +34,11 @@ void main() {
   group(
     'Verify the product cart container when the product is not in	promotion',
     () {
+      setUp(() async {
+        await AtomicDesignConfig.initializeFromAsset(
+          'assets/config/app_config.json',
+        );
+      });
       testWidgets("Text in the cart", (WidgetTester tester) async {
         // Arrange
         await tester.pumpWidget(buildWidget(isPromotion: false));
@@ -117,6 +122,11 @@ void main() {
   group(
     'Verify the product cart container when the product is in	promotion',
     () {
+      setUp(() async {
+        await AtomicDesignConfig.initializeFromAsset(
+          'assets/config/app_config.json',
+        );
+      });
       testWidgets(
         "Should displaye the two priceses with discount and withou discount",
         (WidgetTester tester) async {

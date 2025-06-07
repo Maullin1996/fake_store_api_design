@@ -31,6 +31,7 @@ class _ProductTemplateScreenState extends State<ProductTemplateScreen> {
       isFavorite: isFavorite,
       isPromotion: false,
       discount: 1,
+      //textButonProduct: "Add to Cart",
       onPressedFavorite: _handleIsFvaorite,
       backonPressed: () {
         context.pop();

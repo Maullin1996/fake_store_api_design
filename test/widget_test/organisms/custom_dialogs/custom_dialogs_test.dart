@@ -18,6 +18,11 @@ Widget buildWidget(String totalToPay) {
 
 void main() {
   group("Verify that the button show the correct text", () {
+    setUp(() async {
+      await AtomicDesignConfig.initializeFromAsset(
+        'assets/config/app_config.json',
+      );
+    });
     testWidgets("case 1: Empty cart", (WidgetTester tester) async {
       // Act
       await tester.pumpWidget(buildWidget("0.00"));
@@ -42,6 +47,11 @@ void main() {
   group(
     'Verify that the Unauthenticated showDialog shows the correct text, icon and button',
     () {
+      setUp(() async {
+        await AtomicDesignConfig.initializeFromAsset(
+          'assets/config/app_config.json',
+        );
+      });
       bool navigaTo = false;
       Widget buildWidget() {
         return MaterialApp(
@@ -98,6 +108,11 @@ void main() {
   group(
     'Verify that the Authenticated showDialog shows the correct text, icon and button',
     () {
+      setUp(() async {
+        await AtomicDesignConfig.initializeFromAsset(
+          'assets/config/app_config.json',
+        );
+      });
       Widget buildWidget() {
         return MaterialApp(
           home: Scaffold(

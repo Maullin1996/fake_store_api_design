@@ -14,6 +14,11 @@ Widget buildWidget({
 }) {
   return MaterialApp(
     home: LoginTemplate(
+      // loginTitle: "Login",
+      // subtitle: "Sign in to continue",
+      // labelUsername: "Username",
+      // labelPassword: "Password",
+      // titleButtonLogin: "Enter",
       formKey: formKey,
       obscureText: obscureText,
       path: 'assets/test/company_info.png',
@@ -30,6 +35,11 @@ Widget buildWidget({
 }
 
 void main() {
+  setUp(() async {
+    await AtomicDesignConfig.initializeFromAsset(
+      'assets/config/app_config.json',
+    );
+  });
   testWidgets("Find assetImage Widget", (WidgetTester tester) async {
     // Arrange
     await tester.pumpWidget(buildWidget(obscureText: false));

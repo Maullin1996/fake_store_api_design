@@ -1,5 +1,6 @@
 import 'package:fake_store_design/atoms/app_radius.dart';
 import 'package:fake_store_design/atoms/app_colors.dart';
+import 'package:fake_store_design/config/config.dart';
 import 'package:flutter/material.dart';
 
 /// A customizable search widget built on top of [SearchAnchor.bar], which provides
@@ -22,7 +23,7 @@ class SearchAnchorWidget<T> extends StatelessWidget {
     required this.items,
     required this.displayString,
     required this.onItemSelected,
-    this.hintText = 'Search Product',
+    //this.hintText = 'Search Product',
     this.controller,
     this.maxListHeight = 200,
   });
@@ -37,7 +38,7 @@ class SearchAnchorWidget<T> extends StatelessWidget {
   final void Function(T selectedItem) onItemSelected;
 
   /// Placeholder text displayed in the search bar when it is empty.
-  final String hintText;
+  //final String hintText;
 
   /// Optional controller to manage search view state and input.
   final SearchController? controller;
@@ -61,12 +62,12 @@ class SearchAnchorWidget<T> extends StatelessWidget {
           ),
         ),
         barSide: WidgetStateProperty.all(
-          const BorderSide(color: AppColors.primaryVariant, width: 1.5),
+          BorderSide(color: AppColors.primaryVariant, width: 1.5),
         ),
         searchController: searchController,
-        viewLeading: const BackButton(color: AppColors.secondary),
-        viewHintText: hintText,
-        barHintText: hintText,
+        viewLeading: BackButton(color: AppColors.secondary),
+        viewHintText: Copys.searchAnchorWidget,
+        barHintText: Copys.searchAnchorWidget,
 
         /// Builds the suggestion list based on the user's input.
         ///

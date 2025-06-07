@@ -1,3 +1,4 @@
+import 'package:fake_store_design/config/copys.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -28,6 +29,9 @@ class ProducthomeContainer extends StatefulWidget {
 
   /// Base price of the product before any discounts.
   final double productPrice;
+
+  /// Text button to add to the cart
+  //final String textButonProduct;
 
   /// Called when the "Add to Cart" button is tapped.
   final Function()? onPressedbuy;
@@ -62,6 +66,7 @@ class ProducthomeContainer extends StatefulWidget {
     this.onPressedFavorite,
     required this.assetsImage,
     required this.id,
+    //required this.textButonProduct,
   });
 
   @override
@@ -88,7 +93,7 @@ class _ProducthomeContainerState extends State<ProducthomeContainer>
     return IntrinsicHeight(
       child: IntrinsicWidth(
         child: Container(
-          padding: const EdgeInsets.all(AppSpacing.small),
+          padding: EdgeInsets.all(AppSpacing.small),
           decoration: BoxDecoration(
             color: AppColors.onPrimary,
             boxShadow: [
@@ -105,7 +110,7 @@ class _ProducthomeContainerState extends State<ProducthomeContainer>
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: AppSpacing.small),
+              SizedBox(height: AppSpacing.small),
 
               // Displays the product image inside a Hero for page transitions.
               Hero(
@@ -151,7 +156,7 @@ class _ProducthomeContainerState extends State<ProducthomeContainer>
               Center(
                 child: AppButtons(
                   type: ButtonType.secondaryTextButton,
-                  title: 'Add to Cart',
+                  title: Copys.productContainerText,
                   fontSizeTextButton: AppTypography.h3,
                   onPressed: widget.onPressedbuy,
                 ),

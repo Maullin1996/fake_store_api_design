@@ -1,4 +1,5 @@
 import 'package:fake_store_design/atoms/app_icons.dart';
+import 'package:fake_store_design/config/atomic_design_config.dart';
 import 'package:fake_store_design/template/cart_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -35,6 +36,11 @@ Widget buildWidget({
 
 void main() {
   group('User is not login', () {
+    setUp(() async {
+      await AtomicDesignConfig.initializeFromAsset(
+        'assets/config/app_config.json',
+      );
+    });
     testWidgets(
       "Verify that the last element of the screen shows on the screen",
       (WidgetTester tester) async {
@@ -172,6 +178,11 @@ void main() {
   });
 
   group('User is login', () {
+    setUp(() async {
+      await AtomicDesignConfig.initializeFromAsset(
+        'assets/config/app_config.json',
+      );
+    });
     testWidgets("should render the user name", (WidgetTester tester) async {
       //Arrange
       await tester.pumpWidget(buildWidget(authentication: true));

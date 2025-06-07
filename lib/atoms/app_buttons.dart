@@ -70,11 +70,11 @@ class AppButtons extends StatelessWidget {
     this.title = 'Enter Title',
     this.onPressed,
     required this.type,
-    this.fontSizeElevatedButton = AppTypography.h4,
+    this.fontSizeElevatedButton = 16.0,
     this.icon,
     this.iconSize,
-    this.fontSizeTextButton = AppTypography.h3,
-    this.buttonWidth = AppSpacing.medium,
+    this.fontSizeTextButton = 22.0,
+    this.buttonWidth = 34.0,
     this.isLoading = false,
   });
 

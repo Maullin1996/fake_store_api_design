@@ -1,3 +1,4 @@
+import 'package:fake_store_design/config/copys.dart';
 import 'package:fake_store_design/molecules/molecules.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,9 @@ class ProductInfoContainer extends StatelessWidget {
   /// Discount value
   final double discount;
 
+  /// Text button to add to the cart
+  //final String textButonProduct;
+
   /// The callback function for the "Add to cart" button.
   final Function()? onPressedbuy;
 
@@ -61,6 +65,7 @@ class ProductInfoContainer extends StatelessWidget {
     this.onPressedFavorite,
     required this.assetsImage,
     required this.id,
+    //required this.textButonProduct,
   });
 
   @override
@@ -132,7 +137,7 @@ class ProductInfoContainer extends StatelessWidget {
           Center(
             child: AppButtons(
               key: Key("AddToTheCart"),
-              title: 'Add to the cart', // Button text
+              title: Copys.productContainerText, // Button text
               type:
                   ButtonType
                       .secondaryTextButton, // Button type (secondary with fill style)

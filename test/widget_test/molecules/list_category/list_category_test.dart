@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  setUp(() async {
+    await AtomicDesignConfig.initializeFromAsset(
+      'assets/config/app_config.json',
+    );
+  });
   List<String> categories = const ["All", "Men", "Women", "Electronics"];
   testWidgets("Verify the elements on the screen and the selected one", (
     WidgetTester tester,

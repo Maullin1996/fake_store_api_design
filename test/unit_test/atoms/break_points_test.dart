@@ -1,9 +1,14 @@
-import 'package:fake_store_design/atoms/app_spacing.dart';
-import 'package:fake_store_design/atoms/break_points.dart';
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('ResponsiveDesign', () {
+    setUp(() async {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      await AtomicDesignConfig.initializeFromAsset(
+        'assets/config/app_config.json',
+      );
+    });
     test('should set correct properties for xsmall width', () {
       final design = ResponsiveDesign(width: 350);
 

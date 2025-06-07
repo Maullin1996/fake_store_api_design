@@ -6,25 +6,25 @@ import 'package:flutter/material.dart';
 ///
 /// The layout is responsive and adapts based on screen size.
 class CompanyInfo extends StatelessWidget {
-  /// Company's physical address.
-  final String address;
+  // /// Company's physical address.
+  // final String address;
 
-  /// Company's support email.
-  final String email;
+  // /// Company's support email.
+  // final String email;
 
-  /// WhatsApp contact number or link.
-  final String whatsapp;
+  // /// WhatsApp contact number or link.
+  // final String whatsapp;
 
-  /// Instagram handle or profile link.
-  final String instagram;
+  // /// Instagram handle or profile link.
+  // final String instagram;
 
   /// Creates a [CompanyInfo] widget.
   const CompanyInfo({
     super.key,
-    required this.address,
-    required this.email,
-    required this.whatsapp,
-    required this.instagram,
+    // required this.address,
+    // required this.email,
+    // required this.whatsapp,
+    // required this.instagram,
   });
 
   @override
@@ -83,13 +83,19 @@ class CompanyInfo extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                infoStructure(AppIcons.city, address),
+                infoStructure(AppIcons.city, Copys.companyInformationAddress),
                 SizedBox(height: AppSpacing.xSmall),
-                infoStructure(AppIcons.mail, email),
+                infoStructure(AppIcons.mail, Copys.companyInformationEmail),
                 SizedBox(height: AppSpacing.xSmall),
-                infoStructure(AppIcons.whatsapp, whatsapp),
+                infoStructure(
+                  AppIcons.whatsapp,
+                  Copys.companyInformationWhatsapp,
+                ),
                 SizedBox(height: AppSpacing.xSmall),
-                infoStructure(AppIcons.instagram, instagram),
+                infoStructure(
+                  AppIcons.instagram,
+                  Copys.companyInformationInstagram,
+                ),
                 SizedBox(height: AppSpacing.xSmall),
               ],
             ),
@@ -100,7 +106,7 @@ class CompanyInfo extends StatelessWidget {
 
     // Layout for larger screens (two columns)
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppSpacing.small),
+      padding: EdgeInsets.symmetric(vertical: AppSpacing.small),
       child: Row(
         key: Key("2 column"),
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -108,18 +114,21 @@ class CompanyInfo extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              infoStructure(AppIcons.city, address),
+              infoStructure(AppIcons.city, Copys.companyInformationAddress),
               SizedBox(height: AppSpacing.xSmall),
-              infoStructure(AppIcons.mail, email),
+              infoStructure(AppIcons.mail, Copys.companyInformationEmail),
               SizedBox(height: AppSpacing.xSmall),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              infoStructure(AppIcons.whatsapp, whatsapp),
+              infoStructure(AppIcons.whatsapp, Copys.companyInformationEmail),
               SizedBox(height: AppSpacing.xSmall),
-              infoStructure(AppIcons.instagram, instagram),
+              infoStructure(
+                AppIcons.instagram,
+                Copys.companyInformationInstagram,
+              ),
               SizedBox(height: AppSpacing.xSmall),
             ],
           ),

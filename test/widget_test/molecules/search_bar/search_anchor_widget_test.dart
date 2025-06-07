@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  setUp(() async {
+    await AtomicDesignConfig.initializeFromAsset(
+      'assets/config/app_config.json',
+    );
+  });
   final List<String> products = const ["tv", "computer", "mouse", "keyborad"];
   testWidgets("test description", (WidgetTester tester) async {
     //Arrange
@@ -11,7 +16,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget(
             items: products,
-            hintText: "Products",
+            //hintText: "Products",
             displayString: (item) => item,
             onItemSelected: (selectedItem) {},
           ),
@@ -19,7 +24,7 @@ void main() {
       ),
     );
     // Act
-    final findInputText = find.text("Products");
+    final findInputText = find.text("Search Product");
     // Assert
     expect(findInputText, findsOne);
   });
@@ -33,7 +38,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget<String>(
             items: products,
-            hintText: "Search Products",
+            //hintText: "Search Products",
             displayString: (item) => item,
             onItemSelected: (selectedItem) {},
           ),
@@ -58,7 +63,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget<String>(
             items: products,
-            hintText: "Search Products",
+            //hintText: "Search Products",
             displayString: (item) => item,
             onItemSelected: (selectedItem) {},
           ),
@@ -84,7 +89,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget<String>(
             items: products,
-            hintText: "Search Products",
+            //hintText: "Search Products",
             displayString: (item) => item,
             onItemSelected: (selectedItem) {},
           ),
@@ -118,7 +123,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget<String>(
             items: products,
-            hintText: "Search Products",
+            //hintText: "Search Products",
             displayString: (item) => item,
             onItemSelected: (item) {
               selectedItem = item;
@@ -147,7 +152,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget<String>(
             items: products,
-            hintText: "Search Products",
+            //hintText: "Search Products",
             displayString: (item) => item,
             onItemSelected: (selectedItem) {},
           ),
@@ -176,7 +181,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget<String>(
             items: products,
-            hintText: "Search Products",
+            //hintText: "Search Products",
             displayString: (item) => item,
             onItemSelected: (selectedItem) {},
           ),
@@ -208,7 +213,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget<String>(
             items: products,
-            hintText: "Search Products",
+            //hintText: "Search Products",
             displayString: (item) => item,
             onItemSelected: (selectedItem) {},
             controller: controller,
@@ -234,7 +239,7 @@ void main() {
         home: Scaffold(
           body: SearchAnchorWidget<String>(
             items: products,
-            hintText: "Search Products",
+            //intText: "Search Products",
             displayString: (item) => item,
             onItemSelected: (selectedItem) {},
           ),

@@ -1,9 +1,15 @@
 import 'package:fake_store_design/atoms/app_icons.dart';
+import 'package:fake_store_design/config/atomic_design_config.dart';
 import 'package:fake_store_design/molecules/molecules.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  setUp(() async {
+    await AtomicDesignConfig.initializeFromAsset(
+      'assets/config/app_config.json',
+    );
+  });
   group('Home Appbars', () {
     testWidgets("user is not login", (WidgetTester tester) async {
       //Arrange

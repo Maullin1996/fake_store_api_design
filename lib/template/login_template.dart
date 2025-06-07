@@ -10,6 +10,21 @@ import 'package:flutter/material.dart';
 /// It handles the display of a loading state on the login button while
 /// the login process is in progress.
 class LoginTemplate extends StatelessWidget {
+  // /// Login title text
+  // final String loginTitle;
+
+  // /// Login subtitle text
+  // final String subtitle;
+
+  // /// label username input text
+  // final String labelUsername;
+
+  // /// label user password input text
+  // final String labelPassword;
+
+  // /// Button text login
+  // final String titleButtonLogin;
+
   /// A flag indicating whether the login button is in a loading state.
   final bool? isLoadingButton;
 
@@ -73,6 +88,11 @@ class LoginTemplate extends StatelessWidget {
     this.formKey,
     required this.obscureText,
     required this.path,
+    // required this.loginTitle,
+    // required this.subtitle,
+    // required this.labelUsername,
+    // required this.labelPassword,
+    // required this.titleButtonLogin,
   });
 
   @override
@@ -95,6 +115,11 @@ class LoginTemplate extends StatelessWidget {
 
               // The login form where users input their credentials
               LoginForm(
+                // loginTitle: loginTitle,
+                // subtitle: subtitle,
+                // labelUsername: labelUsername,
+                // labelPassword: labelPassword,
+                // titleButtonLogin: titleButtonLogin,
                 isLoadingButton:
                     isLoadingButton, // Indicates if the button is in loading state
                 onPressed:

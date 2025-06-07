@@ -62,12 +62,15 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     final List<Product> myCartList = ref.watch(cartListProvider);
     return HomeTemplate(
       assetsImage: 'assets/images/error.png',
-      address: 'CRA 88A # 55W - 44 Sur Medellin',
-      email: 'allstorehouse@correo.com',
-      instagram: 'all.storehouse',
-      whatsapp: '(+57) 3354425145',
+      // address: 'CRA 88A # 55W - 44 Sur Medellin',
+      // email: 'allstorehouse@correo.com',
+      // instagram: 'all.storehouse',
+      // whatsapp: '(+57) 3354425145',
       categories: categories,
       isLogIn: userStatus,
+      // textButonProduct: "Add to Cart",
+      // firstMessage: "Error to get the products",
+      // secondMessage: "Pull to update or refresh",
       cartonPressed: () {},
       logInonPressed: () {
         setState(() {

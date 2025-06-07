@@ -76,13 +76,13 @@ class AppInputText extends StatelessWidget {
           isDense: true,
           enabledBorder: border,
           focusedBorder: border.copyWith(
-            borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+            borderSide: BorderSide(color: AppColors.primary, width: 1.5),
           ),
           errorBorder: border.copyWith(
-            borderSide: const BorderSide(color: AppColors.error, width: 1.5),
+            borderSide: BorderSide(color: AppColors.error, width: 1.5),
           ),
           focusedErrorBorder: border.copyWith(
-            borderSide: const BorderSide(color: AppColors.error, width: 1.5),
+            borderSide: BorderSide(color: AppColors.error, width: 1.5),
           ),
         ),
       ),

@@ -35,6 +35,11 @@ void main() {
   group(
     'Verify the product home container when the product is not in	promotion',
     () {
+      setUp(() async {
+        await AtomicDesignConfig.initializeFromAsset(
+          'assets/config/app_config.json',
+        );
+      });
       testWidgets("Text in the home holder", (WidgetTester tester) async {
         // Arrange
         await tester.pumpWidget(
@@ -111,6 +116,11 @@ void main() {
   group(
     'Verify the product cart container when the product is in	promotion',
     () {
+      setUp(() async {
+        await AtomicDesignConfig.initializeFromAsset(
+          'assets/config/app_config.json',
+        );
+      });
       testWidgets(
         "Should displaye the two priceses with discount and withou discount",
         (WidgetTester tester) async {

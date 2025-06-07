@@ -1,9 +1,15 @@
 import 'package:fake_store_design/atoms/app_input_text.dart';
 import 'package:fake_store_design/atoms/break_points.dart';
+import 'package:fake_store_design/config/config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  setUp(() async {
+    await AtomicDesignConfig.initializeFromAsset(
+      'assets/config/app_config.json',
+    );
+  });
   testWidgets("check the label text and type", (WidgetTester tester) async {
     // Arrange
     await tester.pumpWidget(

@@ -50,6 +50,11 @@ class _LoginPageScreenState extends ConsumerState<LoginPageScreen> {
     return Form(
       key: _formKey,
       child: LoginTemplate(
+        // loginTitle: "Login",
+        // subtitle: "Sign in to continue",
+        // labelUsername: "Username",
+        // labelPassword: "Password",
+        // titleButtonLogin: "Enter",
         obscureText: obscureText,
         iconOnPressed: _handleObcureText,
         isLoadingButton: isLoading,

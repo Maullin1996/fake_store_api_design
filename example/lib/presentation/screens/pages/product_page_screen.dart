@@ -22,6 +22,7 @@ class ProductPageScreen extends ConsumerWidget {
       assetsImage: 'assets/images/error.png',
       isFavorite: myFavoriteList.contains(product),
       url: productsValidation ? productMock(true)[0].image : product!.image,
+      //textButonProduct: "Add to Cart",
       description:
           productsValidation
               ? productMock(true)[0].description

@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:fake_store_design/config/copys.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -35,7 +36,10 @@ class CustomDialog extends StatelessWidget {
           ButtonType
               .secondaryTextButton, // The type of button (filled with secondary color).
       // Button title: If total to pay is 0.00, display 'Add Products', otherwise show the total amount to pay.
-      title: totalToPay == "0.00" ? 'Add Products' : 'Go To Pay : $totalToPay',
+      title:
+          totalToPay == "0.00"
+              ? Copys.customDialogsEmptycart
+              : '${Copys.customDialogsTotalToPay}$totalToPay',
 
       // When the button is pressed, the dialog is triggered.
       onPressed: () {
@@ -68,22 +72,29 @@ Future<dynamic> dialogs({
 
   // Determine the dialog content based on the dialog type.
   if (dialogType == DialogType.authenticated) {
-    alertText = 'Successful Purchase'; // Message for authenticated users.
+    alertText =
+        Copys
+            .customDialogsAuthenticatedAlert; // Message for authenticated users.
     icon = Icon(
       AppIcons.check,
       size: 90,
       color: AppColors.secondary,
     ); // Checkmark icon for success.
     titleTextButton =
-        'Continue Shopping'; // Button text for authenticated users.
+        Copys
+            .customDialogsAuthenticatedTitle; // Button text for authenticated users.
   } else {
-    alertText = 'Unauthenticated user'; // Message for unauthenticated users.
+    alertText =
+        Copys
+            .customDialogsUnAuthenticatedAlert; // Message for unauthenticated users.
     icon = Icon(
       AppIcons.error,
       size: 90,
       color: AppColors.error,
     ); // Error icon for unauthenticated users.
-    titleTextButton = 'Login'; // Button text for unauthenticated users.
+    titleTextButton =
+        Copys
+            .customDialogsUnAuthenticatedTitle; // Button text for unauthenticated users.
   }
 
   // Show the dialog.

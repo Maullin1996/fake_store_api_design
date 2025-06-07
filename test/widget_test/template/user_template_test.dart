@@ -19,6 +19,11 @@ Widget buildWidget() {
 }
 
 void main() {
+  setUp(() async {
+    await AtomicDesignConfig.initializeFromAsset(
+      'assets/config/app_config.json',
+    );
+  });
   testWidgets("Find the text on the screen", (WidgetTester tester) async {
     // Arrange
     await tester.pumpWidget(buildWidget());

@@ -61,10 +61,12 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
     return HomeTemplate(
       assetsImage: 'assets/images/error.png',
       refreshProducts: _refreshProducts,
-      address: 'CRA 88A # 55W - 44 Sur Medellin',
-      email: 'allstorehouse@correo.com',
-      instagram: 'all.storehouse',
-      whatsapp: '(+57) 3354425145',
+      // address: 'CRA 88A # 55W - 44 Sur Medellin',
+      // email: 'allstorehouse@correo.com',
+      // instagram: 'all.storehouse',
+      // whatsapp: '(+57) 3354425145',
+      // firstMessage: "Error to get the products",
+      // secondMessage: "Pull to update or refresh",
       categories: categories,
       isLogIn: false,
       name: 'Pepito',
@@ -75,6 +77,7 @@ class _HomeTemplateScreenState extends ConsumerState<HomeTemplateScreen> {
       myFavoriteList: myFavoriteList,
       myCartList: productMock(true),
       selectedCategory: selectedCategory,
+      //textButonProduct: "Add to Cart",
       cartonPressed: () {},
       logInonPressed: () {
         Navigator.of(context).pop();

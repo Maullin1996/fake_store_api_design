@@ -17,10 +17,10 @@ class CompanyInformation extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CompanyInfo(
-            address: '44522',
-            email: 'pepito@gmail.com',
-            whatsapp: '32233541214',
-            instagram: 'all.storehouse',
+            // address: '44522',
+            // email: 'pepito@gmail.com',
+            // whatsapp: '32233541214',
+            // instagram: 'all.storehouse',
           ),
         ],
       ),

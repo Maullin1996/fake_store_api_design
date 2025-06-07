@@ -65,7 +65,8 @@ flutter:
 
   assets:
     - assets/images/
-    
+    - assets/config/app_config.json
+  
   fonts:
       - family: Roboto
         fonts:

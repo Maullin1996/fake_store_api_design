@@ -1,4 +1,5 @@
 import 'package:fake_store_design/atoms/tokens.dart';
+import 'package:fake_store_design/config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -29,11 +30,13 @@ class CustomFloatingNotifications {
   final String? errorMessage;
 
   /// A map that associates a verification type with a predefined message.
-  static const Map<TypeVerification, String> _messages = {
+  static final Map<TypeVerification, String> _messages = {
     TypeVerification.added:
-        'Product Add', // Message for when a product is added successfully.
+        Copys
+            .floatingNotificationsNotAdd, // Message for when a product is added successfully.
     TypeVerification.notAdded:
-        'Product already add', // Message for when the product is already added.
+        Copys
+            .floatingNotificationsAlready, // Message for when the product is already added.
   };
 
   /// A map that associates a verification type with a background color for the toast.
@@ -50,7 +53,7 @@ class CustomFloatingNotifications {
   };
 
   /// A map that associates a verification type with a text color for the toast.
-  static const Map<TypeVerification, Color> _textColors = {
+  static final Map<TypeVerification, Color> _textColors = {
     TypeVerification.added:
         AppColors
             .textFlutterToast, // Text color for a successful product addition.

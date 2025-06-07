@@ -1,5 +1,7 @@
 library;
 
+// config
+export 'package:fake_store_design/config/config.dart';
 //tokens
 export 'package:fake_store_design/atoms/tokens.dart';
 //molecules

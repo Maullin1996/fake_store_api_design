@@ -18,7 +18,7 @@ class SkeletonLoadingContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        padding: const EdgeInsets.only(
+        padding: EdgeInsets.only(
           top: AppSpacing.small,
           left: AppSpacing.small,
           right: AppSpacing.small,
@@ -45,7 +45,7 @@ class SkeletonLoadingContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: AppSpacing.small),
+              SizedBox(height: AppSpacing.small),
 
               // Simulated product image placeholder.
               Center(
@@ -66,7 +66,7 @@ class SkeletonLoadingContainer extends StatelessWidget {
                 color: Colors.white,
               ),
 
-              const SizedBox(height: AppSpacing.medium),
+              SizedBox(height: AppSpacing.medium),
 
               // Simulated category label.
               Container(
@@ -75,7 +75,7 @@ class SkeletonLoadingContainer extends StatelessWidget {
                 color: Colors.white,
               ),
 
-              const SizedBox(height: AppSpacing.small),
+              SizedBox(height: AppSpacing.small),
 
               // Simulated price label.
               Container(
