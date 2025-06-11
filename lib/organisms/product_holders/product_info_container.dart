@@ -1,6 +1,8 @@
 import 'package:fake_store_design/config/copys.dart';
+import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:fake_store_design/molecules/molecules.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../atoms/tokens.dart';
 
@@ -91,15 +93,24 @@ class ProductInfoContainer extends StatelessWidget {
           Hero(
             tag: id,
             child: Center(
-              child: AppNetworkImage(
-                url: url, // Product image URL
-                assetsImage: assetsImage,
-                widthImage:
-                    responsiveDesign
-                        .imageinfoContainerWidth, // Width of the image
-                heightImage:
-                    responsiveDesign
-                        .imageinfoContainerheight, // Height of the image
+              child: Semantics(
+                label: PreJson.productInformationScreen[2].label,
+                readOnly: true,
+                sortKey: OrdinalSortKey(
+                  PreJson.productInformationScreen[2].semanticOrdinal,
+                ),
+                child: ExcludeSemantics(
+                  child: AppNetworkImage(
+                    url: url, // Product image URL
+                    assetsImage: assetsImage,
+                    widthImage:
+                        responsiveDesign
+                            .imageinfoContainerWidth, // Width of the image
+                    heightImage:
+                        responsiveDesign
+                            .imageinfoContainerheight, // Height of the image
+                  ),
+                ),
               ),
             ),
           ),
@@ -108,6 +119,12 @@ class ProductInfoContainer extends StatelessWidget {
           ), // Space between the image and the next section
           // Display the favorite icon and product name with a custom text style
           IsFavorite(
+            iconSemantics: PreJson.productInformationScreen[1].label,
+            iconSortSemantics:
+                PreJson.productInformationScreen[1].semanticOrdinal,
+            productNameSemantics: PreJson.productInformationScreen[0].label,
+            productSortSemantics:
+                PreJson.productInformationScreen[0].semanticOrdinal,
             productName: productName,
             textStyle:
                 textTheme.displayMedium!, // Use the display medium text style
@@ -119,30 +136,48 @@ class ProductInfoContainer extends StatelessWidget {
             height: AppSpacing.medium,
           ), // Space between the favorite section and the description
           // Display the product description
-          Text(description, style: textTheme.bodyMedium),
+          Semantics(
+            readOnly: true,
+            label: PreJson.productInformationScreen[3].label,
+            sortKey: OrdinalSortKey(
+              PreJson.productInformationScreen[3].semanticOrdinal,
+            ),
+            child: Text(description, style: textTheme.bodyMedium),
+          ),
           SizedBox(
             height: AppSpacing.medium,
           ), // Space between description and price
-
-          PriceSection(
-            isPromotion: isPromotion,
-            productPrice: productPrice,
-            discount: discount,
+          Semantics(
+            readOnly: true,
+            sortKey: OrdinalSortKey(
+              PreJson.productInformationScreen[4].semanticOrdinal,
+            ),
+            child: PriceSection(
+              isPromotion: isPromotion,
+              productPrice: productPrice,
+              discount: discount,
+            ),
           ),
 
           SizedBox(
             height: AppSpacing.small,
           ), // Space between the price and the action button
           // Centered "Add to cart" button
-          Center(
-            child: AppButtons(
-              key: Key("AddToTheCart"),
-              title: Copys.productContainerText, // Button text
-              type:
-                  ButtonType
-                      .secondaryTextButton, // Button type (secondary with fill style)
-              onPressed: onPressedbuy, // Callback for the button
-              fontSizeTextButton: AppTypography.h2,
+          Semantics(
+            sortKey: OrdinalSortKey(
+              PreJson.productInformationScreen[5].semanticOrdinal,
+            ),
+            child: Center(
+              child: AppButtons(
+                semanticsText: PreJson.productInformationScreen[5].label,
+                key: Key("AddToTheCart"),
+                title: Copys.productContainerText, // Button text
+                type:
+                    ButtonType
+                        .secondaryTextButton, // Button type (secondary with fill style)
+                onPressed: onPressedbuy, // Callback for the button
+                fontSizeTextButton: AppTypography.h2,
+              ),
             ),
           ),
         ],

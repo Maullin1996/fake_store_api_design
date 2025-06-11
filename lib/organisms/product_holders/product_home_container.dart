@@ -1,5 +1,7 @@
 import 'package:fake_store_design/config/copys.dart';
+import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../atoms/tokens.dart';
 import '../../molecules/molecules.dart';
@@ -118,11 +120,19 @@ class _ProducthomeContainerState extends State<ProducthomeContainer>
                 child: GestureDetector(
                   onTap: widget.onPressedinfo,
                   child: Center(
-                    child: AppNetworkImage(
-                      url: widget.url,
-                      assetsImage: widget.assetsImage,
-                      widthImage: responsiveDesign.imageHomeContainerWidth,
-                      heightImage: responsiveDesign.imageHomeContainerheight,
+                    child: Semantics(
+                      value: PreJson.productHomeContainer[0].label,
+                      label: PreJson.productHomeContainer[0].semantics,
+                      sortKey: OrdinalSortKey(
+                        PreJson.productHomeContainer[0].semanticOrdinal,
+                      ),
+                      readOnly: true,
+                      child: AppNetworkImage(
+                        url: widget.url,
+                        assetsImage: widget.assetsImage,
+                        widthImage: responsiveDesign.imageHomeContainerWidth,
+                        heightImage: responsiveDesign.imageHomeContainerheight,
+                      ),
                     ),
                   ),
                 ),
@@ -132,6 +142,12 @@ class _ProducthomeContainerState extends State<ProducthomeContainer>
 
               // Displays product name with a favorite toggle icon.
               IsFavorite(
+                iconSemantics: PreJson.productHomeContainer[2].label,
+                iconSortSemantics:
+                    PreJson.productHomeContainer[2].semanticOrdinal,
+                productNameSemantics: PreJson.productHomeContainer[1].label,
+                productSortSemantics:
+                    PreJson.productHomeContainer[1].semanticOrdinal,
                 productName: widget.productName,
                 textStyle: textTheme.displaySmall!.copyWith(
                   fontSize: AppTypography.h4,
@@ -141,24 +157,47 @@ class _ProducthomeContainerState extends State<ProducthomeContainer>
               ),
 
               // Displays the product category.
-              Text(widget.productCategory, style: textTheme.bodyMedium),
+              Semantics(
+                label: PreJson.productHomeContainer[3].label,
+                sortKey: OrdinalSortKey(
+                  PreJson.productHomeContainer[3].semanticOrdinal,
+                ),
+                readOnly: true,
+                child: Text(
+                  widget.productCategory,
+                  style: textTheme.bodyMedium,
+                ),
+              ),
 
               // Displays the product price and promotional info if applicable.
-              PriceSection(
-                isPromotion: widget.isPromotion,
-                productPrice: widget.productPrice,
-                discount: widget.discount,
+              Semantics(
+                sortKey: OrdinalSortKey(
+                  PreJson.productHomeContainer[4].semanticOrdinal,
+                ),
+                readOnly: true,
+                child: PriceSection(
+                  isPromotion: widget.isPromotion,
+                  productPrice: widget.productPrice,
+                  discount: widget.discount,
+                ),
               ),
 
               const Spacer(),
 
               // Button to add the product to the shopping cart.
               Center(
-                child: AppButtons(
-                  type: ButtonType.secondaryTextButton,
-                  title: Copys.productContainerText,
-                  fontSizeTextButton: AppTypography.h3,
-                  onPressed: widget.onPressedbuy,
+                child: Semantics(
+                  sortKey: OrdinalSortKey(
+                    PreJson.productHomeContainer[5].semanticOrdinal,
+                  ),
+                  readOnly: true,
+                  child: AppButtons(
+                    semanticsText: PreJson.productHomeContainer[5].label,
+                    type: ButtonType.secondaryTextButton,
+                    title: Copys.productContainerText,
+                    fontSizeTextButton: AppTypography.h3,
+                    onPressed: widget.onPressedbuy,
+                  ),
                 ),
               ),
             ],

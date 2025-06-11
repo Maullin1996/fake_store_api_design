@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 
 import '../../atoms/tokens.dart';
 
@@ -15,7 +16,11 @@ class IsFavorite extends StatelessWidget {
     required this.productName, // The name of the product to display.
     required this.textStyle, // The text style to apply to the product name.
     required this.isFavorite, // A boolean that determines if the product is a favorite.
-    required this.onPressedFavorite, // The callback to handle the favorite button press.
+    required this.onPressedFavorite,
+    this.productNameSemantics,
+    this.productSortSemantics,
+    this.iconSortSemantics,
+    this.iconSemantics, // The callback to handle the favorite button press.
   });
 
   final String productName; // The name of the product.
@@ -23,6 +28,10 @@ class IsFavorite extends StatelessWidget {
   final bool isFavorite; // Whether the product is a favorite or not.
   final Function()?
   onPressedFavorite; // The callback function triggered when the favorite button is pressed.
+  final String? productNameSemantics;
+  final double? productSortSemantics;
+  final double? iconSortSemantics;
+  final String? iconSemantics;
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +39,37 @@ class IsFavorite extends StatelessWidget {
       children: [
         // The product name is displayed and will be truncated if it overflows.
         Expanded(
-          child: Text(
-            productName,
-            style: textStyle, // Apply the provided text style.
-            maxLines: 2, // Limit the text to two lines.
-            overflow:
-                TextOverflow.ellipsis, // Add ellipsis if the text overflows.
+          child: Semantics(
+            label: productNameSemantics,
+            sortKey: OrdinalSortKey(productSortSemantics ?? double.maxFinite),
+            readOnly: true,
+            child: Text(
+              productName,
+              style: textStyle, // Apply the provided text style.
+              maxLines: 2, // Limit the text to two lines.
+              overflow:
+                  TextOverflow.ellipsis, // Add ellipsis if the text overflows.
+            ),
           ),
         ),
 
         // Icon button to mark the product as a favorite or not.
         // The icon changes depending on the `isFavorite` value.
-        AppButtons(
-          type: ButtonType.secondaryIconButton,
-          icon:
-              isFavorite
-                  ? AppIcons.favorite
-                  : AppIcons
-                      .unLike, // Switch between favorite and un-like icons.
-          onPressed:
-              onPressedFavorite, // Call the onPressedFavorite callback when the button is pressed.
+        ExcludeSemantics(
+          child: Semantics(
+            sortKey: OrdinalSortKey(iconSortSemantics ?? double.maxFinite),
+            child: AppButtons(
+              semanticsText: iconSemantics,
+              type: ButtonType.secondaryIconButton,
+              icon:
+                  isFavorite
+                      ? AppIcons.favorite
+                      : AppIcons
+                          .unLike, // Switch between favorite and un-like icons.
+              onPressed:
+                  onPressedFavorite, // Call the onPressedFavorite callback when the button is pressed.
+            ),
+          ),
         ),
       ],
     );

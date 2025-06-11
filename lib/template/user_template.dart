@@ -81,21 +81,23 @@ class UserTemplate extends StatelessWidget {
       // The main body of the screen displaying the user's profile
       backgroundColor: AppColors.onPrimary, // Background color for the screen
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Displays the user's profile icon
-            IconUserHolder(),
-            // Displays the user's personal information
-            InfoUserHolder(
-              username: username, // The user's username
-              email: email, // The user's email address
-              phone: phone, // The user's phone number
-              city: city, // The user's city
-              street: street, // The user's street
-              number: number, // The user's street number
-              zipcode: zipcode, // The user's postal code
-            ),
-          ],
+        child: MergeSemantics(
+          child: Column(
+            children: [
+              // Displays the user's profile icon
+              IconUserHolder(),
+              // Displays the user's personal information
+              InfoUserHolder(
+                username: username, // The user's username
+                email: email, // The user's email address
+                phone: phone, // The user's phone number
+                city: city, // The user's city
+                street: street, // The user's street
+                number: number, // The user's street number
+                zipcode: zipcode, // The user's postal code
+              ),
+            ],
+          ),
         ),
       ),
     );

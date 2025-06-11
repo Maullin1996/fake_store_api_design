@@ -59,6 +59,9 @@ class AppButtons extends StatelessWidget {
   /// Horizontal padding or width used in button layout.
   final double buttonWidth;
 
+  /// Sematics text to the icon button
+  final String? semanticsText;
+
   /// Whether to show a loading indicator.
   ///
   /// When true, disables the button and shows a [CircularProgressIndicator].
@@ -76,6 +79,7 @@ class AppButtons extends StatelessWidget {
     this.fontSizeTextButton = 22.0,
     this.buttonWidth = 34.0,
     this.isLoading = false,
+    this.semanticsText,
   });
 
   @override
@@ -120,6 +124,7 @@ class AppButtons extends StatelessWidget {
               isLoading!
                   ? const CircularProgressIndicator()
                   : Text(
+                    semanticsLabel: semanticsText,
                     title,
                     style: textTheme.displaySmall?.copyWith(
                       fontSize: fontSizeTextButton,
@@ -139,6 +144,7 @@ class AppButtons extends StatelessWidget {
         return IconButton(
           onPressed: onPressed,
           icon: Icon(
+            semanticLabel: semanticsText,
             icon,
             size: iconSize ?? responsiveDesign.iconZise,
             color:

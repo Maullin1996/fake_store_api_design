@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:fake_store_design/config/copys.dart';
+import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -69,9 +70,14 @@ Future<dynamic> dialogs({
   String alertText; // The alert message to display in the dialog.
   Widget icon; // The icon to display in the dialog.
   String titleTextButton; // The text for the dialog's button.
+  String
+  semanticsTextButton; //Read a different menssage to the text button base on the authentication
+  String semanticsText; //Read a different menssage to the text alert widget
 
   // Determine the dialog content based on the dialog type.
   if (dialogType == DialogType.authenticated) {
+    semanticsText = PreJson.customDialogsMessage[0].label;
+    semanticsTextButton = PreJson.customDialogsMessage[0].semantics;
     alertText =
         Copys
             .customDialogsAuthenticatedAlert; // Message for authenticated users.
@@ -84,6 +90,8 @@ Future<dynamic> dialogs({
         Copys
             .customDialogsAuthenticatedTitle; // Button text for authenticated users.
   } else {
+    semanticsText = PreJson.customDialogsMessage[1].label;
+    semanticsTextButton = PreJson.customDialogsMessage[1].semantics;
     alertText =
         Copys
             .customDialogsUnAuthenticatedAlert; // Message for unauthenticated users.
@@ -112,54 +120,63 @@ Future<dynamic> dialogs({
                 AppRadius.medium,
               ), // Rounded corners for the dialog.
             ),
-            child: Column(
-              mainAxisSize:
-                  MainAxisSize
-                      .min, // Make the dialog as small as possible to fit content.
-              children: [
-                // Icon with animation.
-                TweenAnimationBuilder(
-                  duration: const Duration(
-                    milliseconds: 1500,
-                  ), // Animation duration.
-                  tween: Tween<double>(
-                    begin: 0.0,
-                    end: 720.0,
-                  ), // Rotating the icon from 0 to 720 degrees.
-                  curve: Curves.easeInOut, // Easing curve for smooth animation.
-                  builder: (BuildContext context, double angle, Widget? child) {
-                    return Transform(
-                      alignment:
-                          Alignment
-                              .center, // Set alignment to center for the rotation.
-                      transform:
-                          Matrix4.identity()..rotateY(
-                            angle * (math.pi / 180),
-                          ), // Apply rotation.
-                      child: icon, // The rotating icon.
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: AppSpacing.medium,
-                ), // Space between the icon and text.
-                Text(
-                  alertText,
-                  style: textTheme.displayMedium,
-                ), // Display the alert text with the correct style.
-                SizedBox(
-                  height: AppSpacing.small,
-                ), // Space between the text and the button.
-                AppButtons(
-                  key: Key("ButtonDialogNavigation"),
-                  type:
-                      ButtonType
-                          .secondaryTextButton, // Type of button (text button).
-                  title: titleTextButton, // Button title.
-                  onPressed:
-                      onPressed, // Callback function when the button is pressed.
-                ),
-              ],
+            child: Semantics(
+              label: semanticsText,
+              child: Column(
+                mainAxisSize:
+                    MainAxisSize
+                        .min, // Make the dialog as small as possible to fit content.
+                children: [
+                  // Icon with animation.
+                  TweenAnimationBuilder(
+                    duration: const Duration(
+                      milliseconds: 1500,
+                    ), // Animation duration.
+                    tween: Tween<double>(
+                      begin: 0.0,
+                      end: 720.0,
+                    ), // Rotating the icon from 0 to 720 degrees.
+                    curve:
+                        Curves.easeInOut, // Easing curve for smooth animation.
+                    builder: (
+                      BuildContext context,
+                      double angle,
+                      Widget? child,
+                    ) {
+                      return Transform(
+                        alignment:
+                            Alignment
+                                .center, // Set alignment to center for the rotation.
+                        transform:
+                            Matrix4.identity()..rotateY(
+                              angle * (math.pi / 180),
+                            ), // Apply rotation.
+                        child: icon, // The rotating icon.
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: AppSpacing.medium,
+                  ), // Space between the icon and text.
+                  Text(
+                    alertText,
+                    style: textTheme.displayMedium,
+                  ), // Display the alert text with the correct style.
+                  SizedBox(
+                    height: AppSpacing.small,
+                  ), // Space between the text and the button.
+                  AppButtons(
+                    semanticsText: semanticsTextButton,
+                    key: Key("ButtonDialogNavigation"),
+                    type:
+                        ButtonType
+                            .secondaryTextButton, // Type of button (text button).
+                    title: titleTextButton, // Button title.
+                    onPressed:
+                        onPressed, // Callback function when the button is pressed.
+                  ),
+                ],
+              ),
             ),
           ),
         ),

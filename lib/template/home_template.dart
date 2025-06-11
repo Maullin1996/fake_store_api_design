@@ -1,6 +1,8 @@
+import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:fake_store_design/molecules/company_info/company_info.dart';
+import 'package:flutter/semantics.dart';
 
 /// A reusable template that represents the main home screen of the app.
 ///
@@ -155,18 +157,32 @@ class HomeTemplate extends StatelessWidget {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  SearchAnchorWidget<String>(
-                    items:
-                        products
-                            .map((product) => product.title.toString())
-                            .toList(),
-                    displayString: (item) => item,
-                    onItemSelected: onItemSelected,
+                  Semantics(
+                    label: PreJson.homeTemplate[0].label,
+                    sortKey: OrdinalSortKey(
+                      PreJson.homeTemplate[0].semanticOrdinal,
+                    ),
+                    readOnly: true,
+                    child: SearchAnchorWidget<String>(
+                      items:
+                          products
+                              .map((product) => product.title.toString())
+                              .toList(),
+                      displayString: (item) => item,
+                      onItemSelected: onItemSelected,
+                    ),
                   ),
-                  ListCategory(
-                    categories: categories,
-                    selectedCategory: selectedCategory,
-                    onCategorySelected: onCategorySelected,
+                  Semantics(
+                    label: PreJson.homeTemplate[1].label,
+                    sortKey: OrdinalSortKey(
+                      PreJson.homeTemplate[1].semanticOrdinal,
+                    ),
+                    readOnly: true,
+                    child: ListCategory(
+                      categories: categories,
+                      selectedCategory: selectedCategory,
+                      onCategorySelected: onCategorySelected,
+                    ),
                   ),
                 ],
               ),
@@ -186,22 +202,31 @@ class HomeTemplate extends StatelessWidget {
 
             // Company info footer
             SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height:
-                        (products.isNotEmpty && errorMessage.isEmpty)
-                            ? AppSpacing.small
-                            : MediaQuery.sizeOf(context).height * 0.8,
-                  ),
-                  CompanyInfo(
-                    key: Key("companiInfoKey"),
-                    // address: address,
-                    // email: email,
-                    // whatsapp: whatsapp,
-                    // instagram: instagram,
-                  ),
-                ],
+              child: Semantics(
+                label: PreJson.homeTemplate[5].label,
+                sortKey: OrdinalSortKey(
+                  PreJson.homeTemplate[5].semanticOrdinal,
+                ),
+                readOnly: true,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height:
+                          (products.isNotEmpty && errorMessage.isEmpty)
+                              ? AppSpacing.small
+                              : MediaQuery.sizeOf(context).height * 0.8,
+                    ),
+                    MergeSemantics(
+                      child: CompanyInfo(
+                        key: Key("companiInfoKey"),
+                        // address: address,
+                        // email: email,
+                        // whatsapp: whatsapp,
+                        // instagram: instagram,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -230,9 +255,14 @@ class HomeTemplate extends StatelessWidget {
         key: Key('SkeletonLoadingScroll'),
         delegate: SliverChildBuilderDelegate(
           childCount: 10,
-          (context, index) => SkeletonLoadingContainer(
-            width: width,
-            key: Key("SkeletonLoading$index"),
+          (context, index) => Semantics(
+            label: PreJson.homeTemplate[2].label,
+            sortKey: OrdinalSortKey(PreJson.homeTemplate[2].semanticOrdinal),
+            readOnly: true,
+            child: SkeletonLoadingContainer(
+              width: width,
+              key: Key("SkeletonLoading$index"),
+            ),
           ),
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -245,22 +275,28 @@ class HomeTemplate extends StatelessWidget {
     } else if (errorMessage.isNotEmpty) {
       return SliverToBoxAdapter(
         key: Key('ErroMessageScroll'),
-        child: Column(
-          children: [
-            SizedBox(height: AppSpacing.extraLarge),
-            Text(
-              Copys.errorMessageFirstMessage,
-              style: textTheme.displayLarge,
-              textAlign: TextAlign.center,
+        child: Semantics(
+          sortKey: OrdinalSortKey(PreJson.homeTemplate[3].semanticOrdinal),
+          readOnly: true,
+          child: MergeSemantics(
+            child: Column(
+              children: [
+                SizedBox(height: AppSpacing.extraLarge),
+                Text(
+                  Copys.errorMessageFirstMessage,
+                  style: textTheme.displayLarge,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: AppSpacing.medium),
+                Text(
+                  Copys.errorMessageSecondMessage,
+                  style: textTheme.displayLarge,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: width * 0.02),
+              ],
             ),
-            SizedBox(height: AppSpacing.medium),
-            Text(
-              Copys.errorMessageSecondMessage,
-              style: textTheme.displayLarge,
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: width * 0.02),
-          ],
+          ),
         ),
       );
     } else {
@@ -272,21 +308,26 @@ class HomeTemplate extends StatelessWidget {
         ) {
           final product = products[index];
 
-          return ProducthomeContainer(
-            key: Key("ProductHome${product.id}"),
-            id: product.id,
-            assetsImage: assetsImage,
-            isPromotion: product.isPromotion,
-            discount: product.discount,
-            url: product.image,
-            productName: product.title,
-            productCategory: product.category,
-            productPrice: product.price,
-            //textButonProduct: textButonProduct,
-            isFavorite: myFavoriteList.contains(product),
-            onPressedFavorite: () => onPressedFavorite?.call(product),
-            onPressedinfo: () => onPressedinfo?.call(product),
-            onPressedbuy: () => onPressedbuy?.call(product),
+          return Semantics(
+            label: '${PreJson.homeTemplate[4].label} number ${index + 1}',
+            sortKey: OrdinalSortKey(PreJson.homeTemplate[4].semanticOrdinal),
+            readOnly: true,
+            child: ProducthomeContainer(
+              key: Key("ProductHome${product.id}"),
+              id: product.id,
+              assetsImage: assetsImage,
+              isPromotion: product.isPromotion,
+              discount: product.discount,
+              url: product.image,
+              productName: product.title,
+              productCategory: product.category,
+              productPrice: product.price,
+              //textButonProduct: textButonProduct,
+              isFavorite: myFavoriteList.contains(product),
+              onPressedFavorite: () => onPressedFavorite?.call(product),
+              onPressedinfo: () => onPressedinfo?.call(product),
+              onPressedbuy: () => onPressedbuy?.call(product),
+            ),
           );
         }),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

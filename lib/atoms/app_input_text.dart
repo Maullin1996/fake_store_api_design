@@ -28,6 +28,9 @@ class AppInputText extends StatelessWidget {
   /// Optional Widget to show or obscure the text
   final Widget? suffixIcon;
 
+  /// Text to descripte de inputText semantics
+  final String? semanticText;
+
   /// Creates an [AppInputText] widget.
   const AppInputText({
     super.key,
@@ -38,6 +41,7 @@ class AppInputText extends StatelessWidget {
     this.floatingLabelBehavior = true,
     required this.label,
     this.suffixIcon,
+    this.semanticText,
   });
 
   @override
@@ -53,36 +57,41 @@ class AppInputText extends StatelessWidget {
           ResponsiveDesign(
             width: MediaQuery.sizeOf(context).width,
           ).appInputTextWidth,
-      child: TextFormField(
-        controller: textEditingController,
-        obscureText: obscureText,
-        onChanged: onChange,
-        validator: validator,
-        decoration: InputDecoration(
-          suffixIcon: suffixIcon,
-          errorStyle: textTheme.bodyLarge,
-          fillColor: AppColors.backgroundTextFormField,
-          filled: true,
-          label: Text(
-            label,
-            style: textTheme.displaySmall?.copyWith(
-              color: AppColors.backgroundText,
+      child: Semantics(
+        label: semanticText,
+        child: ExcludeSemantics(
+          child: TextFormField(
+            controller: textEditingController,
+            obscureText: obscureText,
+            onChanged: onChange,
+            validator: validator,
+            decoration: InputDecoration(
+              suffixIcon: suffixIcon,
+              errorStyle: textTheme.bodyLarge,
+              fillColor: AppColors.backgroundTextFormField,
+              filled: true,
+              label: Text(
+                label,
+                style: textTheme.displaySmall?.copyWith(
+                  color: AppColors.backgroundText,
+                ),
+              ),
+              floatingLabelBehavior:
+                  floatingLabelBehavior
+                      ? FloatingLabelBehavior.auto
+                      : FloatingLabelBehavior.never,
+              isDense: true,
+              enabledBorder: border,
+              focusedBorder: border.copyWith(
+                borderSide: BorderSide(color: AppColors.primary, width: 1.5),
+              ),
+              errorBorder: border.copyWith(
+                borderSide: BorderSide(color: AppColors.error, width: 1.5),
+              ),
+              focusedErrorBorder: border.copyWith(
+                borderSide: BorderSide(color: AppColors.error, width: 1.5),
+              ),
             ),
-          ),
-          floatingLabelBehavior:
-              floatingLabelBehavior
-                  ? FloatingLabelBehavior.auto
-                  : FloatingLabelBehavior.never,
-          isDense: true,
-          enabledBorder: border,
-          focusedBorder: border.copyWith(
-            borderSide: BorderSide(color: AppColors.primary, width: 1.5),
-          ),
-          errorBorder: border.copyWith(
-            borderSide: BorderSide(color: AppColors.error, width: 1.5),
-          ),
-          focusedErrorBorder: border.copyWith(
-            borderSide: BorderSide(color: AppColors.error, width: 1.5),
           ),
         ),
       ),

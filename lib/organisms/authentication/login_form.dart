@@ -1,3 +1,4 @@
+import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -79,6 +80,8 @@ class LoginForm extends StatelessWidget {
             AppInputText(
               key: Key("username"),
               label: Copys.loginLabelUsername, // Label text for the field.
+              semanticText:
+                  PreJson.inputTextSemantics[0].label, // Semantics text
               floatingLabelBehavior: false, // Making the label always visible.
               onChange:
                   onChangeUsername, // Function to handle changes in the username field.
@@ -97,6 +100,8 @@ class LoginForm extends StatelessWidget {
               label:
                   Copys
                       .loginLabelPassword, // Label text for the password field.
+              semanticText:
+                  PreJson.inputTextSemantics[1].label, // Semantics text
               floatingLabelBehavior: false, // Making the label always visible.
               obscureText:
                   obscureText, // Ensuring the password is hidden when typed.
@@ -110,6 +115,8 @@ class LoginForm extends StatelessWidget {
                 key: Key("Icon button"),
                 onPressed: iconOnPressed,
                 icon: Icon(
+                  semanticLabel:
+                      PreJson.inputTextSemantics[2].label, // Semantics text
                   obscureText
                       ? Icons.remove_red_eye_outlined
                       : Icons.remove_red_eye_rounded,

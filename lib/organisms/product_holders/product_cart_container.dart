@@ -1,4 +1,6 @@
+import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 
 import '../../design_system.dart';
 
@@ -83,11 +85,21 @@ class ProductCartContainer extends StatelessWidget {
         child: Row(
           children: [
             // Product image (from network with local fallback).
-            AppNetworkImage(
-              url: url,
-              assetsImage: assetsImage,
-              heightImage: responsiveDesign.imageCartContainerheight,
-              widthImage: responsiveDesign.imageCartContainerWidth,
+            Semantics(
+              sortKey: OrdinalSortKey(
+                PreJson.cartTemplateSemantics[0].semanticOrdinal,
+              ),
+              readOnly: true,
+              value: PreJson.cartTemplateSemantics[0].label,
+              label: PreJson.cartTemplateSemantics[0].semantics,
+              child: ExcludeSemantics(
+                child: AppNetworkImage(
+                  url: url,
+                  assetsImage: assetsImage,
+                  heightImage: responsiveDesign.imageCartContainerheight,
+                  widthImage: responsiveDesign.imageCartContainerWidth,
+                ),
+              ),
             ),
             SizedBox(width: AppSpacing.small),
             // Product info: name, amount, and optional description.
@@ -95,22 +107,48 @@ class ProductCartContainer extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    productName,
-                    style: textTheme.displaySmall,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                  Semantics(
+                    sortKey: OrdinalSortKey(
+                      PreJson.cartTemplateSemantics[1].semanticOrdinal,
+                    ),
+                    label: PreJson.cartTemplateSemantics[1].label,
+                    readOnly: true,
+                    child: Text(
+                      productName,
+                      style: textTheme.displaySmall,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   SizedBox(height: AppSpacing.small),
-                  Text(
-                    amount,
-                    style: textTheme.labelLarge?.copyWith(
-                      fontSize: AppTypography.h3,
+                  Semantics(
+                    sortKey: OrdinalSortKey(
+                      PreJson.cartTemplateSemantics[2].semanticOrdinal,
+                    ),
+                    value: PreJson.cartTemplateSemantics[2].label,
+                    label:
+                        '${PreJson.cartTemplateSemantics[2].semantics} $amount',
+                    readOnly: true,
+                    liveRegion: true,
+                    child: ExcludeSemantics(
+                      child: Text(
+                        amount,
+                        style: textTheme.labelLarge?.copyWith(
+                          fontSize: AppTypography.h3,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: AppSpacing.small),
                   if (responsiveDesign.descriptionCartContainer)
-                    Text(description, style: textTheme.bodyLarge),
+                    Semantics(
+                      label: PreJson.cartTemplateSemantics[3].label,
+                      sortKey: OrdinalSortKey(
+                        PreJson.cartTemplateSemantics[3].semanticOrdinal,
+                      ),
+                      readOnly: true,
+                      child: Text(description, style: textTheme.bodyLarge),
+                    ),
                 ],
               ),
             ),
@@ -118,22 +156,42 @@ class ProductCartContainer extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                PriceSection(
-                  isPromotion: isPromotion,
-                  productPrice: productPrice,
-                  discount: discount,
+                Semantics(
+                  sortKey: OrdinalSortKey(
+                    PreJson.cartTemplateSemantics[4].semanticOrdinal,
+                  ),
+                  readOnly: true,
+                  child: PriceSection(
+                    isPromotion: isPromotion,
+                    productPrice: productPrice,
+                    discount: discount,
+                  ),
                 ),
                 Row(
                   children: [
-                    AppButtons(
-                      type: ButtonType.secondaryIconButton,
-                      icon: AppIcons.plus,
-                      onPressed: onPressedplus,
+                    Semantics(
+                      sortKey: OrdinalSortKey(
+                        PreJson.cartTemplateSemantics[5].semanticOrdinal,
+                      ),
+                      readOnly: true,
+                      child: AppButtons(
+                        semanticsText: PreJson.cartTemplateSemantics[5].label,
+                        type: ButtonType.secondaryIconButton,
+                        icon: AppIcons.plus,
+                        onPressed: onPressedplus,
+                      ),
                     ),
-                    AppButtons(
-                      type: ButtonType.secondaryIconButton,
-                      icon: AppIcons.minus,
-                      onPressed: onPressedminus,
+                    Semantics(
+                      sortKey: OrdinalSortKey(
+                        PreJson.cartTemplateSemantics[6].semanticOrdinal,
+                      ),
+                      readOnly: true,
+                      child: AppButtons(
+                        semanticsText: PreJson.cartTemplateSemantics[6].label,
+                        type: ButtonType.secondaryIconButton,
+                        icon: AppIcons.minus,
+                        onPressed: onPressedminus,
+                      ),
                     ),
                   ],
                 ),

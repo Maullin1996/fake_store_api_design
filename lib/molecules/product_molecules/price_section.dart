@@ -1,4 +1,5 @@
 import 'package:fake_store_design/atoms/app_colors.dart';
+import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:flutter/material.dart';
 
 /// A stateless widget that displays the price of a product.
@@ -31,29 +32,40 @@ class PriceSection extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return isPromotion
-        ? Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Original price with strikethrough style to indicate a discount.
-            Text(
-              '\$ ${productPrice.toStringAsFixed(2)}',
-              style: textTheme.labelLarge?.copyWith(
-                color: AppColors.disabledButton,
-                decoration: TextDecoration.lineThrough,
-                decorationColor: AppColors.disabledButton,
-                decorationThickness: 2.0,
+        ? MergeSemantics(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Original price with strikethrough style to indicate a discount.
+              Semantics(
+                label: PreJson.productInformationScreen[3].semantics,
+                child: Text(
+                  '\$ ${productPrice.toStringAsFixed(2)}',
+                  style: textTheme.labelLarge?.copyWith(
+                    color: AppColors.disabledButton,
+                    decoration: TextDecoration.lineThrough,
+                    decorationColor: AppColors.disabledButton,
+                    decorationThickness: 2.0,
+                  ),
+                ),
               ),
-            ),
-            // Final price after applying the discount.
-            Text(
-              '\$ ${(productPrice - productPrice * discount!).toStringAsFixed(2)}',
-              style: textTheme.labelLarge,
-            ),
-          ],
+              // Final price after applying the discount.
+              Semantics(
+                label: PreJson.productInformationScreen[3].label,
+                child: Text(
+                  '\$ ${(productPrice - productPrice * discount!).toStringAsFixed(2)}',
+                  style: textTheme.labelLarge,
+                ),
+              ),
+            ],
+          ),
         )
-        : Text(
-          '\$ ${productPrice.toStringAsFixed(2)}',
-          style: textTheme.labelLarge,
+        : Semantics(
+          label: PreJson.productInformationScreen[3].label,
+          child: Text(
+            '\$ ${productPrice.toStringAsFixed(2)}',
+            style: textTheme.labelLarge,
+          ),
         );
   }
 }

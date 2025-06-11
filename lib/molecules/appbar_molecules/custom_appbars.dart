@@ -1,4 +1,5 @@
 import 'package:fake_store_design/config/copys.dart';
+import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
@@ -63,6 +64,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
       case AppbarType.productAppbar:
         leading = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[0].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.back, // Back button
             onPressed: backonPressed, // Action for back button
@@ -70,6 +72,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
         ];
         actions = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[1].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.cart, // Cart button
             onPressed: cartonPressed, // Action for cart button
@@ -79,6 +82,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
       case AppbarType.cartAppbarlogin:
         leading = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[0].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.back, // Back button
             onPressed: backonPressed, // Action for back button
@@ -86,6 +90,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
         ];
         actions = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[3].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.login, // Login button
             onPressed: logInonPressed, // Action for login button
@@ -95,19 +100,21 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
       case AppbarType.cartAppbarlogout:
         leading = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[0].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.back, // Back button
             onPressed: backonPressed, // Action for back button
           ),
         ];
         title = Center(
-          child: Text(
-            '$name $lastName',
-            style: textTheme.displayMedium,
+          child: Semantics(
+            label: PreJson.custonsButtons[5].label,
+            child: Text('$name $lastName', style: textTheme.displayMedium),
           ), // Display user's name
         );
         actions = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[4].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.logout, // Logout button
             onPressed: logOutonPressed, // Action for logout button
@@ -117,24 +124,27 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
       case AppbarType.homeLogOutAppbar:
         leading = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[2].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.user, // User profile button
             onPressed: useronPressed, // Action for user profile button
           ),
         ];
         title = Center(
-          child: Text(
-            '$name $lastName',
-            style: textTheme.displayMedium,
+          child: Semantics(
+            label: PreJson.custonsButtons[5].label,
+            child: Text('$name $lastName', style: textTheme.displayMedium),
           ), // Display user's name
         );
         actions = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[1].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.cart, // Cart button
             onPressed: cartonPressed, // Action for cart button
           ),
           AppButtons(
+            semanticsText: PreJson.custonsButtons[4].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.logout, // Logout button
             onPressed: logOutonPressed, // Action for logout button
@@ -144,6 +154,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
       case AppbarType.homeLogInAppbar:
         leading = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[3].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.login, // Login button
             onPressed: logInonPressed, // Action for login button
@@ -154,6 +165,7 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
         ); // Title "Home"
         actions = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[1].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.cart, // Cart button
             onPressed: cartonPressed, // Action for cart button
@@ -163,24 +175,27 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
       case AppbarType.userAppbar:
         leading = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[0].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.back, // Back button
             onPressed: backonPressed, // Action for back button
           ),
         ];
         title = Center(
-          child: Text(
-            '$name $lastName',
-            style: textTheme.displayMedium,
+          child: Semantics(
+            label: PreJson.custonsButtons[5].label,
+            child: Text('$name $lastName', style: textTheme.displayMedium),
           ), // Display user's name
         );
         actions = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[1].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.cart, // Cart button
             onPressed: cartonPressed, // Action for cart button
           ),
           AppButtons(
+            semanticsText: PreJson.custonsButtons[4].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.logout, // Logout button
             onPressed: logOutonPressed, // Action for logout button
@@ -190,16 +205,10 @@ class CustomAppbars extends StatelessWidget implements PreferredSizeWidget {
       case AppbarType.logInAppbar:
         leading = [
           AppButtons(
+            semanticsText: PreJson.custonsButtons[0].label,
             type: ButtonType.secondaryIconButton,
             icon: AppIcons.back, // Back button
             onPressed: backonPressed, // Action for back button
-          ),
-        ];
-        actions = [
-          AppButtons(
-            type: ButtonType.secondaryIconButton,
-            icon: AppIcons.cart, // Cart button
-            onPressed: cartonPressed, // Action for cart button
           ),
         ];
         break;
