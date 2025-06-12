@@ -45,10 +45,19 @@ Follow these steps to install and set up the application on your local machine:
 2. Navigate into the project directory:
     ```bash
     cd fake_store_api_design
-3. Install the dependencies:
+3. Provide the texts in json format follow the format in assets/locale/en/semantics_json.json and 'assets/design/copys.json'
+    ```bash
+    main() async{
+      WidgetsFlutterBinding.ensureInitialized();
+      await AtomicDesignConfig.initializeFromAsset('assets/design/copys.json');
+      await SemanticsConfig.initializeFromAsset(
+        'assets/locale/en/semantics_json.json',
+      );
+    }
+4. Install the dependencies:
     ```bash
     flutter pub get
-4. Run the application:
+5. Run the application:
     ```bash
     flutter run
 ## Usage
@@ -179,15 +188,6 @@ buying the product, viewing more information, and adding it to favorites.
 - A widget that displays company contact information such as address, email, WhatsApp, and Instagram.
     ```bash
     class CompanyInfo extends StatelessWidget {
-      /// Company's physical address.
-      final String address;
-      /// Company's support email.
-      final String email;
-      /// WhatsApp contact number or link.
-      final String whatsapp;
-      /// Instagram handle or profile link.
-      final String instagram;
-      // constructor and build method...
     }
 
 <p align = "center">
