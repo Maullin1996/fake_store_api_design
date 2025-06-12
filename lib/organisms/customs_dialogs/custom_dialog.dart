@@ -1,12 +1,11 @@
 import 'dart:math' as math;
 
 import 'package:fake_store_design/config/copys.dart';
+import 'package:fake_store_design/config/semantics_config.dart';
 import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../atoms/tokens.dart';
-
-enum DialogType { authenticated, unauthenticated }
 
 /// A custom dialog widget that displays a message based on the authentication status.
 ///
@@ -76,8 +75,10 @@ Future<dynamic> dialogs({
 
   // Determine the dialog content based on the dialog type.
   if (dialogType == DialogType.authenticated) {
-    semanticsText = PreJson.customDialogsMessage[0].label;
-    semanticsTextButton = PreJson.customDialogsMessage[0].semantics;
+    final SemanticsText semantics =
+        SemanticsConfig.instance.data.customDialogsMessage[0];
+    semanticsText = semantics.label;
+    semanticsTextButton = semantics.semantics;
     alertText =
         Copys
             .customDialogsAuthenticatedAlert; // Message for authenticated users.
@@ -90,8 +91,10 @@ Future<dynamic> dialogs({
         Copys
             .customDialogsAuthenticatedTitle; // Button text for authenticated users.
   } else {
-    semanticsText = PreJson.customDialogsMessage[1].label;
-    semanticsTextButton = PreJson.customDialogsMessage[1].semantics;
+    final SemanticsText semantics =
+        SemanticsConfig.instance.data.customDialogsMessage[1];
+    semanticsText = semantics.label;
+    semanticsTextButton = semantics.semantics;
     alertText =
         Copys
             .customDialogsUnAuthenticatedAlert; // Message for unauthenticated users.
@@ -166,7 +169,7 @@ Future<dynamic> dialogs({
                     height: AppSpacing.small,
                   ), // Space between the text and the button.
                   AppButtons(
-                    semanticsText: semanticsTextButton,
+                    semanticsTextButton: semanticsTextButton,
                     key: Key("ButtonDialogNavigation"),
                     type:
                         ButtonType
@@ -182,3 +185,5 @@ Future<dynamic> dialogs({
         ),
   );
 }
+
+enum DialogType { authenticated, unauthenticated }

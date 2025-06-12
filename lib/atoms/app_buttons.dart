@@ -1,29 +1,6 @@
 import 'package:flutter/material.dart';
 import 'tokens.dart';
 
-/// The type of button to render.
-///
-/// Used by [AppButtons] to determine the appropriate styling and widget to display.
-enum ButtonType {
-  /// A filled button with the primary color.
-  primaryFillButton,
-
-  /// A filled button with the secondary color.
-  secondaryFillButton,
-
-  /// A text-only button styled with the primary color.
-  primaryTextButton,
-
-  /// A text-only button styled with the secondary color.
-  secondaryTextButton,
-
-  /// An icon-only button styled with the primary color.
-  primaryIconButton,
-
-  /// An icon-only button styled with the secondary color.
-  secondaryIconButton,
-}
-
 /// A customizable button widget used across the app.
 ///
 /// This widget supports various button types such as filled buttons, text buttons, and icon buttons.
@@ -62,6 +39,9 @@ class AppButtons extends StatelessWidget {
   /// Sematics text to the icon button
   final String? semanticsText;
 
+  /// Sematics text to the icon button
+  final String? semanticsTextButton;
+
   /// Whether to show a loading indicator.
   ///
   /// When true, disables the button and shows a [CircularProgressIndicator].
@@ -80,6 +60,7 @@ class AppButtons extends StatelessWidget {
     this.buttonWidth = 34.0,
     this.isLoading = false,
     this.semanticsText,
+    this.semanticsTextButton,
   });
 
   @override
@@ -124,7 +105,7 @@ class AppButtons extends StatelessWidget {
               isLoading!
                   ? const CircularProgressIndicator()
                   : Text(
-                    semanticsLabel: semanticsText,
+                    semanticsLabel: semanticsTextButton,
                     title,
                     style: textTheme.displaySmall?.copyWith(
                       fontSize: fontSizeTextButton,
@@ -157,4 +138,27 @@ class AppButtons extends StatelessWidget {
         );
     }
   }
+}
+
+/// The type of button to render.
+///
+/// Used by [AppButtons] to determine the appropriate styling and widget to display.
+enum ButtonType {
+  /// A filled button with the primary color.
+  primaryFillButton,
+
+  /// A filled button with the secondary color.
+  secondaryFillButton,
+
+  /// A text-only button styled with the primary color.
+  primaryTextButton,
+
+  /// A text-only button styled with the secondary color.
+  secondaryTextButton,
+
+  /// An icon-only button styled with the primary color.
+  primaryIconButton,
+
+  /// An icon-only button styled with the secondary color.
+  secondaryIconButton,
 }

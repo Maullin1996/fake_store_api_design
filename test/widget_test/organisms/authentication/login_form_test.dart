@@ -7,6 +7,9 @@ void main() {
     await AtomicDesignConfig.initializeFromAsset(
       'assets/config/app_config.json',
     );
+    await SemanticsConfig.initializeFromAsset(
+      'assets/locale/en/semantics_json.json',
+    );
   });
   testWidgets("Verify the texts on screen", (WidgetTester tester) async {
     //Arrange

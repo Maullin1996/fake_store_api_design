@@ -46,6 +46,10 @@ class CompanyInfo extends StatelessWidget {
   Widget _buildWidget(double screenWidth, TextTheme textTheme) {
     /// Builds a row with an icon and text, with overflow handling.
     Widget infoStructure(IconData iconData, String text) {
+      final decoration = textTheme.bodyLarge?.copyWith(
+        fontWeight: FontWeight.bold,
+      );
+
       return Row(
         children: [
           Icon(iconData),
@@ -55,19 +59,11 @@ class CompanyInfo extends StatelessWidget {
                 width: screenWidth * 0.8,
                 child: Text(
                   text,
-                  style: textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: decoration,
                   overflow: TextOverflow.ellipsis,
                 ),
               )
-              : Text(
-                text,
-                style: textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
+              : Text(text, style: decoration, overflow: TextOverflow.ellipsis),
         ],
       );
     }

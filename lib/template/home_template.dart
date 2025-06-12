@@ -1,4 +1,3 @@
-import 'package:fake_store_design/config/semantics_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:fake_store_design/molecules/company_info/company_info.dart';
@@ -129,6 +128,8 @@ class HomeTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final semantics = SemanticsConfig.instance.data.homeTemplate;
+
     return Scaffold(
       appBar:
           isLogIn
@@ -158,10 +159,8 @@ class HomeTemplate extends StatelessWidget {
               child: Column(
                 children: [
                   Semantics(
-                    label: PreJson.homeTemplate[0].label,
-                    sortKey: OrdinalSortKey(
-                      PreJson.homeTemplate[0].semanticOrdinal,
-                    ),
+                    label: semantics[0].label,
+                    sortKey: OrdinalSortKey(semantics[0].semanticOrdinal),
                     readOnly: true,
                     child: SearchAnchorWidget<String>(
                       items:
@@ -173,10 +172,8 @@ class HomeTemplate extends StatelessWidget {
                     ),
                   ),
                   Semantics(
-                    label: PreJson.homeTemplate[1].label,
-                    sortKey: OrdinalSortKey(
-                      PreJson.homeTemplate[1].semanticOrdinal,
-                    ),
+                    label: semantics[1].label,
+                    sortKey: OrdinalSortKey(semantics[1].semanticOrdinal),
                     readOnly: true,
                     child: ListCategory(
                       categories: categories,
@@ -203,10 +200,8 @@ class HomeTemplate extends StatelessWidget {
             // Company info footer
             SliverToBoxAdapter(
               child: Semantics(
-                label: PreJson.homeTemplate[5].label,
-                sortKey: OrdinalSortKey(
-                  PreJson.homeTemplate[5].semanticOrdinal,
-                ),
+                label: semantics[5].label,
+                sortKey: OrdinalSortKey(semantics[5].semanticOrdinal),
                 readOnly: true,
                 child: Column(
                   children: [
@@ -249,6 +244,7 @@ class HomeTemplate extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.sizeOf(context).width;
     final responsiveDesign = ResponsiveDesign(width: width);
+    final semantics = SemanticsConfig.instance.data.homeTemplate;
 
     if (isLoading) {
       return SliverGrid(
@@ -256,8 +252,8 @@ class HomeTemplate extends StatelessWidget {
         delegate: SliverChildBuilderDelegate(
           childCount: 10,
           (context, index) => Semantics(
-            label: PreJson.homeTemplate[2].label,
-            sortKey: OrdinalSortKey(PreJson.homeTemplate[2].semanticOrdinal),
+            label: semantics[2].label,
+            sortKey: OrdinalSortKey(semantics[2].semanticOrdinal),
             readOnly: true,
             child: SkeletonLoadingContainer(
               width: width,
@@ -276,7 +272,7 @@ class HomeTemplate extends StatelessWidget {
       return SliverToBoxAdapter(
         key: Key('ErroMessageScroll'),
         child: Semantics(
-          sortKey: OrdinalSortKey(PreJson.homeTemplate[3].semanticOrdinal),
+          sortKey: OrdinalSortKey(semantics[3].semanticOrdinal),
           readOnly: true,
           child: MergeSemantics(
             child: Column(
@@ -309,8 +305,8 @@ class HomeTemplate extends StatelessWidget {
           final product = products[index];
 
           return Semantics(
-            label: '${PreJson.homeTemplate[4].label} number ${index + 1}',
-            sortKey: OrdinalSortKey(PreJson.homeTemplate[4].semanticOrdinal),
+            label: '${semantics[4].label} number ${index + 1}',
+            sortKey: OrdinalSortKey(semantics[4].semanticOrdinal),
             readOnly: true,
             child: ProducthomeContainer(
               key: Key("ProductHome${product.id}"),

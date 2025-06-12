@@ -3,19 +3,6 @@ import 'package:fake_store_design/config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-/// Enum to define the verification types for product actions.
-///
-/// It has three states:
-/// - [added]: Product was successfully added.
-/// - [notAdded]: Product was already added.
-/// - [errorMessage]: Custom error message.
-
-enum TypeVerification {
-  added, // The product was added successfully.
-  notAdded, // The product was already added.
-  errorMessage, // A custom error message.
-}
-
 /// A utility class to show floating notifications (toast messages) for product verification.
 ///
 /// This class provides a method to display a floating toast message with different content, background,
@@ -112,4 +99,17 @@ class CustomFloatingNotifications {
               : colorToHex(Colors.red[50]!),
     );
   }
+}
+
+/// Enum to define the verification types for product actions.
+///
+/// It has three states:
+/// - [added]: Product was successfully added.
+/// - [notAdded]: Product was already added.
+/// - [errorMessage]: Custom error message.
+
+enum TypeVerification {
+  added, // The product was added successfully.
+  notAdded, // The product was already added.
+  errorMessage, // A custom error message.
 }

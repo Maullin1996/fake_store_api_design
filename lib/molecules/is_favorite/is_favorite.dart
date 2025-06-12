@@ -55,20 +55,18 @@ class IsFavorite extends StatelessWidget {
 
         // Icon button to mark the product as a favorite or not.
         // The icon changes depending on the `isFavorite` value.
-        ExcludeSemantics(
-          child: Semantics(
-            sortKey: OrdinalSortKey(iconSortSemantics ?? double.maxFinite),
-            child: AppButtons(
-              semanticsText: iconSemantics,
-              type: ButtonType.secondaryIconButton,
-              icon:
-                  isFavorite
-                      ? AppIcons.favorite
-                      : AppIcons
-                          .unLike, // Switch between favorite and un-like icons.
-              onPressed:
-                  onPressedFavorite, // Call the onPressedFavorite callback when the button is pressed.
-            ),
+        Semantics(
+          sortKey: OrdinalSortKey(iconSortSemantics ?? double.maxFinite),
+          child: AppButtons(
+            semanticsText: iconSemantics,
+            type: ButtonType.secondaryIconButton,
+            icon:
+                isFavorite
+                    ? AppIcons.favorite
+                    : AppIcons
+                        .unLike, // Switch between favorite and un-like icons.
+            onPressed:
+                onPressedFavorite, // Call the onPressedFavorite callback when the button is pressed.
           ),
         ),
       ],

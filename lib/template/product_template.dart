@@ -1,6 +1,5 @@
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:fake_store_design/molecules/molecules.dart';
-import 'package:fake_store_design/organisms/organisms.dart';
 
 /// A widget representing the product detail screen.
 ///

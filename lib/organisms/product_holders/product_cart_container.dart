@@ -1,8 +1,6 @@
-import 'package:fake_store_design/config/semantics_text.dart';
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
-
-import '../../design_system.dart';
+import 'package:flutter/rendering.dart';
 
 /// A stateless widget that displays a product inside the shopping cart UI.
 ///
@@ -63,6 +61,7 @@ class ProductCartContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final semantics = SemanticsConfig.instance.data.cartTemplateSemantics;
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(
       width: MediaQuery.sizeOf(context).width,
     );
@@ -86,12 +85,10 @@ class ProductCartContainer extends StatelessWidget {
           children: [
             // Product image (from network with local fallback).
             Semantics(
-              sortKey: OrdinalSortKey(
-                PreJson.cartTemplateSemantics[0].semanticOrdinal,
-              ),
+              sortKey: OrdinalSortKey(semantics[0].semanticOrdinal),
               readOnly: true,
-              value: PreJson.cartTemplateSemantics[0].label,
-              label: PreJson.cartTemplateSemantics[0].semantics,
+              value: semantics[0].label,
+              label: semantics[0].semantics,
               child: ExcludeSemantics(
                 child: AppNetworkImage(
                   url: url,
@@ -108,10 +105,8 @@ class ProductCartContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Semantics(
-                    sortKey: OrdinalSortKey(
-                      PreJson.cartTemplateSemantics[1].semanticOrdinal,
-                    ),
-                    label: PreJson.cartTemplateSemantics[1].label,
+                    sortKey: OrdinalSortKey(semantics[1].semanticOrdinal),
+                    label: semantics[1].label,
                     readOnly: true,
                     child: Text(
                       productName,
@@ -122,12 +117,9 @@ class ProductCartContainer extends StatelessWidget {
                   ),
                   SizedBox(height: AppSpacing.small),
                   Semantics(
-                    sortKey: OrdinalSortKey(
-                      PreJson.cartTemplateSemantics[2].semanticOrdinal,
-                    ),
-                    value: PreJson.cartTemplateSemantics[2].label,
-                    label:
-                        '${PreJson.cartTemplateSemantics[2].semantics} $amount',
+                    sortKey: OrdinalSortKey(semantics[2].semanticOrdinal),
+                    value: semantics[2].label,
+                    label: '${semantics[2].semantics} $amount',
                     readOnly: true,
                     liveRegion: true,
                     child: ExcludeSemantics(
@@ -142,10 +134,8 @@ class ProductCartContainer extends StatelessWidget {
                   SizedBox(height: AppSpacing.small),
                   if (responsiveDesign.descriptionCartContainer)
                     Semantics(
-                      label: PreJson.cartTemplateSemantics[3].label,
-                      sortKey: OrdinalSortKey(
-                        PreJson.cartTemplateSemantics[3].semanticOrdinal,
-                      ),
+                      label: semantics[3].label,
+                      sortKey: OrdinalSortKey(semantics[3].semanticOrdinal),
                       readOnly: true,
                       child: Text(description, style: textTheme.bodyLarge),
                     ),
@@ -157,9 +147,7 @@ class ProductCartContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Semantics(
-                  sortKey: OrdinalSortKey(
-                    PreJson.cartTemplateSemantics[4].semanticOrdinal,
-                  ),
+                  sortKey: OrdinalSortKey(semantics[4].semanticOrdinal),
                   readOnly: true,
                   child: PriceSection(
                     isPromotion: isPromotion,
@@ -170,24 +158,20 @@ class ProductCartContainer extends StatelessWidget {
                 Row(
                   children: [
                     Semantics(
-                      sortKey: OrdinalSortKey(
-                        PreJson.cartTemplateSemantics[5].semanticOrdinal,
-                      ),
+                      sortKey: OrdinalSortKey(semantics[5].semanticOrdinal),
                       readOnly: true,
                       child: AppButtons(
-                        semanticsText: PreJson.cartTemplateSemantics[5].label,
+                        semanticsText: semantics[5].label,
                         type: ButtonType.secondaryIconButton,
                         icon: AppIcons.plus,
                         onPressed: onPressedplus,
                       ),
                     ),
                     Semantics(
-                      sortKey: OrdinalSortKey(
-                        PreJson.cartTemplateSemantics[6].semanticOrdinal,
-                      ),
+                      sortKey: OrdinalSortKey(semantics[6].semanticOrdinal),
                       readOnly: true,
                       child: AppButtons(
-                        semanticsText: PreJson.cartTemplateSemantics[6].label,
+                        semanticsText: semantics[6].label,
                         type: ButtonType.secondaryIconButton,
                         icon: AppIcons.minus,
                         onPressed: onPressedminus,

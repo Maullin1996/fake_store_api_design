@@ -1,5 +1,4 @@
-import 'package:fake_store_design/atoms/app_colors.dart';
-import 'package:fake_store_design/config/semantics_text.dart';
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 
 /// A stateless widget that displays the price of a product.
@@ -30,6 +29,9 @@ class PriceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final SemanticsText semantics =
+        SemanticsConfig.instance.data.productInformationScreen[4];
+    final String price = productPrice.toStringAsFixed(2);
 
     return isPromotion
         ? MergeSemantics(
@@ -38,9 +40,9 @@ class PriceSection extends StatelessWidget {
             children: [
               // Original price with strikethrough style to indicate a discount.
               Semantics(
-                label: PreJson.productInformationScreen[3].semantics,
+                label: semantics.semantics,
                 child: Text(
-                  '\$ ${productPrice.toStringAsFixed(2)}',
+                  '\$ $price',
                   style: textTheme.labelLarge?.copyWith(
                     color: AppColors.disabledButton,
                     decoration: TextDecoration.lineThrough,
@@ -51,7 +53,7 @@ class PriceSection extends StatelessWidget {
               ),
               // Final price after applying the discount.
               Semantics(
-                label: PreJson.productInformationScreen[3].label,
+                label: semantics.label,
                 child: Text(
                   '\$ ${(productPrice - productPrice * discount!).toStringAsFixed(2)}',
                   style: textTheme.labelLarge,
@@ -61,11 +63,8 @@ class PriceSection extends StatelessWidget {
           ),
         )
         : Semantics(
-          label: PreJson.productInformationScreen[3].label,
-          child: Text(
-            '\$ ${productPrice.toStringAsFixed(2)}',
-            style: textTheme.labelLarge,
-          ),
+          label: semantics.label,
+          child: Text('\$ $price', style: textTheme.labelLarge),
         );
   }
 }

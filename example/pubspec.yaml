@@ -66,6 +66,7 @@ flutter:
   assets:
     - assets/images/
     - assets/config/app_config.json
+    - assets/locale/en/semantics_json.json
   
   fonts:
       - family: Roboto

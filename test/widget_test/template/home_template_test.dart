@@ -46,6 +46,9 @@ void main() {
       await AtomicDesignConfig.initializeFromAsset(
         'assets/config/app_config.json',
       );
+      await SemanticsConfig.initializeFromAsset(
+        'assets/locale/en/semantics_json.json',
+      );
     });
     testWidgets("Error message", (WidgetTester tester) async {
       // Arrange

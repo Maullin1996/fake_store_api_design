@@ -36,6 +36,9 @@ void main() {
         await AtomicDesignConfig.initializeFromAsset(
           'assets/config/app_config.json',
         );
+        await SemanticsConfig.initializeFromAsset(
+          'assets/locale/en/semantics_json.json',
+        );
       });
       testWidgets("Text in the home holder", (WidgetTester tester) async {
         // Arrange

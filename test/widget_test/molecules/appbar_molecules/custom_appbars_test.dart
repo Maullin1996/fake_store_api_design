@@ -1,6 +1,4 @@
-import 'package:fake_store_design/atoms/app_icons.dart';
-import 'package:fake_store_design/config/atomic_design_config.dart';
-import 'package:fake_store_design/molecules/molecules.dart';
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -8,6 +6,9 @@ void main() {
   setUp(() async {
     await AtomicDesignConfig.initializeFromAsset(
       'assets/config/app_config.json',
+    );
+    await SemanticsConfig.initializeFromAsset(
+      'assets/locale/en/semantics_json.json',
     );
   });
   group('Home Appbars', () {

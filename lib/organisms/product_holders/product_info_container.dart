@@ -1,6 +1,4 @@
-import 'package:fake_store_design/config/copys.dart';
-import 'package:fake_store_design/config/semantics_text.dart';
-import 'package:fake_store_design/molecules/molecules.dart';
+import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -75,6 +73,7 @@ class ProductInfoContainer extends StatelessWidget {
     // Obtain the text theme from the current context to apply consistent text styling
     final textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.sizeOf(context).width;
+    final semantics = SemanticsConfig.instance.data.productInformationScreen;
     final ResponsiveDesign responsiveDesign = ResponsiveDesign(width: width);
     // The container holding the product details
 
@@ -94,11 +93,9 @@ class ProductInfoContainer extends StatelessWidget {
             tag: id,
             child: Center(
               child: Semantics(
-                label: PreJson.productInformationScreen[2].label,
+                label: semantics[2].label,
                 readOnly: true,
-                sortKey: OrdinalSortKey(
-                  PreJson.productInformationScreen[2].semanticOrdinal,
-                ),
+                sortKey: OrdinalSortKey(semantics[2].semanticOrdinal),
                 child: ExcludeSemantics(
                   child: AppNetworkImage(
                     url: url, // Product image URL
@@ -119,12 +116,10 @@ class ProductInfoContainer extends StatelessWidget {
           ), // Space between the image and the next section
           // Display the favorite icon and product name with a custom text style
           IsFavorite(
-            iconSemantics: PreJson.productInformationScreen[1].label,
-            iconSortSemantics:
-                PreJson.productInformationScreen[1].semanticOrdinal,
-            productNameSemantics: PreJson.productInformationScreen[0].label,
-            productSortSemantics:
-                PreJson.productInformationScreen[0].semanticOrdinal,
+            iconSemantics: semantics[1].label,
+            iconSortSemantics: semantics[1].semanticOrdinal,
+            productNameSemantics: semantics[0].label,
+            productSortSemantics: semantics[0].semanticOrdinal,
             productName: productName,
             textStyle:
                 textTheme.displayMedium!, // Use the display medium text style
@@ -138,10 +133,8 @@ class ProductInfoContainer extends StatelessWidget {
           // Display the product description
           Semantics(
             readOnly: true,
-            label: PreJson.productInformationScreen[3].label,
-            sortKey: OrdinalSortKey(
-              PreJson.productInformationScreen[3].semanticOrdinal,
-            ),
+            label: semantics[3].label,
+            sortKey: OrdinalSortKey(semantics[3].semanticOrdinal),
             child: Text(description, style: textTheme.bodyMedium),
           ),
           SizedBox(
@@ -149,9 +142,7 @@ class ProductInfoContainer extends StatelessWidget {
           ), // Space between description and price
           Semantics(
             readOnly: true,
-            sortKey: OrdinalSortKey(
-              PreJson.productInformationScreen[4].semanticOrdinal,
-            ),
+            sortKey: OrdinalSortKey(semantics[4].semanticOrdinal),
             child: PriceSection(
               isPromotion: isPromotion,
               productPrice: productPrice,
@@ -164,12 +155,10 @@ class ProductInfoContainer extends StatelessWidget {
           ), // Space between the price and the action button
           // Centered "Add to cart" button
           Semantics(
-            sortKey: OrdinalSortKey(
-              PreJson.productInformationScreen[5].semanticOrdinal,
-            ),
+            sortKey: OrdinalSortKey(semantics[5].semanticOrdinal),
             child: Center(
               child: AppButtons(
-                semanticsText: PreJson.productInformationScreen[5].label,
+                semanticsText: semantics[5].label,
                 key: Key("AddToTheCart"),
                 title: Copys.productContainerText, // Button text
                 type:

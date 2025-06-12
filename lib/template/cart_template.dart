@@ -1,6 +1,9 @@
+//import 'dart:io';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:fake_store_design/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 /// Template widget that displays the shopping cart screen.
 ///
@@ -89,32 +92,39 @@ class CartTemplate extends StatelessWidget {
           FadeInUp(
             delay: const Duration(milliseconds: 500),
             //animate: !Platform.environment.containsKey('FLUTTER_TEST'),
-            child: ListView.separated(
-              padding: EdgeInsets.only(
-                top: AppSpacing.medium,
-                bottom: AppSpacing.large,
-              ),
-              itemCount: listCart.length,
-              itemBuilder: (context, index) {
-                final product = listCart[index];
+            child: Semantics(
+              sortKey: OrdinalSortKey(1.0),
+              readOnly: true,
+              child: ListView.separated(
+                padding: EdgeInsets.only(
+                  top: AppSpacing.medium,
+                  bottom: AppSpacing.large,
+                ),
+                itemCount: listCart.length,
+                itemBuilder: (context, index) {
+                  final product = listCart[index];
 
-                return ProductCartContainer(
-                  key: Key("ProductCartContainer-$index"),
-                  onPressedinfo: () => onPressedinfo?.call(product),
-                  description: product.description,
-                  url: product.image,
-                  assetsImage: assetsImage,
-                  productName: product.title,
-                  amount: 'x${product.quantity}',
-                  productPrice: product.price,
-                  isPromotion: product.isPromotion,
-                  discount: product.discount,
-                  onPressedminus: () => onPressedminus?.call(product),
-                  onPressedplus: () => onPressedplus?.call(product),
-                );
-              },
-              separatorBuilder:
-                  (context, index) => SizedBox(height: AppSpacing.small),
+                  return Semantics(
+                    label: 'Product number $index',
+                    child: ProductCartContainer(
+                      key: Key("ProductCartContainer-$index"),
+                      onPressedinfo: () => onPressedinfo?.call(product),
+                      description: product.description,
+                      url: product.image,
+                      assetsImage: assetsImage,
+                      productName: product.title,
+                      amount: 'x${product.quantity}',
+                      productPrice: product.price,
+                      isPromotion: product.isPromotion,
+                      discount: product.discount,
+                      onPressedminus: () => onPressedminus?.call(product),
+                      onPressedplus: () => onPressedplus?.call(product),
+                    ),
+                  );
+                },
+                separatorBuilder:
+                    (context, index) => SizedBox(height: AppSpacing.small),
+              ),
             ),
           ),
 
@@ -123,7 +133,9 @@ class CartTemplate extends StatelessWidget {
             bottom: AppSpacing.small,
             left: 0,
             right: 0,
-            child: BlockSemantics(
+            child: Semantics(
+              sortKey: OrdinalSortKey(2.0),
+              readOnly: true,
               child: Center(
                 child:
                     authentication
